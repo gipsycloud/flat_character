@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* ruby 3.2.1 (2023-02-08 revision 31819e82c8)
 
-Things you may want to cover:
+* Rails 7.0.8 
 
-* Ruby version
-
-* System dependencies
+* System dependencies [x86_64-linux]
 
 * Configuration
 
-* Database creation
+* Database creation (Postgresql)
 
 * Database initialization
 
 * How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+* Services (job queues, cache servers, search engines, etc.) (comming soon)
 
-* Deployment instructions
+* Deployment instructions (rails s or bin/dev)
 
-* ...
+* Tailwind CSS
+
+# https://tw-elements.com/docs/standard/navigation/breadcrumbs/
