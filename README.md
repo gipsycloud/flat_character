@@ -21,3 +21,5 @@
 * Tailwind CSS
 
 # https://tw-elements.com/docs/standard/navigation/breadcrumbs/
+
+# https://tailwindcomponents.com/cheatsheet/
