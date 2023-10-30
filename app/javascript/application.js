@@ -2,5 +2,5 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-import "./custom/menu"
-import "./custom/slider"
+import "./custom/menu.js"
+// import "./custom/slider.js"
