@@ -1,100 +1,73 @@
 <%= render "template/nav" %>
 
-<div class="flex items-center justify-center">
-  <div class="p-6 max-w-md mx-auto">
-    <a href="#" class="block rounded-lg p-4 shadow-sm shadow-indigo-100">
-      <img
-        alt="Home"
-        src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-        class="h-56 w-full rounded-md object-cover"
-      />
-
-      <div class="mt-2">
-        <dl>
+<div class="bg-white py-24 sm:py-32">
+  <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Meet our leadership</h2>
+      <p class="mt-6 text-lg leading-8 text-gray-600">Libero fames augue nisl porttitor nisi, quis. Id ac elit odio vitae elementum enim vitae ullamcorper suspendisse.</p>
+    </div>
+    <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+      <li>
+        <div class="flex items-center gap-x-6">
+          <img class="h-16 w-16 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
           <div>
-            <dt class="sr-only">Price</dt>
-
-            <dd class="text-sm text-gray-500">$240,000</dd>
-          </div>
-
-          <div>
-            <dt class="sr-only">Address</dt>
-
-            <dd class="font-medium">123 Wallaby Avenue, Park Road</dd>
-          </div>
-        </dl>
-
-        <div class="mt-6 flex items-center gap-8 text-xs">
-          <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
-            <svg
-              class="h-4 w-4 text-indigo-700"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
-              />
-            </svg>
-
-            <div class="mt-1.5 sm:mt-0">
-              <p class="text-gray-500">Parking</p>
-
-              <p class="font-medium">2 spaces</p>
-            </div>
-          </div>
-
-          <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
-            <svg
-              class="h-4 w-4 text-indigo-700"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-              />
-            </svg>
-
-            <div class="mt-1.5 sm:mt-0">
-              <p class="text-gray-500">Bathroom</p>
-
-              <p class="font-medium">2 rooms</p>
-            </div>
-          </div>
-
-          <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
-            <svg
-              class="h-4 w-4 text-indigo-700"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-              />
-            </svg>
-
-            <div class="mt-1.5 sm:mt-0">
-              <p class="text-gray-500">Bedroom</p>
-
-              <p class="font-medium">4 rooms</p>
-            </div>
+            <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Leslie Alexander</h3>
+            <p class="text-sm font-semibold leading-6 text-indigo-600">Co-Founder / CEO</p>
           </div>
         </div>
-      </div>
-    </a>
+      </li>
+
+      <li>
+        <div class="flex items-center gap-x-6">
+          <img class="h-16 w-16 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+          <div>
+            <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Leslie Alexander</h3>
+            <p class="text-sm font-semibold leading-6 text-indigo-600">Co-Founder / CEO</p>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="flex items-center gap-x-6">
+          <img class="h-16 w-16 rounded-full" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+          <div>
+            <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Leslie Alexander</h3>
+            <p class="text-sm font-semibold leading-6 text-indigo-600">Co-Founder / CEO</p>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="flex items-center gap-x-6">
+          <img class="h-16 w-16 rounded-full" src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+          <div>
+            <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Leslie Alexander</h3>
+            <p class="text-sm font-semibold leading-6 text-indigo-600">Co-Founder / CEO</p>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="flex items-center gap-x-6">
+          <img class="h-16 w-16 rounded-full" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+          <div>
+            <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Leslie Alexander</h3>
+            <p class="text-sm font-semibold leading-6 text-indigo-600">Co-Founder / CEO</p>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="flex items-center gap-x-6">
+          <img class="h-16 w-16 rounded-full" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+          <div>
+            <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Leslie Alexander</h3>
+            <p class="text-sm font-semibold leading-6 text-indigo-600">Co-Founder / CEO</p>
+          </div>
+        </div>
+      </li>
+
+      <!-- More people... -->
+    </ul>
   </div>
-</div>  
+</div>
