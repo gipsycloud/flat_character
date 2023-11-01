@@ -25,3 +25,5 @@
 # https://tailwindcomponents.com/cheatsheet/
 
 # Adding Google Analysis
+
+# https://flowbite.com/docs/getting-started/rails/

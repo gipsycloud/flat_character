@@ -2,5 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
+import 'flowbite'
+
 import "./custom/menu.js"
 // import "./custom/slider.js"

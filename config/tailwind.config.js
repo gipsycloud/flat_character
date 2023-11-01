@@ -5,7 +5,8 @@ module.exports = {
     './public/*.html',
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
-    './app/views/**/*.{erb,haml,html,slim}'
+    './app/views/**/*.{erb,haml,html,slim}',
+    './node_modules/flowbite/**/*.js'
   ],
   theme: {
     screens: {
@@ -22,6 +23,9 @@ module.exports = {
         '15px': '15px',
         '128': '32rem',
         '144': '36rem',
+      },
+      width: {
+        '128': '90rem',
       },
       height: {
         '208': '13rem',
@@ -59,6 +63,7 @@ module.exports = {
         '9/12': '75%',
         '10/12': '83.333333%',
         '11/12': '91.666667%',
+        '128': '90rem',
       },
     },
   },
@@ -67,5 +72,6 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/container-queries'),
+    require('flowbite/plugin'),
   ]
 }
