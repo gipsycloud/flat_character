@@ -4,5 +4,6 @@ import "controllers"
 
 import 'flowbite'
 
-import "./custom/menu.js"
-// import "./custom/slider.js"
+import "./jqueryjs"
+import "./custom/menu"
+import "./custom/swiper"
