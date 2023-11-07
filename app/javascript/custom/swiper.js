@@ -3,12 +3,18 @@
 import swiper from 'https://cdn.jsdelivr.net/npm/swiper@11.0.3/+esm'
 $(document).on("turbo:load", function() {
 // Initialize Swiper
-const mySwiper = new Swiper('.swiper-container', {
-  // Your Swiper configuration options here
+const mySwiper = new Swiper('.swiper', {
+  slidesPerView: 5,
+  spaceBetween: 15,
   loop: true,
-  slidesPerView: 3,
-  spaceBetween: 10,
-  // Add more options as needed
+  centerSlide: 'true',
+  fade: 'true',
+  grabCursor: 'true',
+  autoHeight: 'true',
+  observer: true,  
+  observeParents: true,
+  keyboard: true,
+  // mousewheel: true,
   autoplay: {
     delay: 5000,
   },
