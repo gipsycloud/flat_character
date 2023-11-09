@@ -27,3 +27,7 @@
 # Adding Google Analysis
 
 # https://flowbite.com/docs/getting-started/rails/
+
+# https://www.hyperui.dev/
+
+# https://www.jsdelivr.com/package/npm/swiper
