@@ -12,6 +12,24 @@
     <%#= render @homes %>
   </div>
 </div>  -->
+<!-- newsletter-banner -->
+<div id="newsletter-banner" tabindex="-1" class=" top-0 left-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+    <div class="flex items-center flex-shrink-0 w-full mx-auto sm:w-auto">
+        <form action="#" class="flex flex-col items-center w-full md:flex-row">
+            <%# <label for="email" class="flex-shrink-0 mb-2 mr-auto text-sm font-medium text-gray-500 md:mb-0 md:mr-4 dark:text-gray-400 md:m-0">Sign up for our newsletter</label> %>
+            <%# <input type="email" id="email" placeholder="Enter your email" class="bg-white border border-gray-300 text-gray-900 md:w-64 mb-2 md:mb-0 md:mr-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required /> %>
+            <h3 class="text-4xl font-bold tracking-tigh sm:text-3xl">!! Cooming Soon !! Website is Maintaince Mode</h3>
+        </form>
+    </div>
+    <div class="flex items-center absolute top-2.5 right-2.5 md:relative md:top-auto md:right-auto">
+        <button data-dismiss-target="#newsletter-banner" type="button" class="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white">
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+            </svg>
+            <span class="sr-only">Close banner</span>
+        </button>
+    </div>
+</div>
 
 <!-- Jumbotron -->
 <div class="relative overflow-hidden bg-cover bg-no-repeat p-12 text-center home_background">
@@ -58,8 +76,7 @@
         <div class="pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40">
           <div class="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
             <div class="sm:max-w-lg">
-              <%# <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Find Home Together</h1> %>
-              <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">!! Cooming Soon !! Website is Maintaince Mode</h1>
+              <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Find Home Together</h1>
               <p class="mt-4 text-xl text-white">Every 3 minutes someone finds a flatmate on SpareRoom. With the biggest selection of ads, you'll find yours.</p>
               <a href="#" class="inline-block rounded-md border border-transparent bg-indigo-600 mt-4 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Shop Collection</a>
             </div>
@@ -110,7 +127,419 @@
 <!-- Jumbotron -->
 
 <!-- room details -->
-  <div class="bg-white mt-16">
+<div class="lg:my-20 lg:mx-[100px] sm:mx-[20px]">
+  <div class="w-full flex justify-between items-center">
+  <h2 class="text-xl font-semibold">Featured rooms:</h2>
+  <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+  </svg>
+  </div>
+  <div class="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-1">
+    <div class="h-auto">
+      <div class="group relative">
+            <div class="flex p-6 max-w-md mx-auto">
+              <a href="#" class="block rounded-lg p-4 shadow-sm shadow-indigo-100">
+                <img
+                  alt="Home"
+                  src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  class="h-56 w-full rounded-md object-cover"
+                />
+
+                <div class="mt-2">
+                  <dl>
+                    <div>
+                      <dt class="sr-only">Price</dt>
+
+                      <dd class="text-sm text-gray-500">$240,000</dd>
+                    </div>
+
+                    <div>
+                      <dt class="sr-only">Address</dt>
+
+                      <dd class="font-medium">123 Wallaby Avenue, Park Road</dd>
+                    </div>
+                  </dl>
+
+                  <div class="mt-6 flex items-center gap-8 text-xs">
+                    <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                      <svg
+                        class="h-4 w-4 text-indigo-700"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
+                        />
+                      </svg>
+
+                      <div class="mt-1.5 sm:mt-0">
+                        <p class="text-gray-500">Parking</p>
+
+                        <p class="font-medium">2 spaces</p>
+                      </div>
+                    </div>
+
+                    <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                      <svg
+                        class="h-4 w-4 text-indigo-700"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                        />
+                      </svg>
+
+                      <div class="mt-1.5 sm:mt-0">
+                        <p class="text-gray-500">Bathroom</p>
+
+                        <p class="font-medium">2 rooms</p>
+                      </div>
+                    </div>
+
+                    <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                      <svg
+                        class="h-4 w-4 text-indigo-700"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                        />
+                      </svg>
+
+                      <div class="mt-1.5 sm:mt-0">
+                        <p class="text-gray-500">Bedroom</p>
+
+                        <p class="font-medium">4 rooms</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+    </div>
+    <div class="h-auto">
+      <div class="group relative">
+            <div class="flex p-6 max-w-md mx-auto">
+              <a href="#" class="block rounded-lg p-4 shadow-sm shadow-indigo-100">
+                <img
+                  alt="Home"
+                  src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  class="h-56 w-full rounded-md object-cover"
+                />
+
+                <div class="mt-2">
+                  <dl>
+                    <div>
+                      <dt class="sr-only">Price</dt>
+
+                      <dd class="text-sm text-gray-500">$240,000</dd>
+                    </div>
+
+                    <div>
+                      <dt class="sr-only">Address</dt>
+
+                      <dd class="font-medium">123 Wallaby Avenue, Park Road</dd>
+                    </div>
+                  </dl>
+
+                  <div class="mt-6 flex items-center gap-8 text-xs">
+                    <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                      <svg
+                        class="h-4 w-4 text-indigo-700"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
+                        />
+                      </svg>
+
+                      <div class="mt-1.5 sm:mt-0">
+                        <p class="text-gray-500">Parking</p>
+
+                        <p class="font-medium">2 spaces</p>
+                      </div>
+                    </div>
+
+                    <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                      <svg
+                        class="h-4 w-4 text-indigo-700"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                        />
+                      </svg>
+
+                      <div class="mt-1.5 sm:mt-0">
+                        <p class="text-gray-500">Bathroom</p>
+
+                        <p class="font-medium">2 rooms</p>
+                      </div>
+                    </div>
+
+                    <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                      <svg
+                        class="h-4 w-4 text-indigo-700"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                        />
+                      </svg>
+
+                      <div class="mt-1.5 sm:mt-0">
+                        <p class="text-gray-500">Bedroom</p>
+
+                        <p class="font-medium">4 rooms</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+    </div>
+    <div class="h-auto">
+      <div class="group relative">
+            <div class="flex p-6 max-w-md mx-auto">
+              <a href="#" class="block rounded-lg p-4 shadow-sm shadow-indigo-100">
+                <img
+                  alt="Home"
+                  src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  class="h-56 w-full rounded-md object-cover"
+                />
+
+                <div class="mt-2">
+                  <dl>
+                    <div>
+                      <dt class="sr-only">Price</dt>
+
+                      <dd class="text-sm text-gray-500">$240,000</dd>
+                    </div>
+
+                    <div>
+                      <dt class="sr-only">Address</dt>
+
+                      <dd class="font-medium">123 Wallaby Avenue, Park Road</dd>
+                    </div>
+                  </dl>
+
+                  <div class="mt-6 flex items-center gap-8 text-xs">
+                    <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                      <svg
+                        class="h-4 w-4 text-indigo-700"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
+                        />
+                      </svg>
+
+                      <div class="mt-1.5 sm:mt-0">
+                        <p class="text-gray-500">Parking</p>
+
+                        <p class="font-medium">2 spaces</p>
+                      </div>
+                    </div>
+
+                    <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                      <svg
+                        class="h-4 w-4 text-indigo-700"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                        />
+                      </svg>
+
+                      <div class="mt-1.5 sm:mt-0">
+                        <p class="text-gray-500">Bathroom</p>
+
+                        <p class="font-medium">2 rooms</p>
+                      </div>
+                    </div>
+
+                    <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                      <svg
+                        class="h-4 w-4 text-indigo-700"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                        />
+                      </svg>
+
+                      <div class="mt-1.5 sm:mt-0">
+                        <p class="text-gray-500">Bedroom</p>
+
+                        <p class="font-medium">4 rooms</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+    </div>
+    <div class="h-auto">
+      <div class="group relative">
+            <div class="flex p-6 max-w-md mx-auto">
+              <a href="#" class="block rounded-lg p-4 shadow-sm shadow-indigo-100">
+                <img
+                  alt="Home"
+                  src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  class="h-56 w-full rounded-md object-cover"
+                />
+
+                <div class="mt-2">
+                  <dl>
+                    <div>
+                      <dt class="sr-only">Price</dt>
+
+                      <dd class="text-sm text-gray-500">$240,000</dd>
+                    </div>
+
+                    <div>
+                      <dt class="sr-only">Address</dt>
+
+                      <dd class="font-medium">123 Wallaby Avenue, Park Road</dd>
+                    </div>
+                  </dl>
+
+                  <div class="mt-6 flex items-center gap-8 text-xs">
+                    <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                      <svg
+                        class="h-4 w-4 text-indigo-700"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
+                        />
+                      </svg>
+
+                      <div class="mt-1.5 sm:mt-0">
+                        <p class="text-gray-500">Parking</p>
+
+                        <p class="font-medium">2 spaces</p>
+                      </div>
+                    </div>
+
+                    <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                      <svg
+                        class="h-4 w-4 text-indigo-700"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                        />
+                      </svg>
+
+                      <div class="mt-1.5 sm:mt-0">
+                        <p class="text-gray-500">Bathroom</p>
+
+                        <p class="font-medium">2 rooms</p>
+                      </div>
+                    </div>
+
+                    <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                      <svg
+                        class="h-4 w-4 text-indigo-700"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                        />
+                      </svg>
+
+                      <div class="mt-1.5 sm:mt-0">
+                        <p class="text-gray-500">Bedroom</p>
+
+                        <p class="font-medium">4 rooms</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>  
+
+<!-- room details -->
+  <%# <div class="bg-white mt-16">
     <div class="mx-auto md:w-3/4">
       <div class="w-full flex justify-between items-center">
       <h2 class="text-xl font-semibold">Featured rooms:</h2>
@@ -118,7 +547,7 @@
         Button
       </button>
     </div>
-      <div class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8">
         <div class="group relative">
           <div class="flex p-6 max-w-md mx-auto">
             <a href="#" class="block rounded-lg p-4 shadow-sm shadow-indigo-100">
@@ -516,10 +945,9 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> %>
 
 <!-- roommate-->
-
 <div class="container-fluid">
   <div class="flex justify-center lg:py-16 mt-16 ">
       <svg class="w-[32px] h-[38px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
@@ -566,6 +994,40 @@
   </div> %>
 </div>
 
+<!-- make friend today-->
+<div class="container mx-auto md:w-3/4 mt-16">
+  <div
+      class="flex flex-col items-center gap-4 rounded-lg bg-indigo-600 p-6 shadow-lg sm:flex-row sm:justify-between"
+    >
+      <strong class="text-xl text-white sm:text-xl">
+        Make Friend to the other people !!
+      </strong>
+
+      <a
+        class="inline-flex items-center gap-2 rounded-full border border-white bg-white px-8 py-3 text-indigo-600 hover:bg-transparent hover:text-white focus:outline-none focus:ring active:bg-white/90"
+        href="/"
+      >
+        <span class="text-sm font-medium"> Let's Get Started </span>
+
+        <svg
+          class="h-5 w-5 rtl:rotate-180"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 8l4 4m0 0l-4 4m4-4H3"
+          />
+        </svg>
+      </a>
+    </div>
+</div>
+
+<!-- two photos -->
 <section class="bg-white dark:bg-gray-900">
     <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
         <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
@@ -579,6 +1041,170 @@
         </div>
     </div>
 </section>
+
+<!-- blog posts -->
+<div class="lg:my-20 lg:mx-[100px] sm:mx-[20px]">
+  <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
+    <div class="h-auto p-4">
+      <article class="flex bg-white transition hover:shadow-xl">
+        <div class="rotate-180 p-2 [writing-mode:_vertical-lr]">
+          <time
+            datetime="2023-10-10"
+            class="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900"
+          >
+            <span>2023</span>
+            <span class="w-px flex-1 bg-gray-900/10"></span>
+            <span>Oct 10</span>
+          </time>
+        </div>
+
+        <div class="hidden sm:block sm:basis-56">
+          <img
+            alt="Guitar"
+            src="https://images.unsplash.com/photo-1609557927087-f9cf8e88de18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+            class="aspect-square h-full w-full object-cover"
+          />
+        </div>
+
+        <div class="flex flex-1 flex-col justify-between">
+          <div class="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
+            <a href="#">
+              <h3 class="font-bold uppercase text-gray-900">
+                Finding the right guitar for your style - 5 tips
+              </h3>
+            </a>
+
+            <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-700">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
+              dolores, possimus pariatur animi temporibus nesciunt praesentium dolore
+              sed nulla ipsum eveniet corporis quidem, mollitia itaque minus soluta,
+              voluptates neque explicabo tempora nisi culpa eius atque dignissimos.
+              Molestias explicabo corporis voluptatem?
+            </p>
+          </div>
+
+          <div class="sm:flex sm:items-end sm:justify-end">
+            <a
+              href="#"
+              class="block bg-yellow-300 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-400"
+            >
+              Read Blog
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="h-auto p-4">
+      <article class="flex bg-white transition hover:shadow-xl">
+        <div class="rotate-180 p-2 [writing-mode:_vertical-lr]">
+          <time
+            datetime="2023-10-10"
+            class="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900"
+          >
+            <span>2023</span>
+            <span class="w-px flex-1 bg-gray-900/10"></span>
+            <span>Oct 10</span>
+          </time>
+        </div>
+
+        <div class="hidden sm:block sm:basis-56">
+          <img
+            alt="Guitar"
+            src="https://images.unsplash.com/photo-1609557927087-f9cf8e88de18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+            class="aspect-square h-full w-full object-cover"
+          />
+        </div>
+
+        <div class="flex flex-1 flex-col justify-between">
+          <div class="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
+            <a href="#">
+              <h3 class="font-bold uppercase text-gray-900">
+                Finding the right guitar for your style - 5 tips
+              </h3>
+            </a>
+
+            <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-700">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
+              dolores, possimus pariatur animi temporibus nesciunt praesentium dolore
+              sed nulla ipsum eveniet corporis quidem, mollitia itaque minus soluta,
+              voluptates neque explicabo tempora nisi culpa eius atque dignissimos.
+              Molestias explicabo corporis voluptatem?
+            </p>
+          </div>
+
+          <div class="sm:flex sm:items-end sm:justify-end">
+            <a
+              href="#"
+              class="block bg-yellow-300 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-400"
+            >
+              Read Blog
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="p-4 text-center">
+      <p class="text-sm font-semibold uppercase tracking-widest">THE BEST ROOM MATE TO LIVE IN</p>
+
+      <h2 class="mt-6 font-black uppercase">
+        <span class="text-4xl font-black sm:text-5xl lg:text-6xl">Get 20% off</span>
+        <span class="mt-2 block text-sm">On your next order over $50</span>
+      </h2>
+
+      <a class="mt-8 inline-block w-full bg-black py-4 text-sm font-bold uppercase tracking-widest text-white" href="">Get Discount</a>
+      <p class="mt-8 text-xs font-medium uppercase text-gray-400">Offer valid until 29th February, 2024 *</p>
+  </div>
+    <%# <div class="h-auto p-4">
+      <article class="flex bg-white transition hover:shadow-xl">
+        <div class="rotate-180 p-2 [writing-mode:_vertical-lr]">
+          <time
+            datetime="2022-10-10"
+            class="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900"
+          >
+            <span>2022</span>
+            <span class="w-px flex-1 bg-gray-900/10"></span>
+            <span>Oct 10</span>
+          </time>
+        </div>
+
+        <div class="hidden sm:block sm:basis-56">
+          <img
+            alt="Guitar"
+            src="https://images.unsplash.com/photo-1609557927087-f9cf8e88de18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+            class="aspect-square h-full w-full object-cover"
+          />
+        </div>
+
+        <div class="flex flex-1 flex-col justify-between">
+          <div class="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
+            <a href="#">
+              <h3 class="font-bold uppercase text-gray-900">
+                Finding the right guitar for your style - 5 tips
+              </h3>
+            </a>
+
+            <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-700">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae
+              dolores, possimus pariatur animi temporibus nesciunt praesentium dolore
+              sed nulla ipsum eveniet corporis quidem, mollitia itaque minus soluta,
+              voluptates neque explicabo tempora nisi culpa eius atque dignissimos.
+              Molestias explicabo corporis voluptatem?
+            </p>
+          </div>
+
+          <div class="sm:flex sm:items-end sm:justify-end">
+            <a
+              href="#"
+              class="block bg-yellow-300 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-400"
+            >
+              Read Blog
+            </a>
+          </div>
+        </div>
+      </article>
+    </div> %>
+  </div>
+</div>
 
 <!-- Testimonial Components -->
 <section class="bg-gray-50">
