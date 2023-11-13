@@ -14,6 +14,9 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  # adding hotwire-live-reload
+  config.hotwire_livereload.listen_paths << Rails.root.join("app/assets/builds")
+
   # Enable server timing
   config.server_timing = true
 

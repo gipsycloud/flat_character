@@ -12,64 +12,53 @@
     <%#= render @homes %>
   </div>
 </div>  -->
-<!-- newsletter-banner -->
-<div id="newsletter-banner" tabindex="-1" class=" top-0 left-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-    <div class="flex items-center flex-shrink-0 w-full mx-auto sm:w-auto">
-        <form action="#" class="flex flex-col items-center w-full md:flex-row">
-            <%# <label for="email" class="flex-shrink-0 mb-2 mr-auto text-sm font-medium text-gray-500 md:mb-0 md:mr-4 dark:text-gray-400 md:m-0">Sign up for our newsletter</label> %>
-            <%# <input type="email" id="email" placeholder="Enter your email" class="bg-white border border-gray-300 text-gray-900 md:w-64 mb-2 md:mb-0 md:mr-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required /> %>
-            <h3 class="text-4xl font-bold tracking-tigh sm:text-3xl">!! Cooming Soon !! Website is Maintaince Mode</h3>
-        </form>
-    </div>
-    <div class="flex items-center absolute top-2.5 right-2.5 md:relative md:top-auto md:right-auto">
-        <button data-dismiss-target="#newsletter-banner" type="button" class="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white">
-            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-            </svg>
-            <span class="sr-only">Close banner</span>
-        </button>
-    </div>
-</div>
-
-<!-- Jumbotron -->
+<!-- navbar -->
+<div><p class="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8 top-1">Find or Rent a Room, Anywhere.</div>
 <div class="relative overflow-hidden bg-cover bg-no-repeat p-12 text-center home_background">
   <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed" style="background-color: rgba(0, 0, 0, 0.6)">
     <!-- navbar -->
-    <div>
-      <p class="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">Find or Rent a Room, Anywhere.
-    </div>
-      <!-- Mobile Menu (Hidden by default on larger screens) -->
-      <nav class="p-4 md:hidden">
-          <div class="flex justify-between items-center">
-              <%# <span class="text-2xl text-white font-semibold">Your Logo</span> %>
-              <%= image_tag ("/assets/logo.png"), alt: "RoomMateCharacter", class: "h-8 w-auto" %>
-              <button id="menu-toggle" class="text-2xl text-white">
-                  ☰
-              </button>
-          </div>
+      <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <%= image_tag ('/assets/logo.png'), alt: "RoomMateCharacter", class: "h-8 auto" %>
+            <%# <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">RoomMateCharacter</span> %>
+        </a>
+        <div class="flex md:order-2 space-x-3 md:space-x-3 rtl:space-x-reverse">
+            <%# <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+             focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700
+              dark:focus:ring-blue-800">Get started</button> %>
 
-          <!-- Mobile menu items -->
-          <div id="mobile-menu" class="hidden mt-4">
-              <a href="/" class="block font-medium py-2 text-white hover:text-blue-500">Home</a>
-              <a href="/aboutus" class="block font-medium py-2 text-white hover:text-blue-500">About</a>
-              <a href="/services" class="block font-medium py-2 text-white hover:text-blue-500">Services</a>
-              <a href="/contact" class="block font-medium py-2 text-white hover:text-blue-500">Contact</a>
-          </div>
+            <%# <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full hidden sm:block">Login</button> %>
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Join Free</button>  
+            <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+              <span class="sr-only">Open main menu</span>
+              <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+              </svg>
+          </button>
+        </div>
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+          <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <li>
+              <a href="/" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Home</a>
+            </li>
+            <li>
+              <a href="/aboutus" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+            </li>
+            <li>
+              <a href="/services" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
+            </li>
+            <li>
+              <a href="/contact" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+            </li>
+            <li>
+              <a href="/contact" class="block py-3 px-3 md:text-white lg:text-white rounded-full hover:bg-red-700 md:hover:text-white md:p-0 sm:bg-red-500 md:bg-red-500 md:px-4">Login</a>
+            </li>
+          </ul>
+        </div>
+        </div>
       </nav>
 
-      <!-- Desktop Menu (Hidden by default on smaller screens) -->
-      <nav class="p-4 hidden md:flex justify-between">
-          <div class="flex item-center">
-            <a href="/" class="font-medium mx-4 space-x-[15px] text-white">Home</a>
-            <a href="/aboutus" class="font-medium mx-4 space-x-[15px] text-white">About</a>
-            <a href="/services" class="font-medium mx-4 space-x-[15px] text-white">Services</a>
-            <a href="/contact" class="font-medium mx-4 space-x-[15px] text-white">Contact</a>
-          </div>
-          <div class="flex items-center gap-x-5 md:gap-x-6">
-            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Login</button>
-            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Join Free</button>
-          </div>
-      </nav>
     <!-- navbar -->
 
       <div class="relative overflow-hidden">
@@ -124,8 +113,26 @@
       </div>
   </div>
 </div>
-<!-- Jumbotron -->
+<!-- navbar -->
 
+<!-- newsletter-banner -->
+<div id="newsletter-banner" tabindex="-1" class=" top-0 left-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-indigo-600 dark:bg-gray-700 dark:border-gray-600">
+    <div class="flex items-center flex-shrink-0 w-full mx-auto sm:w-auto z-20">
+        <form action="#" class="flex flex-col items-center w-full md:flex-row">
+            <%# <label for="email" class="flex-shrink-0 mb-2 mr-auto text-sm font-medium text-gray-500 md:mb-0 md:mr-4 dark:text-gray-400 md:m-0">Sign up for our newsletter</label> %>
+            <%# <input type="email" id="email" placeholder="Enter your email" class="bg-white border border-gray-300 text-gray-900 md:w-64 mb-2 md:mb-0 md:mr-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required /> %>
+            <h3 class="text-4xl text-white font-bold tracking-tigh sm:text-3xl">!! Cooming Soon !! Website is Maintaince Mode</h3>
+        </form>
+    </div>
+    <div class="flex items-center absolute top-2.5 right-2.5 md:relative md:top-auto md:right-auto">
+        <button data-dismiss-target="#newsletter-banner" type="button" class="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-white hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white">
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+            </svg>
+            <span class="sr-only">Close banner</span>
+        </button>
+    </div>
+</div>
 <!-- room details -->
 <div class="lg:my-20 lg:mx-[100px] sm:mx-[20px]">
   <div class="w-full flex justify-between items-center">
@@ -536,7 +543,7 @@
           </div>
     </div>
   </div>
-</div>  
+</div>
 
 <!-- room details -->
   <%# <div class="bg-white mt-16">
@@ -1594,7 +1601,7 @@
 </div>
 
 <!-- newsletter-banner -->
-<div id="newsletter-banner" tabindex="-1" class=" top-0 left-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+<div id="newsletter-banner-bottom" tabindex="-1" class=" top-0 left-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
     <div class="flex items-center flex-shrink-0 w-full mx-auto sm:w-auto">
         <form action="#" class="flex flex-col items-center w-full md:flex-row">
             <label for="email" class="flex-shrink-0 mb-2 mr-auto text-sm font-medium text-gray-500 md:mb-0 md:mr-4 dark:text-gray-400 md:m-0">Sign up for our newsletter</label>
@@ -1603,7 +1610,7 @@
         </form>
     </div>
     <div class="flex items-center absolute top-2.5 right-2.5 md:relative md:top-auto md:right-auto">
-        <button data-dismiss-target="#newsletter-banner" type="button" class="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white">
+        <button data-dismiss-target="#newsletter-banner-bottom" type="button" class="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white">
             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
             </svg>
