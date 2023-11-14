@@ -25,8 +25,9 @@ development:
 #   database: db/test.sqlite3
 
 production:
+  <<: *default
+  username: postgres
+  password: password
+  host: localhost
   database: blog_production
-  host: <%= ENV['RDS_HOST'] %>
-  username: <%= ENV['RDS_DATABASE_USERNAME'] %>
-  password: <%= ENV['RDS_DATABASE_PASSWORD'] %>
   secret_key_base: f9593bb92111e769026cd6014ac80936a99365d91149d396d704518669ca207c6973e2a357501274e4c839af06503d0492f847885d055194b46940a87c5bebbb
