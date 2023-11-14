@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :users,
+  path: '/auth',
+  path_names: {
+    sign_in: 'sign_in',
+  }, controllers: { sessions: 'users/sessions', passwords: 'users/passwords', registrations: 'users/registrations', confirmations: 'users/confirmations' }
+  
+  resources :admins
   resources :homes
   get "list_a_room" => "homes#list_a_room"
   get "find_a_home" => "homes#find_a_home"

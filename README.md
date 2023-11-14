@@ -20,14 +20,16 @@
 
 * Tailwind CSS
 
-# https://tw-elements.com/docs/standard/navigation/breadcrumbs/
+https://tw-elements.com/docs/standard/navigation/breadcrumbs/
 
-# https://tailwindcomponents.com/cheatsheet/
+https://tailwindcomponents.com/cheatsheet/
 
-# Adding Google Analysis
+Adding Google Analysis
 
-# https://flowbite.com/docs/getting-started/rails/
+https://flowbite.com/docs/getting-started/rails/
 
-# https://www.hyperui.dev/
+https://www.hyperui.dev/
 
-# https://www.jsdelivr.com/package/npm/swiper
+https://www.jsdelivr.com/package/npm/swiper
+
+https://stackoverflow.com/questions/41972575/generating-devise-controllers-rails-devise

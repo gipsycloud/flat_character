@@ -75,3 +75,5 @@ end
 
 gem "tailwindcss-rails", "~> 2.0"
 gem 'jquery-rails', '~> 4.4'
+
+gem 'devise'
