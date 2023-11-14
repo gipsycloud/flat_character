@@ -58,6 +58,15 @@ class HomesController < ApplicationController
     end
   end
 
+  def list_a_room
+  end
+
+  def find_a_home
+  end
+
+  def find_a_flatmate
+  end
+
   def aboutus
   end
 
