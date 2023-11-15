@@ -11,14 +11,16 @@
 * Database creation (Postgresql)
 
 * Database initialization
+    https://www.datadoghq.com/
 
 * How to run the test suite
 
 * Services (job queues, cache servers, search engines, etc.) (comming soon)
 
-* Deployment instructions (rails s or bin/dev)
+* Deployment instructions (rails s or bin/dev or foreman start)
 
-* Tailwind CSS
+* Tailwind CSS, Flowbite Components
+  https://flowbite.com/
 
 https://tw-elements.com/docs/standard/navigation/breadcrumbs/
 
@@ -33,3 +35,6 @@ https://www.hyperui.dev/
 https://www.jsdelivr.com/package/npm/swiper
 
 https://stackoverflow.com/questions/41972575/generating-devise-controllers-rails-devise
+
+admin sidebar menu fixed position when scrolling page
+https://stackoverflow.com/questions/72191704/tailwind-overscroll-y-not-working-properly
