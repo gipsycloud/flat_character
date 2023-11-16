@@ -7,6 +7,7 @@
 * System dependencies [x86_64-linux]
 
 * Configuration
+  hotwire, cloudinary (coming soon)
 
 * Database creation (Postgresql)
 
@@ -18,6 +19,8 @@
 * Services (job queues, cache servers, search engines, etc.) (comming soon)
 
 * Deployment instructions (rails s or bin/dev or foreman start)
+
+* 
 
 * Tailwind CSS, Flowbite Components
   https://flowbite.com/
