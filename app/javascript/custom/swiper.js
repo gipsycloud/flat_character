@@ -1,6 +1,9 @@
 // app/javascript/packs/swiper.js
+// https://swiperjs.com/get-started
 
 import swiper from 'https://cdn.jsdelivr.net/npm/swiper@11.0.3/+esm'
+import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
+// import Swiper from 'swiper';
 $(document).on("turbo:load", function() {
 // Initialize Swiper
 const mySwiper = new Swiper('.swiper', {

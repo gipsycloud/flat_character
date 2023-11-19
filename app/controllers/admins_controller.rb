@@ -1,6 +1,7 @@
 class AdminsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_admin, only: %i[ show edit update destroy ]
+  # layout 'layouts/application'
 
   # GET /admins or /admins.json
   def index
