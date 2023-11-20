@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :admins do
     collection do
       get 'report' => "admins#report"
+      get 'members' => "admins#members"
+      get 'homelist' => "admins#homelist"
+      get 'availableroom' => "admins#availableroom"
     end
   end
   resources :homes

@@ -70,6 +70,11 @@ module.exports = {
       },
     },
   },
+  variants: {
+    extend: {
+      textColor: ["active"],
+    },
+  },
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
