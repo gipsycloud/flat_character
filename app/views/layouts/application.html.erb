@@ -11,6 +11,7 @@
     <%= javascript_importmap_tags %>
     <%# <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.turbo.min.js"></script> %>
     <%= hotwire_livereload_tags if Rails.env.development? %>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
 
   <body>

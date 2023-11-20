@@ -5,7 +5,11 @@ Rails.application.routes.draw do
     sign_in: 'sign_in',
   }, controllers: { sessions: 'users/sessions', passwords: 'users/passwords', registrations: 'users/registrations', confirmations: 'users/confirmations' }
   
-  resources :admins
+  resources :admins do
+    collection do
+      get 'report' => "admins#report"
+    end
+  end
   resources :homes
   get "list_a_room" => "homes#list_a_room"
   get "find_a_home" => "homes#find_a_home"
