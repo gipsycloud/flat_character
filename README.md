@@ -29,7 +29,11 @@ https://tw-elements.com/docs/standard/navigation/breadcrumbs/
 
 https://tailwindcomponents.com/cheatsheet/
 
-Adding Google Analysis
+Adding Google Analysis, SmartLook, CloudDNS
+
+https://www.cloudns.net/zone-update-info/domain/5905280/
+
+https://app.smartlook.com/org/72768cb3ba0e834e85c1f0b7/project/2k3k3zlh26qtdtxkdsogg798/recordings?segment=active
 
 https://flowbite.com/docs/getting-started/rails/
 
