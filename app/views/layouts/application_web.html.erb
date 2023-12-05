@@ -32,6 +32,20 @@
         })(document);
         smartlook('init', 'ac1d3bfb9bd3cd1f9d6aec286962cf594461ddaa', { region: 'eu' });
     </script> %>
+    <!-- Brevo Conversations {literal} -->
+    <script>
+        (function(d, w, c) {
+            w.BrevoConversationsID = '63febe5ed8d9de5e705ad9b9';
+            w[c] = w[c] || function() {
+                (w[c].q = w[c].q || []).push(arguments);
+            };
+            var s = d.createElement('script');
+            s.async = true;
+            s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
+            if (d.head) d.head.appendChild(s);
+        })(document, window, 'BrevoConversations');
+    </script>
+    <!-- /Brevo Conversations {/literal} -->
   </head>
 
   <body class="<%= controller_name %>">

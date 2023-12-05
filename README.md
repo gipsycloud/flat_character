@@ -45,3 +45,7 @@ https://stackoverflow.com/questions/41972575/generating-devise-controllers-rails
 
 admin sidebar menu fixed position when scrolling page
 https://stackoverflow.com/questions/72191704/tailwind-overscroll-y-not-working-properly
+
+Live Chat (Brevo.com)
+https://conversations-app.brevo.com/conversations/MbTxss4zWbjRkPWxA
+https://account-app.brevo.com/account/login?target=https%3A%2F%2Fconversations-app.brevo.com%2Fconversations%2FMbTxss4zWbjRkPWxA
