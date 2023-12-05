@@ -11,8 +11,17 @@ Rails.application.routes.draw do
       get 'members' => "admins#members"
       get 'homelist' => "admins#homelist"
       get 'availableroom' => "admins#availableroom"
+      # namespace 'profile_setting' do
+      # end
     end
   end
+
+  resources :profile do
+    collection do
+      get 'detail' => "profile#profile"
+    end
+  end
+
   resources :homes
   get "list_a_room" => "homes#list_a_room"
   get "find_a_home" => "homes#find_a_home"

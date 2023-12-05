@@ -30,6 +30,7 @@ gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
+gem "redis-actionpack"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -57,6 +58,9 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "hotwire-livereload"
+  gem 'better_errors', '~> 2.9', '>= 2.9.1'
+  gem "binding_of_caller"
+  gem "meta_request"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -73,8 +77,16 @@ group :test do
   gem "webdrivers"
 end
 
+group :assets do
+  gem 'coffee-rails'
+end
+
 gem "tailwindcss-rails", "~> 2.0"
-gem 'jquery-rails', '~> 4.4'
+gem 'jquery-rails'
+# gem 'coffee-script', '~> 2.4', '>= 2.4.1'
 
 gem 'devise'
 gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
+
+gem 'cloudinary'
+gem 'attachinary'
