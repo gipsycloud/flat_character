@@ -15,7 +15,7 @@
     <%= favicon_link_tag asset_path('favicon.ico') %>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <%# <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XSZZ6M1HSM"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -23,15 +23,15 @@
       gtag('js', new Date());
 
       gtag('config', 'G-XSZZ6M1HSM');
-    </script> %>
-    <script type='text/javascript'>
+    </script>
+    <%# <script type='text/javascript'>
       window.smartlook||(function(d) {
         var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
         var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
         c.charset='utf-8';c.src='https://web-sdk.smartlook.com/recorder.js';h.appendChild(c);
         })(document);
         smartlook('init', 'ac1d3bfb9bd3cd1f9d6aec286962cf594461ddaa', { region: 'eu' });
-    </script>
+    </script> %>
   </head>
 
   <body class="<%= controller_name %>">
