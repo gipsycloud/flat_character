@@ -34,16 +34,22 @@
     </script> %>
     <!-- Brevo Conversations {literal} -->
     <script>
+      console.log("application.js. runs one time only");
+
+      document.addEventListener("turbo:load", (event) => {
+        console.log("turbo:load. runs every time a page is loaded");
+
         (function(d, w, c) {
-            w.BrevoConversationsID = '63febe5ed8d9de5e705ad9b9';
-            w[c] = w[c] || function() {
-                (w[c].q = w[c].q || []).push(arguments);
-            };
-            var s = d.createElement('script');
-            s.async = true;
-            s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
-            if (d.head) d.head.appendChild(s);
-        })(document, window, 'BrevoConversations');
+          w.BrevoConversationsID = '63febe5ed8d9de5e705ad9b9';
+          w[c] = w[c] || function() {
+              (w[c].q = w[c].q || []).push(arguments);
+          };
+          var s = d.createElement('script');
+          s.async = true;
+          s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
+          if (d.head) d.head.appendChild(s);
+      })(document, window, 'BrevoConversations');
+      });
     </script>
     <!-- /Brevo Conversations {/literal} -->
   </head>
