@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   resources :admins do
     collection do
+      resources :rooms
       get 'report' => "admins#report"
       get 'members' => "admins#members"
       get 'homelist' => "admins#homelist"
@@ -31,7 +32,6 @@ Rails.application.routes.draw do
   get "contact" => "homes#contact"
   
   resources :posts
-  resources :rooms
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
