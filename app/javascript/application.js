@@ -3,7 +3,9 @@ import "@hotwired/turbo-rails"
 import "controllers"
 
 import 'flowbite'
+import 'flowbite-datepicker';
 
 import "./jqueryjs"
 // import "./custom/menu"
 import "./custom/swiper"
+// import "./custom/datepicker"

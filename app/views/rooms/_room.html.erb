@@ -4,4 +4,87 @@
     <%= link_to "Edit this room", edit_room_path(room), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
   <% end %>
+  <div class="items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
+    <div class="relative overflow-x-auto">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="px-6 py-3">
+                RoomType
+            </th>
+            <th scope="col" class="px-6 py-3">
+                MaxPersons
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Room Price
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Gender
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Room Number
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Start Date
+            </th>
+            <th scope="col" class="px-6 py-3">
+                End Date
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Floor
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Room Address
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Room Status
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Action
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @rooms.each do |room| %>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <%= room.roomType %>
+              </th>
+              <td class="px-6 py-4">
+                <%= room.maxPersons %>
+              </td>
+              <td class="px-6 py-4">
+                <%= room.roomPrice %>
+              </td>
+              <td class="px-6 py-4">
+                <%= room.gender %>
+              </td>
+              <td class="px-6 py-4">
+                <%= room.roomNumber %>
+              </td>
+              <td class="px-6 py-4">
+                <%= room.startDate %>
+              </td>
+              <td class="px-6 py-4">
+                <%= room.endDate %>
+              </td>
+              <td class="px-6 py-4">
+                <%= room.floor %>
+              </td>
+              <td class="px-6 py-4">
+                <%= room.address %>
+              </td>
+              <td class="px-6 py-4">
+                <%= room.room_status %>
+              </td>
+              <td class="px-6 py-4">
+                <%= link_to "Show this room", room, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
+
