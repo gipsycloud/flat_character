@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # resources :members
   devise_for :users,
   path: '/auth',
   path_names: {
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   resources :admins do
     collection do
       resources :rooms
+      resources :members
       get 'report' => "admins#report"
       get 'members' => "admins#members"
       get 'homelist' => "admins#homelist"
