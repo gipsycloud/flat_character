@@ -11,6 +11,43 @@
     </div>
   <% end %>
 
+  <div class="grid gap-4 mb-6 md:grid-cols-2">
+    <div class="">
+      <%= form.label :memberName, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= form.text_field :memberName, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+    </div>
+
+    <div class="">
+      <%= form.label :email, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= form.text_field :email, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+    </div>
+
+    <div class="">
+      <%= form.label :phoneNumber, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= form.text_field :phoneNumber, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+    </div>
+
+    <div class="">
+      <%= form.label :memberAddress, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= form.text_field :memberAddress, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+    </div>
+
+    <div class="">
+      <%= form.label :joinDate, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= form.date_field :joinDate, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+    </div>
+
+    <div class="">
+      <%= form.label :lastLogin, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= form.text_field :lastLogin, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+    </div>
+
+     <div class="">
+      <%= form.label :memberType, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= form.text_field :memberType, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+    </div>
+  </div>
+
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>

@@ -1,7 +1,73 @@
-<div id="<%= dom_id member %>">
-  <% if action_name != "show" %>
-    <%= link_to "Show this member", member, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this member", edit_member_path(member), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+<%# <div id="<%= dom_id member %>
+  <%# if action_name != "show" %>
+    <%#= link_to "Show this member", member, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%#= link_to "Edit this member", edit_member_path(member), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%# <hr class="mt-6"> %>
+  <%# end %
+</div> %>
+
+<div class="items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
+  <div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">
+              Member Name
+          </th>
+          <th scope="col" class="px-6 py-3">
+              Email
+          </th>
+          <th scope="col" class="px-6 py-3">
+              Phone Number
+          </th>
+          <th scope="col" class="px-6 py-3">
+              Member Address
+          </th>
+          <th scope="col" class="px-6 py-3">
+              Join Date
+          </th>
+          <th scope="col" class="px-6 py-3">
+              Last Login
+          </th>
+          <th scope="col" class="px-6 py-3">
+              Member Type
+          </th>
+          <th scope="col" class="px-6 py-3">
+              Action
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @members.each do |member| %>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <%= member.memberName %>
+            </th>
+            <td class="px-6 py-4">
+              <%= member.email %>
+            </td>
+            <td class="px-6 py-4">
+              <%= member.phoneNumber %>
+            </td>
+            <td class="px-6 py-4">
+              <%= member.memberAddress %>
+            </td>
+            <td class="px-6 py-4">
+              <%= member.joinDate.to_time.strftime('%B %e %Y') %>
+            </td>
+            <td class="px-6 py-4">
+              <%= member.lastLogin %>
+            </td>
+            <td class="px-6 py-4">
+              <%= member.memberType %>
+            </td>
+            <td class="px-6 py-4">
+              <%= link_to "Show", member, class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
+              <%= link_to "Edit", edit_member_path(member), class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
