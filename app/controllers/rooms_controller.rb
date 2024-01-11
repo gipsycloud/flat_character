@@ -1,9 +1,10 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /rooms or /rooms.json
   def index
-    @rooms = Room.all
+    @rooms = Room.where(:user_id => current_user.id)
   end
 
   # GET /rooms/1 or /rooms/1.json
@@ -22,6 +23,7 @@ class RoomsController < ApplicationController
   # POST /rooms or /rooms.json
   def create
     @room = Room.new(room_params)
+    @room.user_id = current_user.id
 
     respond_to do |format|
       if @room.save
