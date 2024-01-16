@@ -15,20 +15,34 @@
   </head>
 
   <body>
-    <main class=""> <!-- container mx-auto mt-28 px-5 flex -->
-      <div id="app" class="h-screen flex flex-col">
-        <div class="w-full ml-auto bg-gray-100 col-span-7 flex-1 overflow-y">
-          <%= render "template/sidebar_menu" %>
-          <%= render "template/alert" %>
-          <div class="sm:ml-64">
-            <div class="p-4 ">
-              <div class="mt-14">
-                <%= yield %>
-              </div>
-            </div>    
+    <% if user_signed_in? %>
+      <%= render "template/sidebar_menu" %>
+      <%= render "template/alert" %>
+      <div class="sm:ml-64">
+        <div class="p-4 ">
+          <div class="mt-14">
+            <%= yield %>
           </div>
-        </div>  
-      </div>  
-    </main>
+        </div>
+      </div>
+      <%#= link_to "Sign Out As User", destroy_user_session_path, method: :delete %>
+    <% elsif !admin_signed_in? %>
+      <%= link_to "Sign In", new_user_session_path %>
+    <% end %>
+
+    <% if admin_signed_in? %>
+      <%= render "template/alert" %>
+      <%= render "template/admin_sidebar_menu" %>
+      <div class="sm:ml-64">
+        <div class="p-4 ">
+          <div class="mt-14">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+      <%#= link_to "Sign Out As Admin", destroy_admin_session_path, method: :delete %>
+    <% elsif !user_signed_in? %>
+      <%= link_to "Sign In", new_user_session_path %>
+    <% end %>
   </body>
 </html>

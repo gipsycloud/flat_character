@@ -1,9 +1,11 @@
 class MembersController < ApplicationController
+  before_action :authenticate_admin!
   before_action :set_member, only: %i[ show edit update destroy ]
 
   # GET /members or /members.json
   def index
     @members = Member.all
+    @users = User.all
   end
 
   # GET /members/1 or /members/1.json

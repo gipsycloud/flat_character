@@ -4,7 +4,6 @@
   <% end %>
 </div>
 
-
 <div class=" items-center justify-center mb-4 rounded bg-gray-50 dark:bg-gray-800">
   <div class="relative overflow-x-auto">
     <section class="bg-gray-50 dark:bg-gray-900">
@@ -63,10 +62,10 @@
       <span class="text-xs font-medium"> 67.81% </span>
     </div>
     <div>
-      <strong class="block text-sm font-medium text-gray-500"> Profit </strong>
+      <strong class="block text-sm font-medium text-gray-500"> Users </strong>
       <p>
-        <span class="text-2xl font-medium text-gray-900"> $404.32 </span>
-        <span class="text-xs text-gray-500"> from $240.94 </span>
+        <span class="text-2xl font-medium text-gray-900"> <%= User.count %> </span>
+        <%# <span class="text-xs text-gray-500"> from $240.94 </span> %>
       </p>
     </div>
   </article>
@@ -90,10 +89,10 @@
       <span class="text-xs font-medium"> 67.81% </span>
     </div>
     <div>
-      <strong class="block text-sm font-medium text-gray-500"> Profit </strong>
+      <strong class="block text-sm font-medium text-gray-500"> Members </strong>
       <p>
-        <span class="text-2xl font-medium text-gray-900"> $240.94 </span>
-        <span class="text-xs text-gray-500"> from $404.32 </span>
+        <span class="text-2xl font-medium text-gray-900"> <%= Member.count %> </span>
+        <%# <span class="text-xs text-gray-500"> from $404.32 </span> %>
       </p>
     </div>
   </article>
@@ -144,4 +143,8 @@
 
 <div id="members" class="min-w-full">
   <%= render @members %>
+</div>
+
+<div id="users" class="min-w-full">
+  <%= render 'user' %>
 </div>

@@ -1,18 +1,49 @@
 Rails.application.routes.draw do
+  # namespace :admins do
+  #   get 'dashboard/index'
+  # end
+
+  devise_for :admins,
+  path: '/auth_admin', controllers: {
+    sessions: 'admins/sessions',
+    registrations: 'admins/registrations'
+  }
+
   # resources :members
   devise_for :users,
-  path: '/auth',
-  path_names: {
-    sign_in: 'sign_in',
-  }, controllers: { sessions: 'users/sessions', passwords: 'users/passwords', registrations: 'users/registrations', confirmations: 'users/confirmations' }
+    path: '/auth',
+    path_names: {
+      sign_in: 'sign_in',
+    }, controllers: { 
+      sessions: 'users/sessions', 
+      passwords: 'users/passwords', 
+      registrations: 'users/registrations', 
+      confirmations: 'users/confirmations'
+    }
   
+  devise_scope :user do
+    authenticated :user do
+      namespace :users do
+        get 'dashboard/index', as: :authenticated_root
+      end
+    end
+  end
+
+  devise_scope :admin do
+    authenticated :admin do
+      namespace :admins do
+        get 'dashboard/index', as: :authenticated_root
+        get 'homelist' => "dashboard#homelist"
+      end
+    end
+  end
+
   resources :admins do
     collection do
       resources :rooms
       resources :members
       get 'report' => "admins#report"
       get 'members' => "admins#members"
-      get 'homelist' => "admins#homelist"
       get 'availableroom' => "admins#availableroom"
       # namespace 'profile_setting' do
       # end

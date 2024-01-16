@@ -87,6 +87,7 @@ gem 'jquery-rails'
 
 gem 'devise'
 gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
-
+gem 'cancancan', '~> 3.5'
+gem 'pundit', '~> 1.1'
 gem 'cloudinary'
 gem 'attachinary'

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Users::SessionsController < Devise::SessionsController
+class Admins::SessionsController < Devise::SessionsController
   include Accessible
   skip_before_action :check_resource, only: :destroy
   # before_action :configure_sign_in_params, only: [:create]
@@ -19,10 +19,9 @@ class Users::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
-
-  def after_sign_in_path_for(resource)
-    admins_path
-  end
+  # def after_sign_in_path_for(resource)
+  #   admins_path
+  # end
 
   # protected
 
