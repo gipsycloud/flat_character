@@ -20,6 +20,9 @@ class Users::PasswordsController < Devise::PasswordsController
   # def update
   #   super
   # end
+  def after_resetting_password_path_for(resource)
+    admins_path
+  end
 
   # protected
 
