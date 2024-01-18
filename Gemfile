@@ -61,6 +61,7 @@ group :development do
   gem 'better_errors', '~> 2.9', '>= 2.9.1'
   gem "binding_of_caller"
   gem "meta_request"
+  gem 'letter_opener'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -91,3 +92,5 @@ gem 'cancancan', '~> 3.5'
 gem 'pundit', '~> 1.1'
 gem 'cloudinary'
 gem 'attachinary'
+gem 'simple_form'
+gem 'simple_form-tailwind', '~> 0.1.1'

@@ -20,7 +20,8 @@
 
 * Deployment instructions (rails s or bin/dev or foreman start)
 
-* 
+* stopping of mailcatcher
+  sudo lsof -nP -iTCP:1025 -sTCP:LISTEN
 
 * Tailwind CSS, Flowbite Components
   https://flowbite.com/
@@ -50,4 +51,5 @@ Live Chat (Brevo.com)
 https://conversations-app.brevo.com/conversations/MbTxss4zWbjRkPWxA
 https://account-app.brevo.com/account/login?target=https%3A%2F%2Fconversations-app.brevo.com%2Fconversations%2FMbTxss4zWbjRkPWxA
 
-Email Service
+Multiple User
+https://www.driftingruby.com/episodes/multiple-resources-with-devise?query=devise

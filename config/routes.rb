@@ -2,14 +2,14 @@ Rails.application.routes.draw do
   # namespace :admins do
   #   get 'dashboard/index'
   # end
+  # resources :members
 
   devise_for :admins,
-  path: '/auth_admin', controllers: {
-    sessions: 'admins/sessions',
-    registrations: 'admins/registrations'
-  }
+    path: '/auth_admin', controllers: {
+      sessions: 'admins/sessions',
+      registrations: 'admins/registrations'
+    }
 
-  # resources :members
   devise_for :users,
     path: '/auth',
     path_names: {
@@ -63,6 +63,11 @@ Rails.application.routes.draw do
   get "aboutus" => "homes#aboutus"
   get "services" => "homes#services"
   get "contact" => "homes#contact"
+
+  get "/verify" => "verify#edit", :as => "verify"
+  get "/verify" => "verify#new", :as => "new_verify"
+  put "/verify" => "verify#update", :as => "update_verify"
+  post "/verify" => "verify#create", :as => "resend_verify"
   
   resources :posts
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
