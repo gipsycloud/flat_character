@@ -73,7 +73,7 @@ Rails.application.configure do
 
   # config.action_mailer.delivery_method = :letter_opener
   # config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = {from: ENV.fetch("SMTP_USERNAME") }
+  config.action_mailer.default_url_options = { from: ENV.fetch("SMTP_USERNAME"), :host => "https://roommatecharacter.onrender.com" }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {

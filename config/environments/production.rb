@@ -96,8 +96,8 @@ Rails.application.configure do
     url: ENV['REDIS_URL']
   }
 
-  config.action_mailer.default_url_options = {from: ENV.fetch("SMTP_USERNAME") }
-  
+  config.action_mailer.default_url_options = { from: ENV.fetch("SMTP_USERNAME"), :host => "https://roommatecharacter.onrender.com" }
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
   address:              'smtp.gmail.com',
