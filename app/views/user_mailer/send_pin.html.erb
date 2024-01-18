@@ -1,3 +1,38 @@
-<h1>Your Verification Code</h1>
-<p>Your verification code is: <%= @user.pin %></p>
-<p>Please use this code to verify your registration.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .pin-code {
+      font-size: 24px;
+      font-weight: bold;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://mailsend-email-assets.mailtrap.io/6u3o311kjaodw0v762hf1pbejl5s.png" width="100%">
+  <div class="container">
+    <p>Dear User,</p>
+    <p>Your PIN code is:</p>
+    <p class="pin-code"><%= @user.pin %></p>
+    <p>Please keep this code confidential and do not share it with anyone.</p>
+    <p>Thank you!</p>
+  </div>
+</body>
+</html>
