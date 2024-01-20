@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :redirect_if_unverified
+  before_action :redirect_if_unverified, only: :authenticate_user
 
   def redirect_if_unverified
     return unless signed_in? && !current_user.verified?
