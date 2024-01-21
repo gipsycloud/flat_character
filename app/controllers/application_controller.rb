@@ -7,9 +7,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :redirect_if_unverified, only: :authenticate_user
 
+  # for pin verify function
+  
   def redirect_if_unverified
     return unless signed_in? && !current_user.verified?
-
     redirect_to verify_path, notice: "Please verify your email address"
   end
 

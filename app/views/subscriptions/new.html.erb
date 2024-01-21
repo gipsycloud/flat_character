@@ -1,0 +1,5 @@
+<%= form_with(model: @subscription, url: subscriptions_path, method: :post) do |form| %>
+  <%= form.label :email %>
+  <%= form.email_field :email, required: true %>
+  <%= form.submit "Subscribe" %>
+<% end %>
