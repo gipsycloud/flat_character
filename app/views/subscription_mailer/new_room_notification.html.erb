@@ -1,3 +1,149 @@
-<h2>New Article Notification</h2>
-<p>A new article has been published:</p>
-<p><%= @room.roomType %></p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- <title>For Edu or Org Design</title> -->
+  <style>
+      
+      @media screen and (max-width: 600px) {
+          .remove-flex-mobile {
+              display: block !important;
+          }
+
+          .remove-flex-basis-mobile {
+              flex-basis: unset !important;
+              padding-left: 0 !important;
+          }
+
+          .display-grid-mobile {
+              grid-template-columns: 1fr !important;
+          }
+
+          .reminders-list {
+              padding-left: 15px !important;
+              margin-top: 10px !important;
+          }
+
+          .reminders-table td {
+              float: unset !important;
+              display: block !important;
+              width: unset !important;
+              margin-left: 0 !important;
+          }
+
+          .second-item-order {
+              flex-direction: column !important;
+              align-items: flex-start !important;
+          }
+
+          .flex-order {
+              order: 2 !important;
+          }
+
+          .list-header {
+              padding-top: 20px !important;
+          }
+
+          .navigation-footer {
+              text-align: center !important;
+          }
+
+          .navigation-footer li {
+              display: list-item !important;
+              padding: 10px 0 !important;
+          }
+
+          .social-media img {
+              width: 30px !important;
+          }
+          .social-media a {
+              padding: 0 3px 0 0 !important;
+          }
+
+          .social-media a:last-of-type {
+              padding-right: 0 !important;
+          }
+      }
+  </style>
+</head>
+<body style="margin:0;">
+  <table style="border: none; margin: 0 auto ; padding: 0;">
+    <tr>
+      <td style="padding: 0; background-color: #FFFFFF;">
+        <div style="max-width: 600px; min-width: 200px; font-family: 'Arial', sans-serif; font-size: 16px; background-color: #FFFFFF; line-height: 1.4; color: #4A4A4A; border: 1px solid #DFDFDF; border-radius: 10px; overflow: hidden;">
+            
+          <div style="background-color: #1C64F2; height: 60px;">
+          </div>
+
+          <header style="text-align: center;">
+            <h1 style="font-size: 58px;color: #1C64F2; background: #FFFFFF; margin-top: 5px; margin-bottom: 0; text-transform: uppercase;">LATEST NEWS</h1>
+            <p style="margin: 0; padding-bottom: 0px; font-size:18px;">Stay in the loop. See what we're up to this month!</p>
+          </header>
+
+          <!-- <h2 style="font-size: 32px; padding: 30px 20px 0 20px; margin-bottom: 0; text-transform: uppercase; color: #4A4A4A;">WHAT'S NEW</h2> -->
+
+          <ul style="padding: 0 20px;">
+            <li style="list-style-type: none; padding-bottom: 40px; margin-left: 0;">
+              <div class="remove-flex-mobile" style="display:flex; justify-content:space-between;">
+                <div style="flex-basis: 90%;" class="remove-flex-basis-mobile">
+                  <img src="image-assets/img-1.jpg" alt="" style="display: block; width: 100%;">
+                </div>
+                  <div style="flex-basis: 100%; padding-left: 30px;" class="remove-flex-basis-mobile">
+                      <h3 style="text-transform: uppercase; font-size: 28px; margin-top: 0; margin-bottom: 10px; color: #4A4A4A" class="list-header"><%= @room.roomType %></h3>
+                      <p style="padding-bottom: 20px; margin-top: 0; color: #4A4A4A"><%= @room.details %></p>
+                      <!-- <a href="" style="text-decoration: none; text-transform: uppercase; cursor: pointer; line-height: 1.1em; letter-spacing: 0; padding: 12px; background: #1C64F2; color: #4A4A4A; border-radius: 8px; text-align: center; font-size: 16px; font-weight: bold; box-sizing: border-box;">Read More</a> -->
+                  </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Footer -->
+          <div style="background-color: #1C64F2; padding: 10px; text-align: center;">
+            <h5 style="margin-bottom: 10px;">Follow us on our social media accounts</h5>                        
+            <!-- <div style="padding-bottom: 10px; padding-top: 10px;" class="social-media">
+              <a href="https://www.facebook.com/" style="color: #4A4A4A; text-decoration: none; cursor: pointer; padding: 0 5px;">
+                  <img src="image-assets/facebook.png" alt="facebook icon" style="width: 35px;">
+              </a>
+              <a href="https://www.google.com/" style="color: #4A4A4A; text-decoration: none; cursor: pointer; padding: 0 5px;">
+                  <img src="image-assets/google-plus.png" alt="google plus icon" style="width: 35px;">
+              </a>
+              <a href="https://www.instagram.com/" style="color: #4A4A4A; text-decoration: none; cursor: pointer; padding: 0 5px;">
+                  <img src="image-assets/ig.png" alt="instagram icon" style="width: 35px;">
+              </a>
+              <a href="https://www.pinterest.com/" style="color: #4A4A4A; text-decoration: none; cursor: pointer; padding: 0 5px;">
+                  <img src="image-assets/pinterest.png" alt="pinterest icon" style="width: 35px;">
+              </a>
+              <a href="https://www.linkedin.com/" style="color: #4A4A4A; text-decoration: none; cursor: pointer; padding: 0 5px;">
+                  <img src="image-assets/linkedin.png" alt="linkedin icon" style="width: 35px;">
+              </a>
+              <a href="https://twitter.com/" style="color: #4A4A4A; text-decoration: none; cursor: pointer; padding: 0 5px;">
+                  <img src="image-assets/twitter.png" alt="twitter icon" style="width: 35px;">
+              </a>
+            </div> -->
+          </div>
+
+          <ul style="list-style-type: none; padding: 0 0 20px 0; font-size: 14px; text-align: center; padding-top: 20px;" class="navigation-footer">
+            <li style="display: inline-block; padding-right: 5px; margin-left: 0;">
+              <a href="" style="color: #4A4A4A; text-decoration: none; cursor: pointer;" class="remove-flex-mobile">Privacy Policy</a>
+            </li>
+            <li style="display: inline-block; padding-left: 5px; padding-right: 5px; margin-left: 0;">
+              <a href="" style="color: #4A4A4A; text-decoration: none; cursor: pointer;" class="remove-flex-mobile">Terms Of Use</a>
+            </li>
+            <li style="display: inline-block; padding-left: 5px; padding-right: 5px; margin-left: 0;">
+              <a href="" style="color: #4A4A4A; text-decoration: none; cursor: pointer;" class="remove-flex-mobile">Contact Us</a>
+            </li>
+            <li style="display: inline-block; padding-left: 5px; padding-right: 5px; margin-left: 0;">
+              <a href="" style="color: #4A4A4A; text-decoration: none; cursor: pointer;" class="remove-flex-mobile">Manage Email Preferrences</a>
+            </li>
+            <li style="display: inline-block; padding-left: 5px; margin-left: 0;">
+              <a href="" style="color: #4A4A4A; text-decoration: none; cursor: pointer;"  class="remove-flex-mobile">Unsubscribe</a>
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
