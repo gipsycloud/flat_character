@@ -53,3 +53,6 @@ https://account-app.brevo.com/account/login?target=https%3A%2F%2Fconversations-a
 
 Multiple User
 https://www.driftingruby.com/episodes/multiple-resources-with-devise?query=devise
+
+Multiple Upload Image with CarrierWave
+https://bobintornado.github.io/rails/2015/12/29/Multiple-Images-Uploading-With-CarrierWave-and-PostgreSQL-Array.html
