@@ -10,6 +10,13 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="">
+  <%= cl_image_tag(@room.image_url,  class: "h-auto max-w-lg rounded-lg", default_image: "default_image.jpg") %>
+
+    <%#= image_tag @room.image_url.attached? && @room.image_url.persisted? ? @room.image_url : "" %>
+  </div>
+
   <div class="grid gap-4 mb-6 md:grid-cols-2">
     <div class="">
       <%= form.label :roomType, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
