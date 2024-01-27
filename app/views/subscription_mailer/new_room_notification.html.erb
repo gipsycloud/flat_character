@@ -93,6 +93,7 @@
                   <div style="flex-basis: 100%; padding-left: 30px;" class="remove-flex-basis-mobile">
                       <h3 style="text-transform: uppercase; font-size: 28px; margin-top: 0; margin-bottom: 10px; color: #4A4A4A" class="list-header"><%= @room.roomType %></h3>
                       <p style="padding-bottom: 20px; margin-top: 0; color: #4A4A4A"><%= @room.details %></p>
+                      <%= image_tag @room.image_url, class: "width: 100px; height: 100px" %>
                       <!-- <a href="" style="text-decoration: none; text-transform: uppercase; cursor: pointer; line-height: 1.1em; letter-spacing: 0; padding: 12px; background: #1C64F2; color: #4A4A4A; border-radius: 8px; text-align: center; font-size: 16px; font-weight: bold; box-sizing: border-box;">Read More</a> -->
                   </div>
               </div>
