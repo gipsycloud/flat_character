@@ -1,6 +1,8 @@
-class Room < ApplicationRecord
-  after_create :notify_subscribers
+require 'uri'
 
+class Room < ApplicationRecord
+  mount_uploader :image, RoomPhotoUploader
+  after_create :notify_subscribers
   belongs_to :user, class_name: 'User', foreign_key: :user_id, optional: true
 
   def notify_subscribers
