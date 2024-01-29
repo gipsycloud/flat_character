@@ -1,4 +1,5 @@
 class MembersController < ApplicationController
+  skip_before_action :redirect_if_unverified
   before_action :authenticate_admin!
   before_action :set_member, only: %i[ show edit update destroy ]
 
