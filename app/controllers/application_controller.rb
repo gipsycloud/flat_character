@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :redirect_if_unverified, if: :authenticate_user!
+  before_action :redirect_if_unverified
 
   # for pin verify function
   
