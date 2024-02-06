@@ -56,7 +56,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :subscriptions, only: [:new, :create]
+  resources :subscriptions, only: [:index, :new, :create]
   resources :homes
   get "list_a_room" => "homes#list_a_room"
   get "find_a_home" => "homes#find_a_home"
