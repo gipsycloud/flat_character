@@ -1,6 +1,10 @@
 class SubscriptionsController < ApplicationController
   # skip_before_action :authenticate_user
   layout 'layouts/application_web'
+
+  def index
+  end
+
   def new
     @subscription = Subscription.new
   end
@@ -12,7 +16,7 @@ class SubscriptionsController < ApplicationController
     else
       flash[:error] = "Subcription failed. Please try again"
     end
-    redirect_to root_path
+    redirect_to subscriptions_path
   end
 
   private
