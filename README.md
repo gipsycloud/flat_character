@@ -56,3 +56,11 @@ https://www.driftingruby.com/episodes/multiple-resources-with-devise?query=devis
 
 Multiple Upload Image with CarrierWave
 https://bobintornado.github.io/rails/2015/12/29/Multiple-Images-Uploading-With-CarrierWave-and-PostgreSQL-Array.html
+
+DatatypeMismatch: ERROR: in rails (in migration)
+https://stackoverflow.com/questions/63373790/pgdatatypemismatch-error-column-status-cannot-be-cast-automatically-to-typ
+
+temp_authorized_webpage_for_cancancan
+https://www.vector-logic.com/blog/posts/authorizing-controller-endpoints-in-rails-punit-versus-cancan
+https://blog.francium.tech/controlling-authorization-in-rails-with-cancancan-gem-1c2dfeecb26c
+https://blog.appsignal.com/2023/03/22/authorization-gems-in-ruby-pundit-and-cancancan.html

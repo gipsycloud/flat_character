@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   devise_for :users,
     path: '/auth',
     path_names: {
-      sign_in: 'sign_in',
+      sign_in: 'sign_in', edit: 'edit/profile'
     }, controllers: { 
       sessions: 'users/sessions', 
       passwords: 'users/passwords', 

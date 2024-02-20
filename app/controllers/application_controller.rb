@@ -7,6 +7,16 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :redirect_if_unverified
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_back(fallback_location: root_path)
+    flash[:alert] = "You are not authorized to perform this action."
+    # respond_to do |format|
+    #   format.json { head :forbidden, content_type: 'text/html' }
+    #   format.html { redirect_to new_user_session_path, :alert => exception.message }
+    #   format.js   { head :forbidden, content_type: 'text/html' }
+    # end
+  end
+
   # for pin verify function
   
   def redirect_if_unverified

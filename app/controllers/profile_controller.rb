@@ -3,5 +3,6 @@ class ProfileController < ApplicationController
   layout 'layouts/application'
 
   def profile
+    @user = current_user
   end
 end

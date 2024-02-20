@@ -98,3 +98,4 @@ gem 'simple_form'
 gem 'simple_form-tailwind', '~> 0.1.1'
 
 gem 'uri'
+gem 'cancancan', '~> 3.5'

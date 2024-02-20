@@ -3,6 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   attr_accessor :pin_0, :pin_1, :pin_2, :pin_3
 
+  enum role: %i[member admin]
+  after_initialize :set_default_role, :if => :new_record?
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -10,12 +13,16 @@ class User < ApplicationRecord
   
   has_many :rooms, foreign_key: :user_id
 
-  ROLES = %w[admin member].freeze
+  # ROLES = %w[admin member].freeze
   # validates :role, inclusion: { in: ROLES }
 
   # CallBacks
   after_create :update_user_verified_column_to_true
   after_create :send_pin!
+
+  def set_default_role
+    self.role ||= :user
+  end
 
   # Method to update the user's email verification status to true
   def update_user_verified_column_to_true

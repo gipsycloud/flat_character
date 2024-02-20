@@ -11,7 +11,7 @@
       </p>
     </div>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "mx-auto mb-0 mt-8 max-w-md space-y-4" }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "mx-auto mb-0 mt-8 max-w-md space-y-4", autocomplete: "off" }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       <div>
         <label for="email" class="sr-only">Email</label>
@@ -89,7 +89,7 @@
             <% if @minimum_password_length %>
               <em>(<%= @minimum_password_length %> characters minimum)</em>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "current-password", class: "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm", placeholder: "Enter Password" %>
+            <%= f.password_field :password, autocomplete: 'off', class: "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm", placeholder: "Enter Password" %>
             <%#= f.password_field :password, autocomplete: "current-password", class: "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm", placeholder: "Enter Password" %>
           <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
             <svg
