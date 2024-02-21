@@ -7,6 +7,8 @@ class MembersController < ApplicationController
   def index
     @members = Member.all
     @users = User.all
+    @subscribe = Subscription.all
+    
   end
 
   # GET /members/1 or /members/1.json
