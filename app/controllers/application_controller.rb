@@ -1,4 +1,9 @@
+require "application_responder"
+
 class ApplicationController < ActionController::Base
+  self.responder = ApplicationResponder
+  respond_to :html
+
   # include Pundit::Authorization
   # before_action :authenticate_user!
   # before_action :require_admin
@@ -20,8 +25,11 @@ class ApplicationController < ActionController::Base
   # for pin verify function
   
   def redirect_if_unverified
-    return unless signed_in? && !current_user.verified?
-    redirect_to verify_path, notice: "Please verify your email address"
+    if current_user.nil?
+    else
+      return unless signed_in? && !current_user.verified?
+      redirect_to verify_path, notice: "Please verify your email address"
+    end
   end
 
   def require_admin

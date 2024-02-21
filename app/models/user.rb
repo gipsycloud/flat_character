@@ -3,7 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   attr_accessor :pin_0, :pin_1, :pin_2, :pin_3
 
-  enum role: %i[member admin]
+  # enum role: %i[member admin]
+  enum role: {
+    member: 0,
+    admin: 1
+  }
+  
   after_initialize :set_default_role, :if => :new_record?
 
   devise :database_authenticatable, :registerable,
