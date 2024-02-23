@@ -9,7 +9,7 @@ class Ability
     if user.admin?
       can :read, Room
     elsif user.member?
-      can [:create, :read, :update], Room
+      can [:create, :read, :update, :destroy], Room
     end
     # Define abilities for the user here. For example:
     #
