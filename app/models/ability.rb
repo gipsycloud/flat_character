@@ -7,7 +7,7 @@ class Ability
     user ||= User.new
 
     if user.admin?
-      can :read, Room
+      can :manage, :all
     elsif user.member?
       can [:create, :read, :update, :destroy], Room
     end

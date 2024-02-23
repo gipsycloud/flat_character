@@ -23,31 +23,31 @@
 
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label class="sr-only" for="email">Email</label>
+                <%# <label class="sr-only" for="email">Email</label> %>
                 <%= f.input :email, disabled: true, hint: 'You cannot change your username.', class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
               </div>
 
               <div>
-                <label class="sr-only" for="phone">Phone</label>
+                
                 <%= f.input :phone_number, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
               </div>
             </div>
 
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label class="sr-only" for="email">Email</label>
+                
                 <%= f.input :address, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
               </div>
 
               <div>
-                <label class="sr-only" for="email">Email</label>
+                
                 <%= f.input :role, collection: User.roles.keys, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
               </div>
             </div>
 
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label class="sr-only" for="email">Email</label>
+                
                 <%= f.input :verified, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
               </div>
             </div>

@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       resources :users do
         collection do
           get :profile
+          post "update_member" => "profile#update_member"
         end
       end
       get 'report' => "admins#report"

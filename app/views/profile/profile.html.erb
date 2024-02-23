@@ -1,101 +1,32 @@
-<%= @user.role %>
-
-<section class="">
-  <div class="mx-auto px-2 py-16">
-    <div class="grid grid-cols-1 gap-x-16 gap-y-8">
-      <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-        <form action="" class="space-y-4">
-          <div>
-            <label class="sr-only" for="name">Name</label>
-            <input
-              class="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Name"
-              type="text"
-              id="name"
-            />
-          </div>
-
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div>
-              <label class="sr-only" for="email">Email</label>
-              <input
-                class="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="Email address"
-                type="email"
-                id="email"
-              />
-            </div>
-
-            <div>
-              <label class="sr-only" for="phone">Phone</label>
-              <input
-                class="w-full rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="Phone Number"
-                type="tel"
-                id="phone"
-              />
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
-            <div>
-              <input class="peer sr-only" id="option1" type="radio" tabindex="-1" name="option" />
-
-              <label
-                for="option1"
-                class="block w-full rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
-                tabindex="0"
-              >
-                <span class="text-sm"> Option 1 </span>
-              </label>
-            </div>
-
-            <div>
-              <input class="peer sr-only" id="option2" type="radio" tabindex="-1" name="option" />
-
-              <label
-                for="option2"
-                class="block w-full rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
-                tabindex="0"
-              >
-                <span class="text-sm"> Option 2 </span>
-              </label>
-            </div>
-
-            <div>
-              <input class="peer sr-only" id="option3" type="radio" tabindex="-1" name="option" />
-
-              <label
-                for="option3"
-                class="block w-full rounded-lg border border-gray-200 p-3 text-gray-600 hover:border-black peer-checked:border-black peer-checked:bg-black peer-checked:text-white"
-                tabindex="0"
-              >
-                <span class="text-sm"> Option 3 </span>
-              </label>
-            </div>
-          </div>
-
-          <div>
-            <label class="sr-only" for="message">Message</label>
-
-            <textarea
-              class="w-full rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Message"
-              rows="8"
-              id="message"
-            ></textarea>
-          </div>
-
-          <div class="mt-4">
-            <button
-              type="submit"
-              class="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
+<%= simple_form_for(@user, as: :user, method: :post, url: update_member_users_path) do |f| %>
+  <div class="mx-auto md:w-2/3 w-full">
+    <div class="grid gap-4 mb-6 md:grid-cols-2">
+      <%= f.input :user_name, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
     </div>
-  </div>
-</section>
+
+    <div class="grid gap-4 mb-6 md:grid-cols-2">
+      <%= f.input :email, disabled: true, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
+    </div>
+
+    <div class="grid gap-4 mb-6 md:grid-cols-2">
+      <%= f.input :phone_number, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
+    </div>
+
+    <div class="grid gap-4 mb-6 md:grid-cols-2">
+      <%= f.input :address, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
+    </div>
+
+    <div class="grid gap-4 mb-6 md:grid-cols-2">
+      <%= f.input :role, collection: User.roles.keys, disabled: true, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
+    </div>
+
+    <div class="grid gap-4 mb-6 md:grid-cols-2">
+      <%= f.input :verified, disabled: true, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
+    </div>
+
+    <div class="mt-4">
+      <%= f.button :submit, class: "inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto" %>
+    </div>
+
+  </div>      
+<% end %>
