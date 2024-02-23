@@ -42,6 +42,11 @@ Rails.application.routes.draw do
     collection do
       resources :rooms
       resources :members
+      resources :users do
+        collection do
+          get :profile
+        end
+      end
       get 'report' => "admins#report"
       get 'members' => "admins#members"
       get 'availableroom' => "admins#availableroom"

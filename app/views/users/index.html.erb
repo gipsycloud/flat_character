@@ -42,8 +42,8 @@
               <%= user.role %>
             </td>
             <td class="px-6 py-4">
-              <%#= link_to "Show", member_path(user), class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
-              <%#= link_to "Edit", edit_user_path(user), class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
+              <%= link_to "Show", user_path(user), class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
+              <%= link_to "Edit", edit_user_path(user), class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
             </td>
           </tr>
         <% end %>

@@ -1,0 +1,63 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this room from being saved:</h2>
+
+    <ul>
+      <% @user.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= simple_form_for @user do |f| %>
+  <section class="">
+    <div class="mx-auto px-2 py-0">
+      <div class="grid grid-cols-1 gap-x-16 gap-y-8">
+        <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
+          <form action="" class="space-y-4">
+            <div>
+              <label class="sr-only" for="name">Name</label>
+              <%= f.input :user_name, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div>
+                <label class="sr-only" for="email">Email</label>
+                <%= f.input :email, disabled: true, hint: 'You cannot change your username.', class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
+              </div>
+
+              <div>
+                <label class="sr-only" for="phone">Phone</label>
+                <%= f.input :phone_number, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div>
+                <label class="sr-only" for="email">Email</label>
+                <%= f.input :address, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
+              </div>
+
+              <div>
+                <label class="sr-only" for="email">Email</label>
+                <%= f.input :role, collection: User.roles.keys, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div>
+                <label class="sr-only" for="email">Email</label>
+                <%= f.input :verified, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <%= f.button :submit, class: "inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto" %>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>  
