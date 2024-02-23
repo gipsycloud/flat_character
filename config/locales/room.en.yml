@@ -1,0 +1,9 @@
+en:
+  activerecord:
+  room:
+    gender:
+      male: "Male"
+      female: "Female"
+    room_status:
+      active: "Active"
+      inactive: "In-active"  
