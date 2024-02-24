@@ -68,6 +68,9 @@ module.exports = {
         '11/12': '91.666667%',
         '128': '90rem',
       },
+      margin: {
+        '	73px': '73px',
+      }
     },
   },
   variants: {
