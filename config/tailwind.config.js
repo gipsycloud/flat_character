@@ -69,7 +69,7 @@ module.exports = {
         '128': '90rem',
       },
       margin: {
-        '	73px': '73px',
+        '73px': '73px',
       }
     },
   },

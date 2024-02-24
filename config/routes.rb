@@ -64,6 +64,7 @@ Rails.application.routes.draw do
 
   resources :subscriptions, only: [:index, :new, :create]
   resources :homes
+  resources :makes, as: :find_a_flatmate
   get "list_a_room" => "homes#list_a_room"
   get "find_a_home" => "homes#find_a_home"
   get "find_a_flatmate" => "homes#find_a_flatmate"
