@@ -24,6 +24,6 @@ class ProfileController < ApplicationController
   end
 
   def update_user_params
-    params.require(:user).permit(:user_name, :phone_number, :address, :role, :verified)
+    params.require(:user).permit(:user_name, :phone_number, :address, :role, :verified, :avatar)
   end
 end

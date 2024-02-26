@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  mount_uploader :avatar, AvatarUploader
   attr_accessor :pin_0, :pin_1, :pin_2, :pin_3
 
   # enum role: %i[member admin]
@@ -52,5 +53,27 @@ class User < ApplicationRecord
     SendPinJob.perform_now(self)
   end
 
+  def avatar_thumbnail
+    if avatar.attached?
+      avatar.variant(resize: '150*150!').processed
+    else
+      '/default_profile.jpg'
+    end
+  end
 
+  private
+  
+  def add_default_avatar
+    unless avatar.attached?
+      avatar.attach(
+        io: File.open(
+          Rails.root.join(
+            'app', 'assets', 'images', 'default_profile.jpg'
+          )
+        ),
+        filename: 'default_profile.jpg',
+        content_type: 'image/jpg'
+      )
+    end
+  end
 end
