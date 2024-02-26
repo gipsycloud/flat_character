@@ -150,11 +150,46 @@
         </button>
     </div>
 </div>
+
+<!-- make friend today-->
+<div class="container mx-auto md:w-3/4 mt-16">
+  <div
+      class="flex flex-col items-center gap-4 rounded-lg bg-indigo-600 p-6 shadow-lg sm:flex-row sm:justify-between"
+    >
+      <strong class="text-xl text-white sm:text-xl">
+        Make Friend to the other people !!
+      </strong>
+
+      <a
+        class="inline-flex items-center gap-2 rounded-full border border-white bg-white px-8 py-3 text-indigo-600 hover:bg-transparent hover:text-white focus:outline-none focus:ring active:bg-white/90"
+        href="find_a_flatmate"
+      >
+        <span class="text-sm font-medium"> Let's Get Started </span>
+
+
+        <svg
+          class="h-5 w-5 rtl:rotate-180"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 8l4 4m0 0l-4 4m4-4H3"
+          />
+        </svg>
+      </a>
+    </div>
+</div>
+
 <!-- room details -->
 <div class="lg:my-20 lg:mx-[100px] sm:mx-[20px]">
   <div class="w-full flex justify-between items-center">
   <h2 class="text-xl font-semibold">Featured rooms:</h2>
-  <%= link_to rooms_url do %>
+  <%= link_to list_a_room_url do %>
   <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
   </svg>
@@ -1031,7 +1066,7 @@
 
       <a
         class="inline-flex items-center gap-2 rounded-full border border-white bg-white px-8 py-3 text-indigo-600 hover:bg-transparent hover:text-white focus:outline-none focus:ring active:bg-white/90"
-        href="makes"
+        href="find_a_flatmate"
       >
         <span class="text-sm font-medium"> Let's Get Started </span>
 
@@ -1665,12 +1700,12 @@
   </div>
 </div>
 
-<footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
+<footer class="bg-white dark:bg-gray-800">
   <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="/" class="hover:underline">RoomMateCharacter</a>. All Rights Reserved.</span>
+    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="/" class="hover:underline">RoomMateCharacter</a>. All Rights Reserved.</span>
     <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
       <li>
-          <a href="#" class="hover:underline me-4 md:me-6">About</a>
+          <a href="aboutus" class="hover:underline me-4 md:me-6">About</a>
       </li>
       <li>
           <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
@@ -1679,7 +1714,7 @@
           <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
       </li>
       <li>
-          <a href="#" class="hover:underline">Contact</a>
+          <a href="contact" class="hover:underline">Contact</a>
       </li>
     </ul>
   </div>
