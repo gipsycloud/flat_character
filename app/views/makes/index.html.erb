@@ -7,8 +7,8 @@
 			<p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">We use an agile approach to test assumptions and connect with the needs of your audience early.</p>
 		</div>
 
-  <% @user.each do |u| %>
     <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
+  <% @user.each do |u| %>
       <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
             <%= cl_image_tag(u.avatar_url, width: 300, height: 300, :crop=>"scale") %>
@@ -44,7 +44,7 @@
               </ul>
           </div>
       </div>
+  <% end %>
     </div>
-  <% end %>  
   </div>
 </section>
