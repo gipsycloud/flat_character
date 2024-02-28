@@ -21,7 +21,7 @@
          <div>
             <button type="button" class="flex text-sm bg-gray-500 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
                <span class="sr-only">Open user menu</span>
-               <%= cl_image_tag(current_user.avatar_url,  class: "w-10 h-10 max-w-lg rounded-lg", default_image: "default_image.jpg") %>
+               <%= cl_image_tag(current_user.avatar_url, class: "w-10 h-10 rounded-full", default_image: "default_image.jpg") %>
                <%# <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo"> %>
             </button>
          </div>
