@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_26_173150) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_02_054956) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,6 +88,22 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_26_173150) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_infos", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "job_type"
+    t.text "details"
+    t.string "plan"
+    t.string "hobby", default: [], array: true
+    t.string "favourite"
+    t.string "facebook_link"
+    t.string "instagram"
+    t.string "twitter"
+    t.string "linkedin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_infos_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "user_name"
@@ -115,4 +131,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_26_173150) do
 
   add_foreign_key "members", "rooms"
   add_foreign_key "rooms", "users"
+  add_foreign_key "user_infos", "users"
 end

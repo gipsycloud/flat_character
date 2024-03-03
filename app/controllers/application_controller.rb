@@ -49,11 +49,11 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :avatar])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :user_name, :phone_number, :address])
     devise_parameter_sanitizer.permit(:account_update, keys: [:avatar])
 
     devise_parameter_sanitizer.permit(:sign_up) do |u|
-      u.permit(:email, :password, :password_confirmation, :verified)
+      u.permit(:email, :user_name, :phone_number, :address, :password, :password_confirmation, :verified)
     end
     devise_parameter_sanitizer.permit(:sign_in) do |u|
       u.permit(:email, :password, :password_confirmation, :verified)

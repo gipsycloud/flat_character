@@ -8,7 +8,7 @@ class ProfileController < ApplicationController
   end
 
   def update_member
-    @user.update(update_user_params)
+    @user.update(user_params)
     redirect_to detail_profile_index_url
     flash[:alert] = "Member was successfully updated."
   end
@@ -20,7 +20,7 @@ class ProfileController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:user_name, :password, :password_confirmation, :role, :verified)
+    params.require(:user).permit(:user_name, :phone_number, :address, :role, :verified, :avatar, user_info_attributes: [:id, :job_type, :details, :plan, :hobby, :favourite, :facebook_link, :instagram, :twitter, :linkedin])
   end
 
   def update_user_params

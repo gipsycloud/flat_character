@@ -13,8 +13,32 @@
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "mx-auto mb-0 mt-8 max-w-md space-y-4", autocomplete: "off" }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
+
       <div>
-        <label for="email" class="sr-only">Email</label>
+        <label for="user_name" class="">User Name</label>
+        <div class="relative">
+          <%= f.text_field :user_name, autofocus: false, class: "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm", placeholder: "Enter User Name" %>
+          <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 text-gray-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <%# <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+              /> %>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div>
+        <label for="email" class="">Email</label>
         <div class="relative">
           <%= f.email_field :email, autofocus: false, class: "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm", placeholder: "Enter Email" %>
           <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -37,9 +61,9 @@
       </div>
 
       <div>
-        <label for="user_name" class="sr-only">User Name</label>
+        <label for="phone_number" class="">Phone Number</label>
         <div class="relative">
-          <%#= f.text_field :user_name, autofocus: false, class: "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm", placeholder: "Enter User Name" %>
+          <%= f.number_field :phone_number, autofocus: true, class: "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm", placeholder: "Enter Phone Number" %>
           <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -59,10 +83,10 @@
         </div>
       </div>
 
-       <div>
-        <label for="phone_number" class="sr-only">Email</label>
+      <div>
+        <label for="address" class="">Address</label>
         <div class="relative">
-          <%#= f.number_field :phone_number, autofocus: true, class: "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm", placeholder: "Enter Phone Number" %>
+          <%= f.text_field :address, class: "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm", placeholder: "Enter Your Address" %>
           <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"

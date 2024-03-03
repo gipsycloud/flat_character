@@ -64,3 +64,6 @@ temp_authorized_webpage_for_cancancan
 https://www.vector-logic.com/blog/posts/authorizing-controller-endpoints-in-rails-punit-versus-cancan
 https://blog.francium.tech/controlling-authorization-in-rails-with-cancancan-gem-1c2dfeecb26c
 https://blog.appsignal.com/2023/03/22/authorization-gems-in-ruby-pundit-and-cancancan.html
+
+update_user_info
+https://stackoverflow.com/questions/36051782/rails-devise-add-profile-information-to-separate-table

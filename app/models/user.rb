@@ -16,8 +16,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates	:email, presence: true, uniqueness: true
+  validates :user_name, presence: true
+  validates :phone_number, presence: true
+  validates :address, presence: true
   
   has_many :rooms, foreign_key: :user_id
+  has_one :user_info, dependent: :destroy
+  accepts_nested_attributes_for :user_info
 
   # ROLES = %w[admin member].freeze
   # validates :role, inclusion: { in: ROLES }
@@ -25,6 +30,10 @@ class User < ApplicationRecord
   # CallBacks
   after_create :update_user_verified_column_to_true
   after_create :send_pin!
+
+  def user_info
+    super || build_user_info
+  end
 
   def set_default_role
     self.role ||= :user
