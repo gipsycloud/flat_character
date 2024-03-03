@@ -67,3 +67,6 @@ https://blog.appsignal.com/2023/03/22/authorization-gems-in-ruby-pundit-and-canc
 
 update_user_info
 https://stackoverflow.com/questions/36051782/rails-devise-add-profile-information-to-separate-table
+
+adding text
+https://amberstudent.com/blog/post/tips-for-living-with-a-roommatew
