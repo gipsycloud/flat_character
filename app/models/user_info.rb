@@ -1,6 +1,8 @@
 class UserInfo < ApplicationRecord
   belongs_to :user
 
+  validates :details, presence: true
+
   def description
     if self.details.blank?
       ""

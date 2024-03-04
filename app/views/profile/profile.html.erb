@@ -63,13 +63,13 @@
           <div class = "my-4"> Role: <%= @user.role %></div>
           <%= f.input :verified, disabled: true, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
         </div>
+      </div>
 
         <div>
           <%= ff.label "Details" %>
           <%= ff.input :details, label: false, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
         </div>
       <% end %>  
-    </div>
 
     <div>
       <%#= f.input :role, collection: User.roles.keys, disabled: true, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
@@ -78,8 +78,6 @@
     <div>
       <%= f.file_field :avatar, id: "small_size", class: "block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
     </div>
-
-
 
     <div class="mt-4">
       <%= f.button :submit, class: "inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto" %>
