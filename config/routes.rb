@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   #   get 'dashboard/index'
   # end
   # resources :members
-  authenticate :user do
+  authenticate :admin do
     mount Sidekiq::Web => '/sidekiq'
   end
 

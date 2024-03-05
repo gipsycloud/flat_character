@@ -15,7 +15,7 @@
     <div class="mx-auto px-2 py-0">
       <div class="grid grid-cols-1 gap-x-16 gap-y-8">
         <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-          <form action="" class="space-y-4">
+          <%= cl_image_tag(@user.avatar_url,  class: "h-auto max-w-lg rounded-lg mb-[15px]", default_image: "default_image.jpg") %>
             <div>
               <label class="sr-only" for="name">Name</label>
               <%= f.input :user_name, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
@@ -55,7 +55,6 @@
             <div class="mt-4">
               <%= f.button :submit, class: "inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto" %>
             </div>
-          </form>
         </div>
       </div>
     </div>
