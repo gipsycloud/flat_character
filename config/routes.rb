@@ -1,8 +1,14 @@
+require 'sidekiq/web'
+require 'sidekiq-status/web'
+
 Rails.application.routes.draw do
   # namespace :admins do
   #   get 'dashboard/index'
   # end
   # resources :members
+  authenticate :user do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   devise_for :admins,
     path: '/auth_admin', controllers: {
