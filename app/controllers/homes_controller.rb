@@ -58,6 +58,10 @@ class HomesController < ApplicationController
     end
   end
 
+  def room_detail
+    @room = Room.find_by_slug(params[:slug])
+  end
+
   def list_a_room
   end
 
