@@ -70,3 +70,6 @@ https://stackoverflow.com/questions/36051782/rails-devise-add-profile-informatio
 
 adding text
 https://amberstudent.com/blog/post/tips-for-living-with-a-roommatew
+
+real-time notification
+https://www.colby.so/posts/user-notifications-with-rails-noticed-and-hotwire

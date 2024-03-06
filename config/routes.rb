@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # resources :members
   authenticate :admin do
     mount Sidekiq::Web => '/sidekiq'
+    mount ActionCable.server => '/cable'
   end
 
   devise_for :admins,
@@ -71,6 +72,7 @@ Rails.application.routes.draw do
   resources :subscriptions, only: [:index, :new, :create]
   resources :homes
   resources :makes, path: :find_a_flatmate, as: :find_a_flatmate
+  get "room/(:slug)", to: "homes#room_detail", as: "room_"
   get "list_a_room" => "homes#list_a_room"
   get "find_a_home" => "homes#find_a_home"
   get "find_a_flatmate" => "homes#find_a_flatmate"
