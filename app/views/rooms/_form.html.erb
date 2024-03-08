@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="">
-  <%= cl_image_tag(@room.image_url,  class: "h-auto max-w-lg rounded-lg", default_image: "default_image.jpg") %>
+  <%#= cl_image_tag(@room.image_url,  class: "h-auto max-w-lg rounded-lg", default_image: "default_image.jpg") %>
 
     <%#= image_tag @room.image_url.attached? && @room.image_url.persisted? ? @room.image_url : "" %>
   </div>
@@ -76,8 +76,11 @@
 
   <div class="">
     <%#= form.hidden_field :room_photo_cache %>
-    <%= form.label :image, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-    <%= form.file_field :image, id: "small_size", class: "block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
+    <%#= form.file_field :image, multiple: true, id: "small_size", class: "block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
+    <%= form.fields_for :room_image do |ff| %>
+      <%= form.label :room_image, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= ff.file_field :room_image, multiple: true, name: "room_image[]", class: "block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
+    <% end %>
   </div>
 </div>
 

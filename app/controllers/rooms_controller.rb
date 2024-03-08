@@ -16,6 +16,7 @@ class RoomsController < ApplicationController
   # GET /rooms/new
   def new
     @room = Room.new
+    @room = @room.room_image.build
   end
 
   # GET /rooms/1/edit
@@ -42,6 +43,14 @@ class RoomsController < ApplicationController
   def update
     respond_to do |format|
       if @room.update(room_params)
+        if params[:room_image]
+          params[:room_image].each do |image|
+            if image.nil?
+            else
+              @room.room_images.create(room_image: image)
+            end
+          end
+        end
         format.html { redirect_to room_url(@room), notice: "Room was successfully updated." }
         format.json { render :show, status: :ok, location: @room }
       else
@@ -54,7 +63,6 @@ class RoomsController < ApplicationController
   # DELETE /rooms/1 or /rooms/1.json
   def destroy
     @room.destroy
-
     respond_to do |format|
       format.html { redirect_to rooms_url, notice: "Room was successfully destroyed." }
       format.json { head :no_content }
@@ -69,6 +77,7 @@ class RoomsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def room_params
-      params.require(:room).permit(:roomType, :maxPersons, :roomPrice, :gender, :roomNumber, :details, :startDate, :endDate, :floor, :address, :room_status, :feedback, :image)
+      params.require(:room).permit(:roomType, :maxPersons, :roomPrice, :gender, :roomNumber, :details, :startDate, :endDate, 
+        :floor, :address, :room_status, :feedback, room_images_attributes: [:room_image, :room_id] )
     end
 end

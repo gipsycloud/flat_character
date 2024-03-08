@@ -11,6 +11,9 @@ class Room < ApplicationRecord
   enum gender_num: { male: 1, female: 2 }
   enum room_status_num: { active: 1, inactive: 2 }
 
+  has_many :room_images, :dependent => :destroy
+  accepts_nested_attributes_for :room_images, allow_destroy: true
+
   def notify_subscribers
     SubscriptionMailer.new_room_notification(self).deliver_now
   end

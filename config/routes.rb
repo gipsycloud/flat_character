@@ -86,6 +86,7 @@ Rails.application.routes.draw do
   post "/verify" => "verify#create", :as => "resend_verify"
   
   resources :posts
+  resources :room_images, only: [:destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
