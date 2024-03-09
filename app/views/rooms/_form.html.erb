@@ -11,13 +11,19 @@
     </div>
   <% end %>
 
-  <div class="">
-  <%#= cl_image_tag(@room.image_url,  class: "h-auto max-w-lg rounded-lg", default_image: "default_image.jpg") %>
-
-    <%#= image_tag @room.image_url.attached? && @room.image_url.persisted? ? @room.image_url : "" %>
+  <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+    <% @room.room_images.each do |image| %>
+      <div class="group relative">
+          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+            <%# <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full"> %>
+            <%= cl_image_tag(image.room_image_url, class: "h-full w-full object-cover object-center lg:h-full lg:w-full") if @room.room_images? %>
+          </div>
+      </div>
+    <% end %>
   </div>
 
-  <div class="grid gap-4 mb-6 md:grid-cols-2">
+  <%#= cl_image_tag(@room.image_url,  class: "h-auto max-w-lg rounded-lg", default_image: "default_image.jpg") %>
+  <div class="grid gap-4 mb-6 md:grid-cols-2 mt-7">
     <div class="">
       <%= form.label :roomType, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
       <%= form.text_field :roomType, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
@@ -74,14 +80,10 @@
     <%= form.date_field :endDate, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
   </div>
 
-  <div class="">
-    <%#= form.hidden_field :room_photo_cache %>
-    <%#= form.file_field :image, multiple: true, id: "small_size", class: "block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
-    <%= form.fields_for :room_image do |ff| %>
-      <%= form.label :room_image, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-      <%= ff.file_field :room_image, multiple: true, name: "room_image[]", class: "block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
-    <% end %>
-  </div>
+    <div class="">
+      <%= form.label :header_image, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= form.file_field :image, class: "block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
+    </div>
 </div>
 
   <div class="">
@@ -92,6 +94,17 @@
   <div class="mb-5">
     <%= form.label :details, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
     <%= form.text_area :details, class: "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+  </div>
+
+    <div class="">
+    <%#= form.hidden_field :room_photo_cache %>
+    <%#= form.file_field :image, multiple: true, id: "small_size", class: "block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
+    <%= form.fields_for :room_image do |ff| %>
+      <%= form.label :room_image, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= ff.file_field :room_image, include_hidden: false, multiple: true, name: "room_images[]", 
+          class: "block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none 
+                  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
+    <% end %>
   </div>
 
   <div class="inline">

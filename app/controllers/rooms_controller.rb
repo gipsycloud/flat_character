@@ -16,7 +16,7 @@ class RoomsController < ApplicationController
   # GET /rooms/new
   def new
     @room = Room.new
-    @room = @room.room_image.build
+    @room_image = @room.room_images.build
   end
 
   # GET /rooms/1/edit
@@ -30,6 +30,7 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
+        store_image
         format.html { redirect_to room_url(@room), notice: "Room was successfully created." }
         format.json { render :show, status: :created, location: @room }
       else
@@ -43,14 +44,10 @@ class RoomsController < ApplicationController
   def update
     respond_to do |format|
       if @room.update(room_params)
-        if params[:room_image]
-          params[:room_image].each do |image|
-            if image.nil?
-            else
-              @room.room_images.create(room_image: image)
-            end
-          end
-        end
+        store_image
+         # if @post_attachment.update(post_attachment_params)
+        #   format.html { redirect_to @post_attachment.post, notice: 'Post attachment was successfully updated.' }
+        # end
         format.html { redirect_to room_url(@room), notice: "Room was successfully updated." }
         format.json { render :show, status: :ok, location: @room }
       else
@@ -78,6 +75,14 @@ class RoomsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def room_params
       params.require(:room).permit(:roomType, :maxPersons, :roomPrice, :gender, :roomNumber, :details, :startDate, :endDate, 
-        :floor, :address, :room_status, :feedback, room_images_attributes: [:room_image, :room_id] )
+        :floor, :address, :room_status, :feedback, :image, room_images_attributes: [:room_image, :room_id])
+    end
+
+    def store_image
+      if params[:room_images]
+        params[:room_images].each do |image|
+          @room.room_images.create!(room_image: image)
+        end
+      end
     end
 end

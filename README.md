@@ -73,3 +73,10 @@ https://amberstudent.com/blog/post/tips-for-living-with-a-roommatew
 
 real-time notification
 https://www.colby.so/posts/user-notifications-with-rails-noticed-and-hotwire
+
+
+https://blog.francium.tech/upload-multiple-files-in-rails-api-using-carrierwave-1f37aaad2b07
+https://www.discretelogix.com/uploading-multiple-files-with-carrierwave-in-rails-4/
+https://stackoverflow.com/questions/19712816/carrierwave-rails-4-and-multiple-uploads
+https://kolosek.com/carrierwave-upload-multiple-images/
+https://railsless.blogspot.com/2015/09/uploading-multiple-images-using.html

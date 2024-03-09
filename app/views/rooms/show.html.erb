@@ -7,15 +7,27 @@
   </div>
 </div>
 
-<div id="<%= dom_id @room %>" class="mx-auto md:w-2/3 w-full">
-  <%#= cl_image_tag(@room.image_url,  class: "object-cover h-75 w-96") if @room.image? %>
-  <%# <div class="px-4 sm:px-0">
-    <h3 class="text-base font-semibold leading-7 text-gray-900">Room Information</h3>
-    <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal details and application.</p>
-  </div> %>
-  <% @room.room_images.each do |image| %>
-    <%= cl_image_tag(image.room_image_url, class: "object-cover h-75 w-96") if @room.room_images? %>
-  <% end %>
+<div id="<%= dom_id @room %>" class="mx-auto md:w-2/3 w-full mt-5">
+  <div class="px-4 sm:px-0">
+    <h3 class="text-base font-semibold leading-7 text-gray-900">Header Image</h3>
+  </div>
+  <%= cl_image_tag(@room.image_url,  class: "h-auto max-w-lg rounded-lg", default_image: "default_image.jpg") if @room.image? %>
+
+  <div class="px-4 sm:px-0">
+    <h3 class="text-base font-semibold leading-7 text-gray-900">Show Image</h3>
+  </div>
+
+  <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+    <% @room.room_images.each do |image| %>
+      <div class="group relative">
+          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+            <%# <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full"> %>
+            <%= cl_image_tag(image.room_image_url, class: "h-full w-full object-cover object-center lg:h-full lg:w-full") if @room.room_images? %>
+          </div>
+      </div>
+    <% end %>
+  </div>
+
   <div class="mt-6 border-t border-gray-100">
     <dl class="divide-y divide-gray-100">
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
