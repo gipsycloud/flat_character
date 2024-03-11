@@ -14,9 +14,8 @@
   <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
     <% @room.room_images.each do |image| %>
       <div class="group relative">
-          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-            <%# <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full"> %>
-            <%= cl_image_tag(image.room_image_url, class: "h-full w-full object-cover object-center lg:h-full lg:w-full") %>
+          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-80">
+            <%= cl_image_tag(image.room_image_url, class: "h-full w-full object-cover object-center lg:h-full lg:w-full", default_image: "v1691814805/default-image.svg") %>
           </div>
       </div>
     <% end %>
@@ -105,6 +104,9 @@
           class: "block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none 
                   dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
     <% end %>
+    <div class="px-4 sm:px-0 my-4">
+      <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">You can upload multiple image.</p>
+    </div>
   </div>
 
   <div class="inline">

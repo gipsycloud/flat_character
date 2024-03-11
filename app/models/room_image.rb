@@ -3,4 +3,7 @@ class RoomImage < ApplicationRecord
   belongs_to :room
 
   # validates :room_image, presence: true
+
+
+
 end

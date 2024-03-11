@@ -14,8 +14,17 @@ class Room < ApplicationRecord
   has_many :room_images, :dependent => :destroy
   accepts_nested_attributes_for :room_images, allow_destroy: true
 
+  # validate :validate_images
+
   def notify_subscribers
     SubscriptionMailer.new_room_notification(self).deliver_now
+  end
+
+  private
+  def validate_images
+    return if room_image.count <= 4
+
+    errors.add(:room_image, "You can upload max 4 images !!")
   end
 
 end
