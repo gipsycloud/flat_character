@@ -47,7 +47,9 @@ Rails.application.routes.draw do
 
   resources :admins do
     collection do
-      resources :rooms
+      resources :rooms do
+        resources :room_images, only: [:destroy]
+      end
       resources :members
       resources :users do
         collection do
@@ -86,7 +88,6 @@ Rails.application.routes.draw do
   post "/verify" => "verify#create", :as => "resend_verify"
   
   resources :posts
-  resources :room_images, only: [:destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
