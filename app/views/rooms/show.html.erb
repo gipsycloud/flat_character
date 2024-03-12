@@ -20,15 +20,29 @@
   <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
     <% @room.room_images.each_with_index do |image, v| %>
       <div class="group relative">
-          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-80">
+          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none lg:h-80">
             <% if @room.image.present? %>
               <%#= image.id %>
               <%= cl_image_tag(image.room_image_url, class: "h-full w-full lg:h-full lg:w-full") %>
             <% else %>
             <% end %>  
           </div>
-          <%= link_to "Delete", room_room_image_path(@room.id, image.id), method: :delete, class: "mt-5 rounded-lg py-3 px-5 bg-red-500 font-medium" %>
+          <%= link_to "Delete", room_room_image_path(@room.id, image.id), method: :delete, class: "mt-5 rounded-lg py-3 px-5 bg-red-500 font-medium group-hover:opacity-75 group-hove:" %>
       </div>
+    <% end %>
+  </div>
+
+  <div class="mt-5 border border-gray-600 py-6 px-4">
+    <%= form_for @room, url: room_room_images_path(@room), method: :post do |f| %>
+      <div class="flex mb-4 grid-cols-2">
+        <div class="w-1/2 h-12">
+          <%= f.file_field :room_image, required: true, class: "block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none 
+                    dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"%>
+        </div>
+        <div class="w-1/2 h-12">
+          <%= f.submit class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+        </div>
+      </div>  
     <% end %>
   </div>
 

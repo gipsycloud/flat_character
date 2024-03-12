@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   resources :admins do
     collection do
       resources :rooms do
-        resources :room_images, only: [:destroy]
+        resources :room_images, only: [:create, :destroy]
       end
       resources :members
       resources :users do

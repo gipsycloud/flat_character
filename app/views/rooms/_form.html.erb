@@ -11,15 +11,30 @@
     </div>
   <% end %>
 
-  <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-    <% @room.room_images.each do |image| %>
-      <div class="group relative">
-          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-80">
-            <%= cl_image_tag(image.room_image_url, class: "h-full w-full object-cover object-center lg:h-full lg:w-full", default_image: "v1691814805/default-image.svg") %>
-          </div>
-      </div>
-    <% end %>
-  </div>
+    <div class="px-4 sm:px-0">
+      <h3 class="text-base font-semibold leading-7 text-gray-900">Header Image</h3>
+    </div>
+    <%= cl_image_tag(@room.image_url,  class: "h-auto max-w-lg rounded-lg", default_image: "default_image.jpg") if @room.image? %>
+
+    <div class="px-4 sm:px-0">
+      <h3 class="text-base font-semibold leading-7 text-gray-900">Show Image</h3>
+    </div>
+
+
+    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      <% @room.room_images.each_with_index do |image, v| %>
+        <div class="group relative">
+            <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-80">
+              <% if @room.image.present? %>
+                <%#= image.id %>
+                <%= cl_image_tag(image.room_image_url, class: "h-full w-full lg:h-full lg:w-full") %>
+              <% else %>
+              <% end %>  
+            </div>
+            <%= link_to "Delete", room_room_image_path(@room.id, image.id), method: :delete, class: "mt-5 rounded-lg py-3 px-5 bg-red-500 font-medium" %>
+        </div>
+      <% end %>
+    </div>
 
   <%#= cl_image_tag(@room.image_url,  class: "h-auto max-w-lg rounded-lg", default_image: "default_image.jpg") %>
   <div class="grid gap-4 mb-6 md:grid-cols-2 mt-7">
