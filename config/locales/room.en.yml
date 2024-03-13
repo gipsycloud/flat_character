@@ -4,6 +4,8 @@ en:
     gender:
       male: "Male"
       female: "Female"
+      couple: "Couple"
+      siblings: "Siblings"
     room_status:
       active: "Active"
       inactive: "In-active"  

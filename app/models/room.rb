@@ -8,7 +8,7 @@ class Room < ApplicationRecord
   belongs_to :user, class_name: 'User', foreign_key: :user_id, optional: true
   # normalizes :slug, with: -> slug { slug.titlesize }
 
-  enum gender_num: { male: 1, female: 2 }
+  enum gender_num: { male: 1, female: 2, couple: 3, siblings: 4  }
   enum room_status_num: { active: 1, inactive: 2 }
 
   has_many :room_images, :dependent => :destroy

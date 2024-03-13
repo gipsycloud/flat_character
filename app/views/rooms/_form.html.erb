@@ -20,62 +20,60 @@
       <h3 class="text-base font-semibold leading-7 text-gray-900">Show Image</h3>
     </div>
 
-
-    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-      <% @room.room_images.each_with_index do |image, v| %>
-        <div class="group relative">
-            <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-80">
-              <% if @room.image.present? %>
+    <% if @room.image.present? %>
+      <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        <% @room.room_images.each_with_index do |image, v| %>
+          <div class="group relative">
+              <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-80">
                 <%#= image.id %>
                 <%= cl_image_tag(image.room_image_url, class: "h-full w-full lg:h-full lg:w-full") %>
-              <% else %>
-              <% end %>  
-            </div>
-            <%= link_to "Delete", room_room_image_path(@room.id, image.id), method: :delete, class: "mt-5 rounded-lg py-3 px-5 bg-red-500 font-medium" %>
-        </div>
-      <% end %>
-    </div>
+              </div>
+              <%= link_to "Delete", room_room_image_path(@room.id, image.id), method: :delete, class: "mt-5 rounded-lg py-3 px-5 bg-red-500 font-medium" if @room.nil? %>
+          </div>
+        <% end %>
+      </div>
+                    <% end %>    
 
   <%#= cl_image_tag(@room.image_url,  class: "h-auto max-w-lg rounded-lg", default_image: "default_image.jpg") %>
   <div class="grid gap-4 mb-6 md:grid-cols-2 mt-7">
     <div class="">
       <%= form.label :roomType, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-      <%= form.text_field :roomType, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+      <%= form.text_field :roomType, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
     </div>
 
     <div class="">
       <%= form.label :maxPersons, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-      <%= form.number_field :maxPersons, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+      <%= form.number_field :maxPersons, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
     </div>
 
       <div class="">
     <%= form.label :roomPrice, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-    <%= form.number_field :roomPrice, placeholder: "Only Enter Number", class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+    <%= form.number_field :roomPrice, placeholder: "Only Enter Number", class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
   </div>
 
   <div class="">
     <%= form.label :gender, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-    <%= select_tag "room[gender]", options_for_select(Room.gender_nums.map {|k, v| [t("room.gender.#{k}"), k]}, selected: @room.gender ), class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+    <%= select_tag "room[gender]", options_for_select(Room.gender_nums.map {|k, v| [t("room.gender.#{k}"), k]}, selected: @room.gender ), class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
   </div>
 
   <div class="">
     <%= form.label :roomNumber, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-    <%= form.number_field :roomNumber, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+    <%= form.number_field :roomNumber, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
   </div>
 
   <div class="">
     <%= form.label :floor, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-    <%= form.number_field :floor, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+    <%= form.number_field :floor, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
   </div>
 
   <div class="">
     <%= form.label :address, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-    <%= form.text_field :address, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+    <%= form.text_field :address, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
   </div>
 
   <div class="">
     <%= form.label :room_status, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-    <%= select_tag "room[room_status]", options_for_select(Room.room_status_nums.map { |k, v| [t("room.room_status.#{k}"), k]}, selected: @room.room_status), class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+    <%= select_tag "room[room_status]", options_for_select(Room.room_status_nums.map { |k, v| [t("room.room_status.#{k}"), k]}, selected: @room.room_status), class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
   </div>
 
   <div class="">
@@ -85,13 +83,13 @@
       </svg>
     </div> %>
     <%= form.label :startdate, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-    <%= form.date_field :startDate, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Start date" %>  
+    <%= form.date_field :startDate, required: true, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Start date" %>  
     <%# <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date"> %>
   </div>
 
   <div class="">
     <%= form.label :endDate, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-    <%= form.date_field :endDate, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+    <%= form.date_field :endDate, required: true, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
   </div>
 
     <div class="">
@@ -102,7 +100,7 @@
 
   <div class="">
     <%= form.label :feedback, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-    <%= form.text_field :feedback, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+    <%= form.text_field :feedback, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
   </div>
 
   <div class="mb-5">

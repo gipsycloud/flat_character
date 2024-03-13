@@ -6,7 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- <title>For Edu or Org Design</title> -->
   <style>
-      
+      .header_image {
+        border: 0;
+        display: block;
+        height: auto;
+        max-width: none;
+        width: 100%;
+      }
       @media screen and (max-width: 600px) {
           .remove-flex-mobile {
               display: block !important;
@@ -87,15 +93,12 @@
           <ul style="padding: 0 20px;">
             <li style="list-style-type: none; padding-bottom: 40px; margin-left: 0;">
               <div class="remove-flex-mobile" style="display:flex; justify-content:space-between;">
-                <div style="flex-basis: 90%;" class="remove-flex-basis-mobile">
-                  <img src="image-assets/img-1.jpg" alt="" style="display: block; width: 100%;">
+                <div style="flex-basis: 100%; padding-left: 30px;" class="remove-flex-basis-mobile">
+                  <h3 style="text-transform: uppercase; font-size: 28px; margin-top: 0; margin-bottom: 10px; color: #4A4A4A" class="list-header"><%= @room.roomType %></h3>
+                  <p style="padding-bottom: 20px; margin-top: 0; color: #4A4A4A"><%= @room.details %></p>
+                  <%= image_tag @room.image_url, class: "width: 100px; height: 100px header_image" %>
+                  <!-- <a href="" style="text-decoration: none; text-transform: uppercase; cursor: pointer; line-height: 1.1em; letter-spacing: 0; padding: 12px; background: #1C64F2; color: #4A4A4A; border-radius: 8px; text-align: center; font-size: 16px; font-weight: bold; box-sizing: border-box;">Read More</a> -->
                 </div>
-                  <div style="flex-basis: 100%; padding-left: 30px;" class="remove-flex-basis-mobile">
-                      <h3 style="text-transform: uppercase; font-size: 28px; margin-top: 0; margin-bottom: 10px; color: #4A4A4A" class="list-header"><%= @room.roomType %></h3>
-                      <p style="padding-bottom: 20px; margin-top: 0; color: #4A4A4A"><%= @room.details %></p>
-                      <%= image_tag @room.image_url, class: "width: 100px; height: 100px" %>
-                      <!-- <a href="" style="text-decoration: none; text-transform: uppercase; cursor: pointer; line-height: 1.1em; letter-spacing: 0; padding: 12px; background: #1C64F2; color: #4A4A4A; border-radius: 8px; text-align: center; font-size: 16px; font-weight: bold; box-sizing: border-box;">Read More</a> -->
-                  </div>
               </div>
             </li>
           </ul>

@@ -63,6 +63,7 @@ class HomesController < ApplicationController
   end
 
   def list_a_room
+    @rooms = Room.all
   end
 
   def find_a_home

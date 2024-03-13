@@ -200,10 +200,10 @@
               <%= room.roomNumber %>
             </td>
             <td class="px-6 py-4">
-              <%= room.startDate.to_time.strftime('%B %e %Y') %>
+              <%= room.startDate.to_time.strftime('%B %e %Y') if room.startDate? %>
             </td>
             <td class="px-6 py-4">
-              <%= room.endDate.to_time.strftime('%B %e %Y') %>
+              <%= room.endDate.to_time.strftime('%B %e %Y') if room.endDate? %>
             </td>
             <td class="px-6 py-4">
               <%= room.floor %>
