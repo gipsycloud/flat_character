@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   # resources :members
   authenticate :admin do
     mount Sidekiq::Web => '/sidekiq'
-    mount ActionCable.server => '/cable'
   end
+
+  mount ActionCable.server => '/cable'
 
   devise_for :admins,
     path: '/auth_admin', controllers: {
@@ -38,9 +39,11 @@ Rails.application.routes.draw do
 
   devise_scope :admin do
     authenticated :admin do
-      namespace :admins do
-        get 'dashboard/index', as: :authenticated_root
-        get 'homelist' => "dashboard#homelist"
+      scope :main do
+        namespace :admins do
+          get 'dashboard/index', as: :authenticated_root
+          get 'homelist' => "dashboard#homelist"
+        end
       end
     end
   end
@@ -50,7 +53,6 @@ Rails.application.routes.draw do
       resources :rooms do
         resources :room_images, only: [:create, :destroy]
       end
-      resources :members
       resources :users do
         collection do
           get :profile
@@ -63,6 +65,11 @@ Rails.application.routes.draw do
       # namespace 'profile_setting' do
       # end
     end
+  end
+
+  scope :main do
+    resources :members
+    resources :plans
   end
 
   resources :profile do
