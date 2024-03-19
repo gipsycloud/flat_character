@@ -5,6 +5,7 @@ class HomesController < ApplicationController
   # GET /homes or /homes.json
   def index
     @rooms = Room.order(updated_at: :desc).limit(4)
+    @plans = Plan.first
   end
 
   # GET /homes/1 or /homes/1.json
