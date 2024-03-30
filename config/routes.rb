@@ -62,6 +62,7 @@ Rails.application.routes.draw do
       get 'report' => "admins#report"
       get 'members' => "admins#members"
       get 'availableroom' => "admins#availableroom"
+      get "upgrade" => 'admins#upgrade'
       # namespace 'profile_setting' do
       # end
     end
