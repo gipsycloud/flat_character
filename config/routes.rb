@@ -53,6 +53,7 @@ Rails.application.routes.draw do
       resources :rooms do
         resources :room_images, only: [:create, :destroy]
       end
+      resources :upgrade
       resources :users do
         collection do
           get :profile
@@ -62,7 +63,6 @@ Rails.application.routes.draw do
       get 'report' => "admins#report"
       get 'members' => "admins#members"
       get 'availableroom' => "admins#availableroom"
-      get "upgrade" => 'admins#upgrade'
       # namespace 'profile_setting' do
       # end
     end

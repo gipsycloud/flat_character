@@ -62,6 +62,7 @@
         <div>
           <div class = "my-4"> Role: <%= @user.role %></div>
           <%= f.input :verified, disabled: true, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
+          <%= f.object.upgrade.plan.plan_name %>
         </div>
       </div>
 
@@ -69,7 +70,7 @@
           <%= ff.label "Details" %>
           <%= ff.input :details, label: false, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
         </div>
-      <% end %>  
+      <% end %>
 
     <div>
       <%#= f.input :role, collection: User.roles.keys, disabled: true, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>

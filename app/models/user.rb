@@ -22,6 +22,7 @@ class User < ApplicationRecord
   
   has_many :rooms, foreign_key: :user_id
   has_one :user_info, dependent: :destroy
+  has_one :upgrade, foreign_key: :user_id
   accepts_nested_attributes_for :user_info
 
   # ROLES = %w[admin member].freeze
@@ -30,6 +31,7 @@ class User < ApplicationRecord
   # CallBacks
   after_create :update_user_verified_column_to_true
   after_create :send_pin!
+  after_create :create_upgrade
 
   def user_info
     super || build_user_info
@@ -71,6 +73,10 @@ class User < ApplicationRecord
   end
 
   private
+
+  def create_upgrade
+    Upgrade.create!(user_id: self[:id], plan_id: 2)
+  end
   
   def add_default_avatar
     unless avatar.attached?

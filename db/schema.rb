@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_06_104004) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_04_055142) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,9 +65,29 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_06_104004) do
     t.index ["room_id"], name: "index_members_on_room_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.string "method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.string "plan_name"
+    t.string "plan_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "post_title"
     t.string "post_body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "room_images", force: :cascade do |t|
+    t.integer "room_id"
+    t.string "room_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -91,6 +111,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_06_104004) do
     t.string "room_photo"
     t.string "image"
     t.string "slug"
+    t.string "room_images", default: [], array: true
+    t.json "room_photos"
     t.index ["slug"], name: "index_rooms_on_slug", unique: true
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
@@ -99,6 +121,34 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_06_104004) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "trasaction", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "plan_id"
+    t.datetime "startDate"
+    t.datetime "endDate"
+    t.integer "duration"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "payment_id", null: false
+    t.index ["payment_id"], name: "index_trasaction_on_payment_id"
+    t.index ["plan_id"], name: "index_trasaction_on_plan_id"
+    t.index ["user_id"], name: "index_trasaction_on_user_id"
+  end
+
+  create_table "upgrades", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "plan_id"
+    t.datetime "startDate"
+    t.datetime "endDate"
+    t.integer "duration"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_upgrades_on_plan_id"
+    t.index ["user_id"], name: "index_upgrades_on_user_id"
   end
 
   create_table "user_infos", force: :cascade do |t|
@@ -144,5 +194,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_06_104004) do
 
   add_foreign_key "members", "rooms"
   add_foreign_key "rooms", "users"
+  add_foreign_key "trasaction", "payments"
+  add_foreign_key "trasaction", "plans"
+  add_foreign_key "trasaction", "users"
+  add_foreign_key "upgrades", "plans"
+  add_foreign_key "upgrades", "users"
   add_foreign_key "user_infos", "users"
 end
