@@ -15,6 +15,9 @@
           <th scope="col" class="px-6 py-3">
               Billing Period
           </th>
+           <th scope="col" class="px-6 py-3">
+              Status
+          </th>
           <th scope="col" class="px-6 py-3">
               Action
           </th>
@@ -27,25 +30,24 @@
               <%= upgrade.id %>
             </th>
             <td class="px-6 py-4">
-              <%= upgrade.user.user_name %>
+              <%= current_user.user_name %>
             </td>
             <td class="px-6 py-4">
               <%= upgrade.plan.plan_name %>
             </td>
             <td class="px-6 py-4">
-              <%#= upgrade.startDate.to_time.strftime('%B %e %Y') if upgrade.startDate? %>
+              <%= upgrade.startDate.to_time.strftime('%B %e %Y') if upgrade.startDate? %>
             </td>
-            <td class="px-6 py-4">
+            <%# <td class="px-6 py-4"> %>
               <%#= upgrade.endDate.to_time.strftime('%B %e %Y') if upgrade.endDate? %>
+            <%# </td> %>
+            <td class="px-6 py-4">
+              <%= upgrade.status %> | <%= upgrade.user_id %>
             </td>
             <td class="px-6 py-4">
-              <%= upgrade.status %> |
-              <%= upgrade.user_id %>
-            </td>
-            <td class="px-6 py-4">
+              <%= link_to "Upgrade", edit_upgrade_path(upgrade), class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
               <%= link_to "Show", upgrade, class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
-              <%= link_to "Edit", edit_room_path(upgrade), class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
-              <%= link_to "Delete", room_path(upgrade), method: :delete, class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
+              <%#= link_to "Delete", room_path(upgrade), method: :delete, class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
             </td>
           </tr>
         <% end %>
