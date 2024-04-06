@@ -75,7 +75,7 @@ class User < ApplicationRecord
   private
 
   def create_upgrade
-    Upgrade.create!(user_id: self[:id], plan_id: 2)
+    Upgrade.create!(user_id: self[:id], plan_id: 2, status: "active")
   end
   
   def add_default_avatar
