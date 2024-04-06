@@ -53,7 +53,12 @@ Rails.application.routes.draw do
       resources :rooms do
         resources :room_images, only: [:create, :destroy]
       end
-      resources :upgrade
+      resources :upgrade do
+        collection do
+          get "plan_upgrade"
+          post "transaction", to: 'upgrade#plan_upgrade'
+        end
+      end
       resources :users do
         collection do
           get :profile

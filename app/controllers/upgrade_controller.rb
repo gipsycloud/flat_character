@@ -14,9 +14,13 @@ class UpgradeController < ApplicationController
   def edit
   end
 
+  def plan_upgrade
+    # @transaction.update
+  end
+
   private
 
   def set_upgrade
-    @upgrae = Upgrade.find(params[:id])
+    @upgrade = Upgrade.find(params[:id])
   end
 end
