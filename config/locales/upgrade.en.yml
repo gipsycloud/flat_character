@@ -1,0 +1,6 @@
+en:
+  activerecord:
+  upgrade:
+    status:
+      active: "Active"
+      inactive: "In-active"  

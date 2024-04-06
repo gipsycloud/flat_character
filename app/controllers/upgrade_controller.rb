@@ -5,6 +5,7 @@ class UpgradeController < ApplicationController
 
   def index
     @upgrades = Upgrade.where(user_id: current_user.id)
+    @plan = Upgrade.find_by(user_id: current_user.id, status: "active")
   end
 
   def show
