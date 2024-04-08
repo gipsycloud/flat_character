@@ -31,7 +31,10 @@
                <%= current_user.user_name %>
                </p>
                <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-               <%= current_user.email %>
+               <%#= current_user.email %>
+               </p>
+               <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+               <%= current_user.upgrade.nil? ? "" : current_user.upgrade.plan.plan_name %>
                </p>
             </div>
             <ul class="py-1" role="none">

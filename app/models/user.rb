@@ -24,6 +24,7 @@ class User < ApplicationRecord
   has_one :user_info, dependent: :destroy
   has_one :upgrade, foreign_key: :user_id
   accepts_nested_attributes_for :user_info
+  accepts_nested_attributes_for :upgrade, update_only: true, allow_destroy: true
 
   # ROLES = %w[admin member].freeze
   # validates :role, inclusion: { in: ROLES }
@@ -75,7 +76,7 @@ class User < ApplicationRecord
   private
 
   def create_upgrade
-    Upgrade.create!(user_id: self[:id], plan_id: 2)
+    Upgrade.create!(user_id: self[:id], plan_id: 2, status: "active")
   end
   
   def add_default_avatar
