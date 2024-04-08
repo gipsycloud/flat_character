@@ -52,6 +52,13 @@
               </div>
             </div>
 
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <%= f.simple_fields_for :upgrade do |u| %>
+                <%# u.hidden_field :user_id %>
+                <%= u.input :status, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
+              <% end %>  
+            </div>
+
             <div class="mt-4">
               <%= f.button :submit, class: "inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto" %>
             </div>
