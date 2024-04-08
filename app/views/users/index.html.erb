@@ -19,6 +19,9 @@
               Role
           </th>
           <th scope="col" class="px-6 py-3">
+              Rooms
+          </th>
+          <th scope="col" class="px-6 py-3">
               Action
           </th>
         </tr>
@@ -42,8 +45,12 @@
               <%= user.role %>
             </td>
             <td class="px-6 py-4">
+              <%= user.rooms.count %>
+            </td>
+            <td class="px-6 py-4">
               <%= link_to "Show", user_path(user), class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
               <%= link_to "Edit", edit_user_path(user), class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
+              <%= link_to "Delete", user_path(user), method: :delete, class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
             </td>
           </tr>
         <% end %>
