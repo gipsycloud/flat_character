@@ -43,7 +43,9 @@
           <span class="text-5xl font-bold tracking-tight text-gray-900">$ <%= @plan.plan.plan_price %></span>
           <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600">USD</span>
         </p>
-        <a href="#" class="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Upgrade Plan</a>
+        <%# <a href="#" class="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 %>
+          <%# focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Upgrade Plan</a> %>
+          <%= link_to "Upgrade Plan", plan_upgrade_upgrade_index_path, class: "mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
         <p class="mt-6 text-xs leading-5 text-gray-600">Invoices and receipts available for easy company reimbursement</p>
       </div>
     </div>
@@ -97,8 +99,8 @@
               <%= I18n.t("upgrade.status.#{upgrade.status}") %> | <%= upgrade.user_id %>
             </td>
             <td class="px-6 py-4">
-              <%= link_to "Upgrade", edit_upgrade_path(upgrade), class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
               <%= link_to "Show", upgrade, class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
+              <%#= link_to "Upgrade", edit_upgrade_path(upgrade), class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
               <%#= link_to "Delete", room_path(upgrade), method: :delete, class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
             </td>
           </tr>
