@@ -1,7 +1,7 @@
 <div class="h-full flex items-center justify-center px-5 pb-10 pt-16">
-    <%= simple_form_for(@transaction, method: :post, url: transaction_upgrade_index_path) do |f| %>
-        <%= f.hidden_field :user_id, value: current_user.id %>
-        <%= f.hidden_field :id %>
+    <%= simple_form_for(@transaction, as: :upgrade, method: :post, url: upgrade_transaction_path) do |f| %>
+        <%#= f.hidden_field :user_id, value: current_user.id %>
+        <%#= f.hidden_field :id %>
         <div class="w-full mx-auto rounded-lg bg-gray-200 shadow-lg p-5 text-gray-700" style="max-width: 600px">
             <div class="w-full pt-1 pb-5">
                 <div class="bg-indigo-500 text-white overflow-hidden rounded-full w-20 h-20 -mt-16 mx-auto shadow-lg flex justify-center items-center">
@@ -16,7 +16,7 @@
             <div class="mb-3 flex -mx-2">
                 <div class="px-2">
                     <label for="type1" class="flex items-center cursor-pointer">
-                        <input type="radio" class="form-radio h-5 w-5 text-indigo-500" name="type" id="type1" checked>
+                        <%# <input type="radio" class="form-radio h-5 w-5 text-indigo-500" name="type" id="type1" checked> %>
                         <img src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png" class="h-8 ml-3">
                     </label>
                 </div>
@@ -28,20 +28,20 @@
                 </div> %>
             </div>
             <div class="mb-3">
-                <label class="font-bold text-sm mb-2 ml-1">Name on card</label>
-                <%= f.text_field :plan_id, class: "w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors", placeholder: "John Smith" %>
+                <label class="font-bold text-sm mb-2 ml-1">Cardholder name *</label>
+                <%= f.input :plan_id, class: "w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors", placeholder: "John Smith" %>
             </div>
             <div class="mb-3">
                 <label class="font-bold text-sm mb-2 ml-1">Card number</label>
                 <div>
-                    <input class="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="0000 0000 0000 0000" type="text"/>
+                    <%# <input class="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="0000 0000 0000 0000" type="text"/> %>
                 </div>
             </div>
             <div class="mb-3 -mx-2 flex items-end">
-                <div class="px-2 w-1/2">
+                <div class="px-2 w-1/4">
                     <label class="font-bold text-sm mb-2 ml-1">Expiration date</label>
                     <div>
-                        <%= select_year(Date.today, start_year: Date.current.year, end_year: 2007, input_html: { class: "form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer" }) %>
+                        <%#= select_year(Date.today, start_year: Date.current.year, end_year: 2007, input_html: { class: "form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer" }) %>
                         <%# <select class="">
                             <option value="01">01 - January</option>
                             <option value="02">02 - February</option>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="px-2 w-1/2">
-                    <%= select_month(Date.today, class: "form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer") %>
+                    <%#= select_month(Date.today, class: "form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer") %>
                     <%# <select class="">
                         <option value="2020">2020</option>
                         <option value="2021">2021</option>
@@ -77,7 +77,9 @@
             <div class="mb-10">
                 <label class="font-bold text-sm mb-2 ml-1">Security code</label>
                 <div>
-                    <input class="w-32 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="000" type="text"/>
+                    <%= f.object.user_id %> user id
+                       <%= f.object.id %>
+                    <%# <input class="w-32 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="000" type="text"/> %>
                 </div>
             </div>
             <div>

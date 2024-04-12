@@ -45,7 +45,7 @@
         </p>
         <%# <a href="#" class="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 %>
           <%# focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Upgrade Plan</a> %>
-          <%= link_to "Upgrade Plan", plan_upgrade_upgrade_index_path, class: "mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+          <%= link_to "Upgrade Plan", user_transaction_path(current_user.id), class: "mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
         <p class="mt-6 text-xs leading-5 text-gray-600">Invoices and receipts available for easy company reimbursement</p>
       </div>
     </div>
@@ -70,6 +70,9 @@
               Billing Period
           </th>
            <th scope="col" class="px-6 py-3">
+              Plan Duration
+          </th>
+           <th scope="col" class="px-6 py-3">
               Status
           </th>
           <th scope="col" class="px-6 py-3">
@@ -91,6 +94,9 @@
             </td>
             <td class="px-6 py-4">
               <%= upgrade.startDate.to_time.strftime('%B %e %Y') if upgrade.startDate? %>
+            </td>
+            <td class="px-6 py-4">
+              <%= upgrade.duration %> months
             </td>
             <%# <td class="px-6 py-4"> %>
               <%#= upgrade.endDate.to_time.strftime('%B %e %Y') if upgrade.endDate? %>
