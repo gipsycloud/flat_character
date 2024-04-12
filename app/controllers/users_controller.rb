@@ -31,6 +31,21 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+    
+  def transaction
+    @user = User.find(params[:user_id])
+  end
+
+  def plan_upgrade
+    @user = User.find(params[:user_id])
+    @user.upgrade.plan_id = params[:user][:upgrade_attributes][:plan_id]
+    @user.upgrade.startDate = DateTime.now
+    @user.upgrade.endDate = DateTime.now + 5.month
+    @user.upgrade.duration = (@user.upgrade.startDate.month..@user.upgrade.endDate.month).count
+    @user.upgrade.save
+    redirect_to upgrade_index_url
+    flash[:alert] = "Plan grade successfully updated."
+  end
 
   private
 
@@ -43,6 +58,10 @@ class UsersController < ApplicationController
   end
 
   def update_user_params
-    params.require(:user).permit(:user_name, :phone_number, :address, :role, :verified, upgrade_attributes: [:user_id, :status])
+    params.require(:user).permit(:user_name, :phone_number, :address, :role, :verified, upgrade_attributes: [:plan_id, :status])
+  end
+
+  def plan_upgrade_params
+    params.require(:user).permit(:id, upgrade_attributes: [:user_id, :plan_id, :status])
   end
 end
