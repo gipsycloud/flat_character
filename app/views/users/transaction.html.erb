@@ -15,10 +15,7 @@
             </div>
             <div class="mb-3 flex -mx-2">
                 <div class="px-2">
-                    <label for="type1" class="flex items-center cursor-pointer">
-                        <%# <input type="radio" class="form-radio h-5 w-5 text-indigo-500" name="type" id="type1" checked> %>
-                        <img src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png" class="h-8 ml-3">
-                    </label>
+                    
                 </div>
                 <%# <div class="px-2">
                     <label for="type2" class="flex items-center cursor-pointer">
@@ -27,59 +24,49 @@
                     </label>
                 </div> %>
             </div>
-            <div class="mb-3">
-                <%= f.simple_fields_for :upgrade do |u| %>
-                    <label class="font-bold text-sm mb-2 ml-1">Cardholder name *</label>
-                    <%= u.input :plan_id, class: "w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors", placeholder: "John Smith" %>
-                <% end %>
-            </div>
-            <div class="mb-3">
-                <label class="font-bold text-sm mb-2 ml-1">Card number</label>
-                <div>
-                    <%# <input class="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="0000 0000 0000 0000" type="text"/> %>
+            <%= f.simple_fields_for :payment do |payment| %>
+                <div class="mb-3">
+                    <label for="type1" class="flex items-center cursor-pointer">
+                        <%= payment.input :method, as: :boolean, label: false, :input_html => { :checked => true, class: "hidden" } %>
+                        <img src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png" class="h-8 ml-0">
+                    </label>
                 </div>
-            </div>
-            <div class="mb-3 -mx-2 flex items-end">
-                <div class="px-2 w-1/4">
-                    <label class="font-bold text-sm mb-2 ml-1">Expiration date</label>
-                    <div>
-                        <%#= select_year(Date.today, start_year: Date.current.year, end_year: 2007, input_html: { class: "form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer" }) %>
-                        <%# <select class="">
-                            <option value="01">01 - January</option>
-                            <option value="02">02 - February</option>
-                            <option value="03">03 - March</option>
-                            <option value="04">04 - April</option>
-                            <option value="05">05 - May</option>
-                            <option value="06">06 - June</option>
-                            <option value="07">07 - July</option>
-                            <option value="08">08 - August</option>
-                            <option value="09">09 - September</option>
-                            <option value="10">10 - October</option>
-                            <option value="11">11 - November</option>
-                            <option value="12">12 - December</option>
-                        </select> %>
+
+                <div class="mb-3">
+                    <label class="font-bold text-sm mb-2 ml-1">Cardholder name *</label>
+                    <%= payment.input :card_holder_name, label: false, class: "w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors", placeholder: "" %>
+                </div>
+
+                <div class="mb-3">
+                    <label class="font-bold text-sm mb-2 ml-1">Card Number *</label>
+                    <%= payment.input :card_number, label: false, class: "w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors", placeholder: "xxxx xxxx xxxx xxxx" %>
+                </div>
+
+                <label class="font-bold text-sm mb-2 ml-1">Expiration date *</label>
+                <div class="mb-3 -mx-2 flex items-end">
+                    <div class="px-2 w-1/3">
+                        <div>
+                            <%= select_year(Date.today, start_year: Date.current.year, end_year: 2007, input_html: { class: "form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer" }) %>
+                        </div>
+                    </div>
+                    <div class="px-2 w-1/2">
+                        <%= select_month(Date.today, class: "form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer") %>
                     </div>
                 </div>
-                <div class="px-2 w-1/2">
-                    <%#= select_month(Date.today, class: "form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer") %>
-                    <%# <select class="">
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
-                        <option value="2026">2026</option>
-                        <option value="2027">2027</option>
-                        <option value="2028">2028</option>
-                        <option value="2029">2029</option>
-                    </select> %>
+
+                <div class="mb-3">
+                    <label class="font-bold text-sm mb-2 ml-1">CVC *</label>
+                    <%= payment.input :cvc, label: false, class: "w-25 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors", placeholder: "xx/xx" %>
                 </div>
-            </div>
+
+                <div class="mb-3">
+                    <label class="font-bold text-sm mb-2 ml-1">Billing Address *</label>
+                    <%= payment.input :billing_address, label: false, class: "w-25 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors", placeholder: "NY, America" %>
+                </div>
+            <% end %>
+
             <div class="mb-10">
-                <label class="font-bold text-sm mb-2 ml-1">Security code</label>
                 <div>user id: <%= f.object.user_name %> | <%= f.object.upgrade.plan.plan_name %>
-                    <%# <input class="w-32 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="000" type="text"/> %>
                 </div>
             </div>
             <div>
