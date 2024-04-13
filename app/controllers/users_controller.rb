@@ -31,6 +31,28 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+    
+  def transaction
+    @user = User.find(params[:user_id])
+  end
+
+  def plan_upgrade
+    @user = User.find(params[:user_id])
+    @user.upgrade.plan_id = 1
+    @user.upgrade.startDate = DateTime.now
+    @user.upgrade.endDate = DateTime.now + 5.month
+    @user.upgrade.duration = (@user.upgrade.startDate.month..@user.upgrade.endDate.month).count
+    @user.upgrade.save
+    @user.add_payment(payment_method = params[:user][:payment][:method],
+                      holder_name = params[:user][:payment][:card_holder_name], 
+                      card_number = params[:user][:payment][:card_number],
+                      exp_year = params[:date][:year], exp_month = params[:date][:month],
+                      cvc = params[:user][:payment][:cvc],
+                      billing_address = params[:user][:payment][:billing_address]
+                    )
+    redirect_to upgrade_index_url
+    flash[:alert] = "Plan grade successfully updated."
+  end
 
   private
 
@@ -43,6 +65,11 @@ class UsersController < ApplicationController
   end
 
   def update_user_params
-    params.require(:user).permit(:user_name, :phone_number, :address, :role, :verified, upgrade_attributes: [:user_id, :status])
+    params.require(:user).permit(:user_name, :phone_number, :address, :role, :verified)
   end
+
+  # def plan_upgrade_params
+  #   params.require(:user).permit(:id, upgrade_attributes: [:user_id, :plan_id, :status])
+  # 
+  # end
 end

@@ -45,7 +45,7 @@
         </p>
         <%# <a href="#" class="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 %>
           <%# focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Upgrade Plan</a> %>
-          <%= link_to "Upgrade Plan", plan_upgrade_upgrade_index_path, class: "mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+          <%= link_to "Upgrade Plan", user_transaction_path(current_user.id), class: "mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
         <p class="mt-6 text-xs leading-5 text-gray-600">Invoices and receipts available for easy company reimbursement</p>
       </div>
     </div>
@@ -70,6 +70,9 @@
               Billing Period
           </th>
            <th scope="col" class="px-6 py-3">
+              Plan Duration
+          </th>
+           <th scope="col" class="px-6 py-3">
               Status
           </th>
           <th scope="col" class="px-6 py-3">
@@ -92,6 +95,9 @@
             <td class="px-6 py-4">
               <%= upgrade.startDate.to_time.strftime('%B %e %Y') if upgrade.startDate? %>
             </td>
+            <td class="px-6 py-4">
+              <%= upgrade.duration %> months
+            </td>
             <%# <td class="px-6 py-4"> %>
               <%#= upgrade.endDate.to_time.strftime('%B %e %Y') if upgrade.endDate? %>
             <%# </td> %>
@@ -100,6 +106,74 @@
             </td>
             <td class="px-6 py-4">
               <%= link_to "Show", upgrade, class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
+              <%#= link_to "Upgrade", edit_upgrade_path(upgrade), class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
+              <%#= link_to "Delete", room_path(upgrade), method: :delete, class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="items-center justify-center h-48 mb-4 mt-8 rounded bg-gray-50 dark:bg-gray-800">
+  <div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">
+              Method
+          </th>
+          <th scope="col" class="px-6 py-3">
+              Holder Name
+          </th>
+          <th scope="col" class="px-6 py-3">
+              Card Number
+          </th>
+          <th scope="col" class="px-6 py-3">
+              CVC Code
+          </th>
+           <th scope="col" class="px-6 py-3">
+              Exp Year
+          </th>
+           <th scope="col" class="px-6 py-3">
+              Exp Month
+          </th>
+          <th scope="col" class="px-6 py-3">
+              Billing Address
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @transaction_records.each do |record| %>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <%= record.method %>
+            </th>
+            <td class="px-6 py-4">
+              <%= record.card_holder_name %>
+            </td>
+            <td class="px-6 py-4">
+              <%= record.card_number %>
+            </td>
+             <td class="px-6 py-4">
+              <%= record.cvc %>
+            </td>
+            <td class="px-6 py-4">
+              <%= record.exp_year %>
+            </td>
+            <td class="px-6 py-4">
+              <%= record.exp_month %>
+            </td>
+            <td class="px-6 py-4">
+              <%= record.billing_address %>
+            </td>
+            <td class="px-6 py-4">
+              <%= record.updated_at.to_time.strftime('%B %e %Y') if record.updated_at? %>
+            </td>
+            <%#= I18n.t("upgrade.status.#{upgrade.status}") %> <%#= upgrade.user_id %>
+            <td class="px-6 py-4">
+              <%#= link_to "Show", upgrade, class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
               <%#= link_to "Upgrade", edit_upgrade_path(upgrade), class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
               <%#= link_to "Delete", room_path(upgrade), method: :delete, class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
             </td>

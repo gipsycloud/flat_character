@@ -1,0 +1,80 @@
+<div class="h-full flex items-center justify-center px-5 pb-10 pt-16">
+    <%= simple_form_for(@user, as: :user, method: :post, url: user_plan_upgrade_path) do |f| %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%#= f.hidden_field :id %>
+        <div class="w-full mx-auto rounded-lg bg-gray-200 shadow-lg p-5 text-gray-700" style="max-width: 600px">
+            <div class="w-full pt-1 pb-5">
+                <div class="bg-indigo-500 text-white overflow-hidden rounded-full w-20 h-20 -mt-16 mx-auto shadow-lg flex justify-center items-center">
+                <svg class="w-[37px] h-[37px] text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 10h18M6 14h2m3 0h5M3 7v10a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1Z"/>
+                </svg>
+                </div>
+            </div>
+            <div class="mb-10">
+                <h1 class="text-center font-bold text-xl uppercase">Secure payment info</h1>
+            </div>
+            <div class="mb-3 flex -mx-2">
+                <div class="px-2">
+                    
+                </div>
+                <%# <div class="px-2">
+                    <label for="type2" class="flex items-center cursor-pointer">
+                        <input type="radio" class="form-radio h-5 w-5 text-indigo-500" name="type" id="type2">
+                        <img src="https://www.sketchappsources.com/resources/source-image/PayPalCard.png" class="h-8 ml-3">
+                    </label>
+                </div> %>
+            </div>
+            <%= f.simple_fields_for :payment do |payment| %>
+                <div class="mb-3">
+                    <label for="type1" class="flex items-center cursor-pointer">
+                        <%= payment.input :method, as: :boolean, label: false, :input_html => { :checked => true, class: "hidden" } %>
+                        <img src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png" class="h-8 ml-0">
+                    </label>
+                </div>
+
+                <div class="mb-3">
+                    <label class="font-bold text-sm mb-2 ml-1">Cardholder name *</label>
+                    <%= payment.input :card_holder_name, label: false, class: "w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors", placeholder: "" %>
+                </div>
+
+                <div class="mb-3">
+                    <label class="font-bold text-sm mb-2 ml-1">Card Number *</label>
+                    <%= payment.input :card_number, label: false, class: "w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors", placeholder: "xxxx xxxx xxxx xxxx" %>
+                </div>
+
+                <label class="font-bold text-sm mb-2 ml-1">Expiration date *</label>
+                <div class="mb-3 -mx-2 flex items-end">
+                    <div class="px-2 w-1/3">
+                        <div>
+                            <%= select_year(Date.today, start_year: Date.current.year, end_year: 2007, input_html: { class: "form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer" }) %>
+                        </div>
+                    </div>
+                    <div class="px-2 w-1/2">
+                        <%= select_month(Date.today, class: "form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer") %>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="font-bold text-sm mb-2 ml-1">CVC *</label>
+                    <%= payment.input :cvc, label: false, class: "w-25 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors", placeholder: "xx/xx" %>
+                </div>
+
+                <div class="mb-3">
+                    <label class="font-bold text-sm mb-2 ml-1">Billing Address *</label>
+                    <%= payment.input :billing_address, label: false, class: "w-25 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors", placeholder: "NY, America" %>
+                </div>
+            <% end %>
+
+            <div class="mb-10">
+                <div>user id: <%= f.object.user_name %> | <%= f.object.upgrade.plan.plan_name %>
+                </div>
+            </div>
+            <div>
+                <%= f.submit "Pay Now", class: "block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold" %>
+                <%# <button class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"><i class="mdi mdi-lock-outline mr-1"></i> PAY NOW</button> %>
+            </div>
+        </div>
+    <% end %>    
+</div>
+
+<%# http://railscasts.com/episodes/288-billing-with-stripe?view=asciicast %>
