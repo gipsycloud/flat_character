@@ -23,8 +23,12 @@ class User < ApplicationRecord
   has_many :rooms, foreign_key: :user_id
   has_one :user_info, dependent: :destroy
   has_one :upgrade, foreign_key: :user_id
+  has_many :payments, foreign_key: :user_id
   accepts_nested_attributes_for :user_info
   accepts_nested_attributes_for :upgrade, update_only: true, allow_destroy: true
+  accepts_nested_attributes_for :payments
+
+  # attr_accessor :card_holder_name, :card_number, :cvc, :billing_address, :exp_year, :exp_month, :method
 
   # ROLES = %w[admin member].freeze
   # validates :role, inclusion: { in: ROLES }
@@ -70,6 +74,12 @@ class User < ApplicationRecord
       avatar.variant(resize: '150*150!').processed
     else
       '/default_profile.jpg'
+    end
+  end
+
+  def add_payment(payment_method, holder_name, card_number, exp_year, exp_month, cvc, billing_address)
+    ActiveRecord::Base.transaction do
+      Payment.create(method: payment_method, card_holder_name: holder_name, card_number: card_number, exp_year: exp_year, exp_month: exp_month, cvc: cvc, billing_address: billing_address, user_id: self[:id])
     end
   end
 
