@@ -38,6 +38,14 @@ class User < ApplicationRecord
   after_create :send_pin!
   after_create :create_upgrade
 
+  def paid_plan?
+    self.upgrade.plan.plan_name == 'Gold Plan'
+  end
+
+  def free_plan?
+    self.upgrade.plan.plan_name == 'Free Plan'
+  end
+
   def user_info
     super || build_user_info
   end

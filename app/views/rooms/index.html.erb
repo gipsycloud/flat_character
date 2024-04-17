@@ -27,13 +27,24 @@
               </svg>
               Add new user
             </button> %>
-            <% if current_user.upgrade.plan.plan_name = 'Gold Plan' %>
-            <%# if @rooms.count >= 2 %>
+            <% if current_user.paid_plan? %>
+              <%= link_to "New Room", new_room_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
+            <% elsif current_user.free_plan? && current_user.rooms.count < 2 %>
+              <%= link_to "New Room", new_room_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
+            <% elsif @rooms.count >= 2 %>
               <div class="p-4 mb-0 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
-                <span class="font-medium">Limit to create room</span>
+                <span class="font-medium">
+                  Limit to create room 
+                  <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300"><%= current_user.upgrade.plan.plan_name %></span>
+                </span>
               </div>
             <% else %>
-              <%= link_to "New Room", new_room_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
+               <div class="p-4 mb-0 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+                <span class="font-medium">
+                  Limit to create room 
+                  <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300"><%= current_user.upgrade.plan.plan_name %></span>
+                </span>
+              </div>
             <% end %>
             </div>
           </div>

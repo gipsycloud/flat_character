@@ -25,18 +25,22 @@ class RoomsController < ApplicationController
 
   # POST /rooms or /rooms.json
   def create
-    @room = Room.new(room_params)
-    @room.user_id = current_user.id
+    if current_user.paid_plan? || can_create_room?
+      @room = Room.new(room_params)
+      @room.user_id = current_user.id
 
-    respond_to do |format|
-      if @room.save
-        store_image
-        format.html { redirect_to room_url(@room), notice: "Room was successfully created." }
-        format.json { render :show, status: :created, location: @room }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @room.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @room.save
+          store_image
+          format.html { redirect_to room_url(@room), notice: "Room was successfully created." }
+          format.json { render :show, status: :created, location: @room }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @room.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to rooms_url, alert: 'You have reache your room limit'
     end
   end
 
@@ -84,5 +88,9 @@ class RoomsController < ApplicationController
           @room.room_images.create!(room_image: image)
         end
       end
+    end
+
+    def can_create_room?
+      current_user.rooms.count < 2
     end
 end
