@@ -1,8 +1,7 @@
 require 'sidekiq'
 require 'sidekiq/web'
-# require 'sidekiq-scheduler'
-# require 'sidekiq-scheduler/web'
 require 'sidekiq-status'
+require 'sidekiq/cron/web'
 
 redis_url = ENV.fetch("REDIS_URL")
 

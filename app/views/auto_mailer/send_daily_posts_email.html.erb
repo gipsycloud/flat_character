@@ -1,0 +1,6 @@
+<h1>Daily Posts Digest</h1>
+<ul>
+  <% @today_posts.each do |post| %>
+    <li><%= post.details %></li><br />
+  <% end %>
+</ul>

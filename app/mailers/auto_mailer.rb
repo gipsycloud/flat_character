@@ -1,5 +1,5 @@
 class AutoMailer < ApplicationMailer
-  def send_daily_posts_email(email)
+  def send_daily_posts_email
     @today_posts = Room.where(room_status: "active")
     @subscriptions = Subscription.all
 

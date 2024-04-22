@@ -4,7 +4,7 @@
 :concurrency:  25
 :queues:
   - default
-  - worker
+  - mailer
 
 
 # https://medium.com/@ashwinborkar1997/ruby-on-rails-using-the-sidekiq-sidekiq-cron-making-the-cron-job-f466a7edeb22  

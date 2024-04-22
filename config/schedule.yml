@@ -1,4 +1,4 @@
 daily_mail_job:
-   cron: "*/1 * * * *"
+   cron: "0 5 * * MON-FRI"
    class: "DailyMailJob"
-   queue: worker
+   queue: mailer
