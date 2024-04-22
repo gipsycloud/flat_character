@@ -83,3 +83,8 @@ https://railsless.blogspot.com/2015/09/uploading-multiple-images-using.html
 
 fixing for null image data auto saving to database for multiple upload using Carrierwave gem
 https://stackoverflow.com/questions/72317021/rails-multi-file-upload-produces-one-empty-entry
+
+sidekiq scheduled 
+https://medium.com/@ashwinborkar1997/ruby-on-rails-using-the-sidekiq-sidekiq-cron-making-the-cron-job-f466a7edeb22
+
+https://qiita.com/Dai_Kentaro/items/efef71b4d2cd0b76f227#%E5%AE%9F%E8%A1%8C

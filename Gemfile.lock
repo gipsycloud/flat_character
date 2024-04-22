@@ -129,11 +129,16 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.12.0)
+    et-orbi (1.2.11)
+      tzinfo
     execjs (2.9.1)
     ffi (1.16.3)
     foreman (0.87.2)
     friendly_id (5.5.1)
       activerecord (>= 4.0.0)
+    fugit (1.10.1)
+      et-orbi (~> 1, >= 1.2.7)
+      raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hotwire-livereload (1.3.1)
@@ -214,6 +219,7 @@ GEM
       nio4r (~> 2.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
+    raabro (1.4.0)
     racc (1.7.3)
     rack (2.2.8)
     rack-contrib (2.4.0)
@@ -301,6 +307,9 @@ GEM
       rack (~> 2.0)
       rack-protection (>= 1.5.0)
       redis (~> 4.5, < 4.6.0)
+    sidekiq-cron (1.9.1)
+      fugit (~> 1.8)
+      sidekiq (>= 4.2.1)
     sidekiq-status (2.1.3)
       chronic_duration
       sidekiq (>= 5.0)
@@ -385,6 +394,7 @@ DEPENDENCIES
   sassc-rails
   selenium-webdriver
   sidekiq (~> 5.2.8)
+  sidekiq-cron
   sidekiq-status
   simple_form
   simple_form-tailwind (~> 0.1.1)

@@ -103,5 +103,6 @@ gem 'cancancan', '~> 3.5'
 # gem 'sidekiq', '~> 7.1', '>= 7.1.2'
 gem 'sidekiq', '~> 5.2.8'
 gem 'sidekiq-status'
+gem 'sidekiq-cron'
 
 gem 'friendly_id', '~> 5.1'
