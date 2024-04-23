@@ -7,3 +7,4 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Admin.create(email: 'guess@gmail.com', name: 'guess', password: 'password', password_confirmation: 'password')
+Plan.create(plan_name: 'Free Plan', plan_price: '0')
