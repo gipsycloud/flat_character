@@ -88,3 +88,6 @@ sidekiq scheduled
 https://medium.com/@ashwinborkar1997/ruby-on-rails-using-the-sidekiq-sidekiq-cron-making-the-cron-job-f466a7edeb22
 
 https://qiita.com/Dai_Kentaro/items/efef71b4d2cd0b76f227#%E5%AE%9F%E8%A1%8C
+
+Search Function
+https://reinteractive.com/articles/simplify-data-filtering-in-ruby-on-rails-with-ransack#:~:text=Ransack%20is%20highly%20customizable.,without%20needing%20to%20know%20SQL.

@@ -106,3 +106,5 @@ gem 'sidekiq-status'
 gem 'sidekiq-cron'
 
 gem 'friendly_id', '~> 5.1'
+
+gem 'ransack'

@@ -91,6 +91,14 @@ class User < ApplicationRecord
     end
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["phone_number", "user_name"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["payments", "rooms", "upgrade", "user_info"]
+  end
+
   private
 
   def create_upgrade
