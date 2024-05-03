@@ -6,6 +6,8 @@ class HomesController < ApplicationController
   def index
     @rooms = Room.order(updated_at: :desc).limit(4)
     @plans = Plan.first
+    @q = User.ransack(params[:q])
+    @members = @q.result(distinct: true)
   end
 
   # GET /homes/1 or /homes/1.json
