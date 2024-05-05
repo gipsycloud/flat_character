@@ -8,6 +8,18 @@ class HomesController < ApplicationController
     @plans = Plan.first
     @q = User.ransack(params[:q])
     @members = @q.result(distinct: true)
+    if params[:q]
+      render 'search'
+    end
+    
+  end
+
+  def search
+    # @q = User.ransack(params[:q])
+    # @members = @q.result(distinct: true)
+    # if params[:q].present?
+    #   redirect_to( search_homes_path(@q), format: :html)
+    # end
   end
 
   # GET /homes/1 or /homes/1.json
