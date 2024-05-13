@@ -1,0 +1,61 @@
+# version: '3.8'
+# services:
+#   db:
+#     image: postgres:latest
+#     container_name: "blog_postgres_1"
+#     # ports:
+#     #   - "5432:5432"
+#     volumes:
+#       - pgdata:/var/lib/postgresql/data
+#     # environment:
+#     #   - POSTGRES_HOST_AUTH_METHOD=trust  
+#     environment:
+#       - POSTGRES_DB=${DB_NAME}
+#       - POSTGRES_USER=${DB_USERNAME}
+#       - POSTGRES_PASSWORD=${DB_PASSWORD}
+#   redis:
+#     image: redis:latest
+#     # ports:
+#     #   - "6379:6379"
+#   web:
+#     build: .
+#     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+#     environment:
+#       - RAILS_ENV=${RAILS_ENV}
+#       - POSTGRES_HOST=${DB_HOST}
+#       - POSTGRES_DB=${DB_NAME}
+#       - POSTGRES_USER=${DB_USERNAME}
+#       - POSTGRES_PASSWORD=${DB_PASSWORD}
+#       - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+#     volumes:
+#       - app-storage:/rails/storage
+#     depends_on:
+#       - db
+#       - redis
+#     ports:
+#       - "3000:3000"
+#     # environment:
+#     #   - DATABASE_URL=postgres://postgres:password@db:5432/postgres
+#     #   - REDIS_URL=redis://127.0.0.1:6379/0
+# volumes:
+#   pgdata: {}
+#   app-storage: {}
+
+version: "3.3"
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/myapp
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
