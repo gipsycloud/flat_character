@@ -92,3 +92,12 @@ https://qiita.com/Dai_Kentaro/items/efef71b4d2cd0b76f227#%E5%AE%9F%E8%A1%8C
 Search Function
 https://reinteractive.com/articles/simplify-data-filtering-in-ruby-on-rails-with-ransack#:~:text=Ransack%20is%20highly%20customizable.,without%20needing%20to%20know%20SQL.
 https://stackoverflow.com/questions/63469102/rails6-search-function
+
+Docker
+  viewing database with docker
+    https://www.baeldung.com/ops/docker-databases
+    https://www.youtube.com/watch?v=J7hUHnQtFNo
+
+    clear cache
+    https://forums.docker.com/t/clear-docker-cache/110176
+    sudo docker builder prune

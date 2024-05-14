@@ -14,8 +14,13 @@ development:
   # database: db/development.sqlite3
   username: postgres
   password: password
-  host: localhost
+  # host: localhost
   database: blog_development
+  # database: roommatecharacter_0af8
+  # database: <%= ENV['DB_NAME'] %>
+  host: <%= ENV['POSTGRES_HOST'] %>
+  # username: <%= ENV['POSTGRES_USER'] %>
+  # password: <%= ENV['POSTGRES_PASSWORD'] %> # or leave blank if you didn't set a password
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -26,8 +31,8 @@ development:
 
 production:
   <<: *default
-  host: <%= ENV['DB_HOST'] %>
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %> # or leave blank if you didn't set a password
+  host: <%= ENV['POSTGRES_HOST'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %> # or leave blank if you didn't set a password
   database: roommatecharacter_0af8
   secret_key_base: f9593bb92111e769026cd6014ac80936a99365d91149d396d704518669ca207c6973e2a357501274e4c839af06503d0492f847885d055194b46940a87c5bebbb

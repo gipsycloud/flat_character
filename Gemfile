@@ -98,7 +98,6 @@ gem 'simple_form'
 gem 'simple_form-tailwind', '~> 0.1.1'
 
 gem 'uri'
-gem 'cancancan', '~> 3.5'
 
 # gem 'sidekiq', '~> 7.1', '>= 7.1.2'
 gem 'sidekiq', '~> 5.2.8'
