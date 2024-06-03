@@ -117,3 +117,5 @@ Docker
     redis config
       https://stackoverflow.com/questions/76764903/docker-redis-no-config-file-specified
 
+    docker push
+      https://stackoverflow.com/questions/28349392/how-to-push-a-docker-image-to-a-private-repository
