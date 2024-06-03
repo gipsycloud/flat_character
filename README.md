@@ -101,3 +101,19 @@ Docker
     clear cache
     https://forums.docker.com/t/clear-docker-cache/110176
     sudo docker builder prune
+
+    docker cheat sheet for command
+    https://medium.com/statuscode/dockercheatsheet-9730ce03630d
+
+    stop postgresql 
+    https://stackoverflow.com/questions/38249434/docker-postgres-failed-to-bind-tcp-0-0-0-05432-address-already-in-use
+    
+    Identify what is running in port 5432: sudo lsof -i :5432
+
+    Kill all the processes that are running under this port: sudo kill -9 <pid>
+
+    Run the command again to verify no process is running now: sudo lsof -i :5432
+
+    redis config
+      https://stackoverflow.com/questions/76764903/docker-redis-no-config-file-specified
+
