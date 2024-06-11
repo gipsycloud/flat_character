@@ -107,3 +107,8 @@ gem 'sidekiq-cron'
 gem 'friendly_id', '~> 5.1'
 
 gem 'ransack'
+
+# api
+gem 'devise-jwt'
+gem 'jsonapi-serializer'
+gem 'rack-cors'
