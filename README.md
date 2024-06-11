@@ -119,3 +119,13 @@ Docker
 
     docker push
       https://stackoverflow.com/questions/28349392/how-to-push-a-docker-image-to-a-private-repository
+
+      https://medium.com/@komalminhas.96/a-step-by-step-guide-to-build-and-push-your-own-docker-images-to-dockerhub-709963d4a8bc
+
+    update code .
+      docker build -t hotfix .
+      docker images
+      docker run -d -p 3000:3000 <image_id>
+      docker ps
+      # docker run -dp 127.0.0.1:3000:3000 hotfix
+      docker compose up

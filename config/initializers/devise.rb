@@ -314,4 +314,8 @@ Devise.setup do |config|
   # This line adds turbo_stream as a navigational format. Turbo Streams are a part of Turbo, which lets you send server-rendered HTML and render pages
   # without using much JavaScript. You need to add this for Devise 4.8.1 to work with Rails 7; otherwise, you’d get an undefined methoduser_url error.
   config.navigational_formats = ['*/*', :html, :turbo_stream]
+
+  config.jwt do |jwt|
+    jwt.secret = Rails.application.secrets.secret_key_base
+  end
 end
