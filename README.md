@@ -1,3 +1,84 @@
+
+## FlatMate Character
+
+Every 3 minutes someone finds a flatmate on SpareRoom. With the biggest selection of ads, you'll find yours.
+
+
+### Tech Stack
+
+**Client:** HTML, CSS, TailwindCSS, Javascript, jQuery, Ajax
+
+**Server:** Ruby on Rails, Postgresql, Redis, Sidekiq, Delay Job
+
+**Cloud Service:** Cloudinary
+
+**Host:** Render Server
+
+**Version Control:** rbenv, asdf, git, github
+
+**Node:** npm install or yarn install
+
+**Dev Operation:** Docker, Jenkins
+
+**Analysis:** Google Analysis, Datadog
+
+**Manage:** Foreman
+
+
+
+## Installation
+
+```bash
+  git clone ...
+  cd blog
+  bundle install
+  rails db:create db:migrate db:seed
+  rails assets:precompile
+  foreman start
+```
+    
+## Features
+
+- Coming Soon
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://link-to-project
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+
+
+## Support
+
+For support, email fake@fake.com or join our Slack channel.
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+
+
 # README
 
 * ruby 3.2.1 (2023-02-08 revision 31819e82c8)
@@ -119,3 +200,13 @@ Docker
 
     docker push
       https://stackoverflow.com/questions/28349392/how-to-push-a-docker-image-to-a-private-repository
+
+      https://medium.com/@komalminhas.96/a-step-by-step-guide-to-build-and-push-your-own-docker-images-to-dockerhub-709963d4a8bc
+
+    update code .
+      docker build -t hotfix .
+      docker images
+      docker run -d -p 3000:3000 <image_id>
+      docker ps
+      # docker run -dp 127.0.0.1:3000:3000 hotfix
+      docker compose up
