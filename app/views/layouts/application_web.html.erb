@@ -52,6 +52,16 @@
       });
     </script>
     <!-- /Brevo Conversations {/literal} -->
+
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "94d350b6-0008-4f02-ac9f-6f7412762402",
+        });
+      });
+    </script>
   </head>
 
   <body class="<%= controller_name %>">
