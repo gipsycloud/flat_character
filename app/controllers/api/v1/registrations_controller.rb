@@ -11,9 +11,17 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      payload = { user_id: @user.id }
+      token = create_token(payload)
+      render json: @user, status: :created, location: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -60,19 +68,9 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
   private
+
+
   
-  def respond_with(resource, _opts = {})
-    if resource.persisted?
-      render json: {
-        status: { code: 200, message: 'Signed up successfully.' }
-        data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
-      }
-    else
-      rener json: {
-        status: { code: 422, message: "User couldn't be created successfully.#{resource.errors.full_messages.to_sentence}" },
-        data: {}
-      }
-    end
-  end
 end

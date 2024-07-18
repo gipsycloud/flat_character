@@ -109,6 +109,6 @@ gem 'friendly_id', '~> 5.1'
 gem 'ransack'
 
 # api
-gem 'devise-jwt'
+gem 'jwt', '~> 1.5', '>= 1.5.4'
+gem 'bcrypt', '~> 3.1', '>= 3.1.20'
 gem 'jsonapi-serializer'
-gem 'rack-cors'

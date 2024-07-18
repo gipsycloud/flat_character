@@ -69,7 +69,6 @@ GEM
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     aws_cf_signer (0.1.3)
-    base64 (0.2.0)
     bcrypt (3.1.20)
     better_errors (2.10.1)
       erubi (>= 1.0.0)
@@ -124,23 +123,11 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-jwt (0.11.0)
-      devise (~> 4.0)
-      warden-jwt_auth (~> 0.8)
     domain_name (0.6.20240107)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
-    dry-auto_inject (1.0.1)
-      dry-core (~> 1.0)
-      zeitwerk (~> 2.6)
-    dry-configurable (1.1.0)
-      dry-core (~> 1.0, < 2)
-      zeitwerk (~> 2.6)
-    dry-core (1.0.1)
-      concurrent-ruby (~> 1.0)
-      zeitwerk (~> 2.6)
     erubi (1.12.0)
     et-orbi (1.2.11)
       tzinfo
@@ -183,8 +170,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jsonapi-serializer (2.2.0)
       activesupport (>= 4.2)
-    jwt (2.8.1)
-      base64
+    jwt (1.5.6)
     launchy (2.5.2)
       addressable (~> 2.8)
     letter_opener (1.8.1)
@@ -241,8 +227,6 @@ GEM
     rack (2.2.8)
     rack-contrib (2.4.0)
       rack (< 4)
-    rack-cors (2.0.2)
-      rack (>= 2.0.0)
     rack-protection (3.1.0)
       rack (~> 2.2, >= 2.2.4)
     rack-session (1.0.2)
@@ -367,11 +351,6 @@ GEM
     uri (0.13.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    warden-jwt_auth (0.8.0)
-      dry-auto_inject (>= 0.8, < 2)
-      dry-configurable (>= 0.13, < 2)
-      jwt (~> 2.1)
-      warden (~> 1.2)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -393,6 +372,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt (~> 3.1, >= 3.1.20)
   better_errors (~> 2.9, >= 2.9.1)
   binding_of_caller
   bootsnap
@@ -403,7 +383,6 @@ DEPENDENCIES
   coffee-rails
   debug
   devise
-  devise-jwt
   dotenv-rails (~> 2.1, >= 2.1.1)
   foreman (~> 0.87.2)
   friendly_id (~> 5.1)
@@ -412,12 +391,12 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   jsonapi-serializer
+  jwt (~> 1.5, >= 1.5.4)
   letter_opener
   meta_request
   pg (~> 1.5, >= 1.5.4)
   puma (~> 5.0)
   pundit (~> 1.1)
-  rack-cors
   rails (~> 7.0.4, >= 7.0.4.3)
   ransack
   redis (~> 4.0)

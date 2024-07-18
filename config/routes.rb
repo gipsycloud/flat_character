@@ -112,14 +112,15 @@ Rails.application.routes.draw do
   # api
   namespace :api do
     namespace :v1 do
-      devise_for :users, controllers: {
+      devise_for :users, path: '', path_names: {
+        sign_in: 'login',
+        sign_out: 'logout',
+        registration: 'signup'
+      },
+      controllers: {
         sessions: 'api/v1/sessions',
         registrations: 'api/v1/registrations'
       }
-      devise_scope :user do
-        post 'login', to: 'sessions#create'
-        delete 'logout', to: 'sessions#destroy'
-      end
     end
   end
 
