@@ -8,10 +8,12 @@ class ApplicationController < ActionController::Base
   # before_action :authenticate_user!
   # before_action :require_admin
   layout :layout_by_resource
-  # protect_from_forgery with: :exception
-  protect_from_forgery with: :null_session, if: -> { request.format.json? }
+  protect_from_forgery with: :exception
+  # protect_from_forgery with: :null_session, if: -> { request.format.json? }
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :redirect_if_unverified
+
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_back(fallback_location: root_path)
@@ -45,6 +47,10 @@ class ApplicationController < ActionController::Base
     else
       "application"
     end
+  end
+
+  def render_not_found_response(exception)
+    render json: { error: "#{exception.model} not found" }, status: :not_found
   end
 
   protected

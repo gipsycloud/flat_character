@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  respond_to :json
   include Accessible
   skip_before_action :check_resource, except: [:new, :create]
   # before_action :configure_sign_up_params, only: [:create]
@@ -63,20 +62,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   private
-  
-  def respond_with(resource, _opts = ())
-    if request.method == 'DELETE'
-      # Current user is destroyed successfully
-      render status: :ok
-    elsif request.method == 'POST' && resource.persisted?
-      # current user is crated successfully
-      render json: {
-        user.resource
-      }, status: :ok
-      else
-        # current useris not created successfully
-        rende json: {
-          messages: resource.errors.full_messages
-        }, status: :unprocessable_entity
-  end
+
 end

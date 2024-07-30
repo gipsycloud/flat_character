@@ -110,7 +110,7 @@ Rails.application.routes.draw do
 
 
   # api
-  namespace :api do
+  namespace :api, defaults: { format: :json } do
     namespace :v1 do
       devise_for :users, path: '', path_names: {
         sign_in: 'login',
@@ -121,6 +121,10 @@ Rails.application.routes.draw do
         sessions: 'api/v1/sessions',
         registrations: 'api/v1/registrations'
       }
+
+      namespace :rooms do
+        resources :rooms
+      end
     end
   end
 

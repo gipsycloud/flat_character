@@ -8,3 +8,7 @@
 
 Admin.create(email: 'guess@gmail.com', name: 'guess', password: 'password', password_confirmation: 'password')
 Plan.find_or_create_by(plan_name: 'Diamon Plan', plan_price: '60')
+
+# 10.times do |i|
+#   User.first.posts.create(title: "Post #{i + 1}", body: "Body copy")
+# end

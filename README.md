@@ -149,7 +149,8 @@ Background Job
   - [Docker: Redis no config file specified](https://stackoverflow.com/questions/76764903/docker-redis-no-config-file-specified)
 
 #### JWT Token
-  - [Secure Your Ruby App with JSON Web Tokens](https://blog.appsignal.com/2023/08/23/secure-your-ruby-app-with-json-web-tokens.html)  
+  - [Secure Your Ruby App with JSON Web Tokens](https://blog.appsignal.com/2023/08/23/secure-your-ruby-app-with-json-web-tokens.html)
+  - [A Complete Guide to Rails Authentication Using JWT](https://dev.to/mohhossain/a-complete-guide-to-rails-authentication-using-jwt-403p#:~:text=Rails%20JWT%20authentication,client%20in%20a%20REST%20API.)
 
 #### Rails Comment Lines
   - [Generating Devise Controllers - Rails Devise](https://stackoverflow.com/questions/41972575/generating-devise-controllers-rails-devise)

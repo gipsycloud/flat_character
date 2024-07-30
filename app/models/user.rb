@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # has_secure_password
+
   mount_uploader :avatar, AvatarUploader
   attr_accessor :pin_0, :pin_1, :pin_2, :pin_3
 
@@ -13,8 +15,8 @@ class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
+         :recoverable, :rememberable, :validatable
+        #  :jwt_authenticatable, jwt_revocation_strategy: self
 
   validates	:email, presence: true, uniqueness: true
   validates :user_name, presence: true
