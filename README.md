@@ -211,6 +211,11 @@ JWT_SECRET_KEY
 ```http
   GET /api/v1/rooms/rooms
   GET /api/v1/rooms/rooms/${id}
+
+  Headers
+  Key: Authorization
+  Value: Token
+
 ```
 
 | Parameter | Type     | Description                       |
