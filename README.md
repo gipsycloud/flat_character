@@ -197,17 +197,20 @@ JWT_SECRET_KEY
 #### Get all items
 
 ```http
-  GET {{base_url}}/api/v1/login
+  ### base_url: http://localhost
+  POST {{base_url}}/api/v1/login
 ```
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
+| `email_field` | `email` | **Required**. Your API key |
+| `password_field` | `password` | **Required**. Your API key |
 
 #### Get item
 
 ```http
-  GET /api/items/${id}
+  GET /api/v1/rooms/rooms
+  GET /api/v1/rooms/rooms/${id}
 ```
 
 | Parameter | Type     | Description                       |
