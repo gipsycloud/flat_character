@@ -100,6 +100,7 @@ Start the server
  - [Live Chat (Brevo.com)](https://login.brevo.com/?target=https%3A%2F%2Fconversations-app.brevo.com%2Fconversations%2FMbTxss4zWbjRkPWxA)
  - [ClouDNS](https://www.cloudns.net/zone-update-info/domain/5905280/)
  - [Readme Editor](https://readme.so/editor)
+ - [Ruby Style Guide](https://github.com/rubocop/ruby-style-guide#naming)
 
 #### Rails Knowledge
 
@@ -148,7 +149,8 @@ Background Job
   - [Docker: Redis no config file specified](https://stackoverflow.com/questions/76764903/docker-redis-no-config-file-specified)
 
 #### JWT Token
-  - [Secure Your Ruby App with JSON Web Tokens](https://blog.appsignal.com/2023/08/23/secure-your-ruby-app-with-json-web-tokens.html)  
+  - [Secure Your Ruby App with JSON Web Tokens](https://blog.appsignal.com/2023/08/23/secure-your-ruby-app-with-json-web-tokens.html)
+  - [A Complete Guide to Rails Authentication Using JWT](https://dev.to/mohhossain/a-complete-guide-to-rails-authentication-using-jwt-403p#:~:text=Rails%20JWT%20authentication,client%20in%20a%20REST%20API.)
 
 #### Rails Comment Lines
   - [Generating Devise Controllers - Rails Devise](https://stackoverflow.com/questions/41972575/generating-devise-controllers-rails-devise)
@@ -195,17 +197,25 @@ JWT_SECRET_KEY
 #### Get all items
 
 ```http
-  GET /api/items
+  ### base_url: http://localhost
+  POST {{base_url}}/api/v1/login
 ```
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
+| `email_field` | `email` | **Required**. Your API key |
+| `password_field` | `password` | **Required**. Your API key |
 
 #### Get item
 
 ```http
-  GET /api/items/${id}
+  GET /api/v1/rooms/rooms
+  GET /api/v1/rooms/rooms/${id}
+
+  Headers
+  Key: Authorization
+  Value: Token
+
 ```
 
 | Parameter | Type     | Description                       |
@@ -230,3 +240,10 @@ For support, email fake@fake.com or join our Slack channel.
 ## Authors
 
 - [@aungwin](https://aungthiwin.github.io/)
+
+
+
+### temp text
+  - [flatemate_manner](https://www.southernmanagement.com/blog/10-roommate-etiquette-tips)
+  - ([social_link](https://stackoverflow.com/questions/20958255/how-to-link-a-social-media-image-in-rails-code))
+  - ([shared_link](https://github.com/huacnlee/social-share-button)

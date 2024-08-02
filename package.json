@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "argon2": "^0.40.3",
     "flowbite": "^2.0.0",
     "flowbite-datepicker": "^1.2.6",
     "swiper": "^11.0.3"

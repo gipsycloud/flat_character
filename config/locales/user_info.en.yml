@@ -1,0 +1,12 @@
+en:
+  activerecord:
+  user_info:
+    manner_categories:
+      relax: "Relaxing"
+      roommates_belongings: "In-active"
+      respect: "Respect personal space."
+      chores_equally: "Split chores equally."
+      pay_bill: "Pay bills on time. "
+      quiet_person: "Be mindful when having guests over."
+      messy_one: "Clean up your own messes."
+      serious_person: " Be kind."
