@@ -112,3 +112,5 @@ gem 'ransack'
 gem 'jwt', '~> 1.5', '>= 1.5.4'
 gem 'bcrypt', '~> 3.1', '>= 3.1.20'
 gem 'jsonapi-serializer'
+
+gem 'social-share-button'

@@ -240,3 +240,10 @@ For support, email fake@fake.com or join our Slack channel.
 ## Authors
 
 - [@aungwin](https://aungthiwin.github.io/)
+
+
+
+### temp text
+  - [flatemate_manner](https://www.southernmanagement.com/blog/10-roommate-etiquette-tips)
+  - ([social_link](https://stackoverflow.com/questions/20958255/how-to-link-a-social-media-image-in-rails-code))
+  - ([shared_link](https://github.com/huacnlee/social-share-button)
