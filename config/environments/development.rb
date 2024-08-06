@@ -62,8 +62,16 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+<<<<<<< Updated upstream
   # config.hosts << 'localhost'
   config.hosts << "flatmate-hotfix-one-bo91.onrender.com"
+=======
+<<<<<<< HEAD
+  config.hosts << 'localhost'
+=======
+  config.hosts << "flatmate-hotfix-one-bo91.onrender.com"
+>>>>>>> master
+>>>>>>> Stashed changes
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
