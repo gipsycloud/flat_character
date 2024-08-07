@@ -190,7 +190,9 @@ JWT_SECRET_KEY
   Run the command again to verify no process is running now: sudo lsof -i :5432
 ```
     
+## Mailer Preview
 
+http://localhost:3000/rails/mailers/subscription_mailer/new_room_notification
 
 ## API Reference
 
