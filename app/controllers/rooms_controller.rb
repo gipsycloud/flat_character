@@ -40,7 +40,7 @@ class RoomsController < ApplicationController
         end
       end
     else
-      redirect_to rooms_url, alert: 'You have reache your room limit'
+      redirect_to rooms_url, alert: 'You have reached your room limit'
     end
   end
 

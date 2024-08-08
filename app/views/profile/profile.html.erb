@@ -59,10 +59,16 @@
           <%= ff.input :twitter, label: false, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
         </div>
 
+        <div></div>
+
         <div>
           <div class = "my-4"> Role: <%= @user.role %></div>
           <%= f.input :verified, disabled: true, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
           <%= f.object.upgrade.nil? ? "" : f.object.upgrade.plan.plan_name %>
+        </div>
+
+        <div>
+          <%= @subscriptions %>
         </div>
 
         <div class="relative flex flex-col text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">

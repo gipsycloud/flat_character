@@ -27,6 +27,7 @@ class User < ApplicationRecord
   has_one :user_info, dependent: :destroy
   has_one :upgrade, foreign_key: :user_id
   has_many :payments, foreign_key: :user_id
+  
   accepts_nested_attributes_for :user_info
   accepts_nested_attributes_for :upgrade, update_only: true, allow_destroy: true
   accepts_nested_attributes_for :payments
@@ -40,6 +41,7 @@ class User < ApplicationRecord
   after_create :update_user_verified_column_to_true
   after_create :send_pin!
   after_create :create_upgrade
+  after_create :create_subscriber
 
   def paid_plan?
     self.upgrade.plan.plan_name == 'Gold Plan'
@@ -91,6 +93,12 @@ class User < ApplicationRecord
   def add_payment(payment_method, holder_name, card_number, exp_year, exp_month, cvc, billing_address)
     ActiveRecord::Base.transaction do
       Payment.create(method: payment_method, card_holder_name: holder_name, card_number: card_number, exp_year: exp_year, exp_month: exp_month, cvc: cvc, billing_address: billing_address, user_id: self[:id])
+    end
+  end
+
+  def create_subscriber
+    ActiveRecord::Base.transaction do
+      Subscription.create(email: self.email)
     end
   end
 
