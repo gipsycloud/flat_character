@@ -70,6 +70,7 @@ Rails.application.routes.draw do
       get 'report' => "admins#report"
       get 'members' => "admins#members"
       get 'availableroom' => "admins#availableroom"
+      get 'setting' => "admins#setting"
       # namespace 'profile_setting' do
       # end
     end
@@ -87,6 +88,8 @@ Rails.application.routes.draw do
   end
 
   resources :subscriptions, only: [:index, :new, :create]
+  resources :mailer_subscription_unsubcribes, only: %i[show update]
+  # match 'mailer(/:action(/:id(.:format)))' => 'mailer#:action'
   resources :homes
   resources :makes, path: :find_a_flatmate, as: :find_a_flatmate
   get "room/(:slug)", to: "homes#room_detail", as: "room_"
