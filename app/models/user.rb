@@ -44,7 +44,7 @@ class User < ApplicationRecord
   after_create :send_pin!
   after_create :create_upgrade
   after_create :create_subscriber
-  after_update :update_subscription
+  after_create :update_subscription
 
   def paid_plan?
     self.upgrade.plan.plan_name == 'Gold Plan'
