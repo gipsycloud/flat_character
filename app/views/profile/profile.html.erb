@@ -59,10 +59,21 @@
           <%= ff.input :twitter, label: false, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
         </div>
 
+        <div></div>
+
         <div>
           <div class = "my-4"> Role: <%= @user.role %></div>
           <%= f.input :verified, disabled: true, class: "w-full rounded-lg border-gray-200 p-3 text-sm" %>
           <%= f.object.upgrade.nil? ? "" : f.object.upgrade.plan.plan_name %>
+        </div>
+
+        <div>
+          <div class="flex items-center">
+            <%= f.input :notify_when_added_to_room, as: :boolean, label: false, class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" %>
+            <%#= check_box_tag 'user[notify_when_added_to_room]', @subscription.notify_when_added_to_room, class: "before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:bg-gray-900 checked:before:bg-gray-900 hover:before:opacity-0" %>
+            
+              <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Subscription form new room email</label>
+          </div>
         </div>
 
         <div class="relative flex flex-col text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
