@@ -6,6 +6,9 @@
     <div class="bg-white">
       <div class="pt-2">
         <!-- Image gallery -->
+          <%= js_map [{latitude: @room.latitude, longitude: @room.longitude, label: @room.roomType, tooltip: html_link_to(@room) }],
+                width: "100%", height: "500px", controls: true,
+                tooltips: {hover: false, html: true} %>
 
       </div>
     </div>
