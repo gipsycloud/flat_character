@@ -156,6 +156,13 @@ Background Job
   - [Generating Devise Controllers - Rails Devise](https://stackoverflow.com/questions/41972575/generating-devise-controllers-rails-devise)
 
 
+#### MapBox View
+  - ([Map Box](https://blog.corsego.com/gem-geocoder-ruby))
+  - ([Map Box Youtube](https://www.youtube.com/watch?v=oeeqEA_mdJs))
+
+#### Mention User (@sample)
+  - ([Mention User](https://www.youtube.com/watch?v=C1N3Lpou6EA))  
+
 #### Command Line
 
 ```bash
@@ -250,4 +257,10 @@ For support, email fake@fake.com or join our Slack channel.
   - ([social_link](https://stackoverflow.com/questions/20958255/how-to-link-a-social-media-image-in-rails-code))
   - ([shared_link](https://github.com/huacnlee/social-share-button)
   - ([Mailer](https://webcrunch.com/posts/email-subscription-workflow-ruby-on-rails))
+
+  #### Design view
+  - [Design View For Room](https://www.apartmentguide.com/apartments/North-Carolina/Asheville/111-Thurland-Ave/LV1334479033/)
+  - ([Google Map](https://gorails.com/episodes/google-maps-places-autocomplete-with-rails)
+
+
 
