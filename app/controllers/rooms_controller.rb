@@ -47,6 +47,7 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1 or /rooms/1.json
   def update
     respond_to do |format|
+      geocode_address
       if @room.update(room_params)
         store_image
          # if @post_attachment.update(post_attachment_params)
@@ -79,7 +80,7 @@ class RoomsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def room_params
       params.require(:room).permit(:roomType, :maxPersons, :roomPrice, :gender, :roomNumber, :details, :startDate, :endDate, 
-        :floor, :address, :room_status, :feedback, :image, room_images_attributes: [:room_image, :room_id])
+        :floor, :address, :latitude, :longitude, :room_status, :feedback, :image, room_images_attributes: [:room_image, :room_id])
     end
 
     def store_image
@@ -92,5 +93,9 @@ class RoomsController < ApplicationController
 
     def can_create_room?
       current_user.rooms.count < 2
+    end
+
+    def geocode_address
+      @room.geocode
     end
 end
