@@ -114,3 +114,6 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.20'
 gem 'jsonapi-serializer'
 
 gem 'social-share-button'
+# gem 'open_street_map'
+gem 'mapkick-rb', '~> 0.1.5'
+gem "geocoder", "~> 1.8"

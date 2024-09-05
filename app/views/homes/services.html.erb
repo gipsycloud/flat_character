@@ -545,3 +545,11 @@
       </div>
     </div>
   </div>
+
+  <%= js_map [{latitude: 37.7829, longitude: -122.4190,
+             label: 'My home', tooltip: 'hello!'}],
+           id: "cities-map", width: "800px", height: "500px",
+           markers: {color: "#f84d4d"},
+           zoom: 15,
+           tooltips: {hover: false, html: true},
+           style: "mapbox://styles/mapbox/outdoors-v12" %>
