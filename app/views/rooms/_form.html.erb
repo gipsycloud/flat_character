@@ -32,13 +32,14 @@
           </div>
         <% end %>
       </div>
-                    <% end %>    
+    <% end %>    
 
   <%#= cl_image_tag(@room.image_url,  class: "h-auto max-w-lg rounded-lg", default_image: "default_image.jpg") %>
   <div class="grid gap-4 mb-6 md:grid-cols-2 mt-7">
     <div class="">
       <%= form.label :roomType, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-      <%= form.text_field :roomType, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+      <%= select_tag "room[roomType]", options_for_select(Room.room_type_nums.map {|k,v| [t("room.room_type.#{k}"), k]}, selected: @room.roomType ), class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+      <%#= form.text_field :roomType, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
     </div>
 
     <div class="">

@@ -9,3 +9,8 @@ en:
     room_status:
       active: "Active"
       inactive: "In-active"
+    room_type: 
+      single_family: "Single Family Home"
+      apartment: "Apartment"
+      condo: "Condos"
+      duplex: "Duplex, Triplex, Fourplex"
