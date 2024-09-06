@@ -43,8 +43,8 @@ class User < ApplicationRecord
   after_create :update_user_verified_column_to_true
   after_create :send_pin!
   after_create :create_upgrade
-  # after_create :create_subscriber
-  # after_create :update_subscription
+  after_create :create_subscriber
+  after_create :update_subscription
 
   def paid_plan?
     self.upgrade.plan.plan_name == 'Gold Plan'
@@ -99,18 +99,18 @@ class User < ApplicationRecord
     end
   end
 
-  # def create_subscriber
-  #   ActiveRecord::Base.transaction do
-  #     Subscription.create(email: self.email)
-  #   end
-  # end
+  def create_subscriber
+    ActiveRecord::Base.transaction do
+      Subscription.create(email: self.email)
+    end
+  end
 
-  # def update_subscription
-  #   ActiveRecord::Base.transaction do
-  #     sub_email = Subscription.find_by(email: self.email)
-  #     sub_email.update(notify_when_added_to_room: self.notify_when_added_to_room)
-  #   end
-  # end
+  def update_subscription
+    ActiveRecord::Base.transaction do
+      sub_email = Subscription.find_by(email: self.email)
+      sub_email.update(notify_when_added_to_room: self.notify_when_added_to_room)
+    end
+  end
 
   def self.ransackable_attributes(auth_object = nil)
     ["phone_number", "user_name"]
