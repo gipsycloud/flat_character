@@ -7,6 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Admin.create(email: 'guess@gmail.com', name: 'guess', password: 'password', password_confirmation: 'password')
+Plan.find_or_create_by(plan_name: 'Free Plan', plan_price: '60')
 Plan.find_or_create_by(plan_name: 'Diamon Plan', plan_price: '60')
 
 # 10.times do |i|
