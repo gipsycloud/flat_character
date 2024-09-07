@@ -12,6 +12,13 @@ development:
   host: localhost
   database: blog_development
 
+test:
+  <<: *default
+  database: flatemate_test # name your development app something
+  host: <%= ENV['DB_HOST'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %> # or leave blank if you didn't set a password
+
 production:
   <<: *default
   host: <%= ENV['DB_HOST'] %>
