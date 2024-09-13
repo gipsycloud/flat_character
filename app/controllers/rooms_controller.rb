@@ -28,6 +28,7 @@ class RoomsController < ApplicationController
     if current_user.paid_plan? || can_create_room?
       @room = Room.new(room_params)
       @room.user_id = current_user.id
+      geocode_address
 
       respond_to do |format|
         if @room.save

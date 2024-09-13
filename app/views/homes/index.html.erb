@@ -169,7 +169,7 @@
           <%# end %>
 
 <!-- make friend today-->
-<div class="container mx-auto md:w-3/4 mt-16">
+<div class="container mx-auto md:w-3/4 mt-14">
   <div
       class="flex flex-col items-center gap-4 rounded-lg bg-indigo-600 p-6 shadow-lg sm:flex-row sm:justify-between"
     >
@@ -201,6 +201,15 @@
       </a>
     </div>
 </div>
+
+<!-- Show all location in Map -->
+<div class="relative overflow-hidden bg-cover bg-no-repeat p-2 text-center mt-10">
+  <%= js_map homes_path(format: :json), target: '_blank',
+          width: "100%", height: "550px", controls: true,
+          tooltips: {hover: false, html: true},
+          style: "mapbox://styles/mapbox/outdoors-v12" %>            
+   
+</div>              
 
 <!-- room details -->
 <div class="lg:my-20 lg:mx-[100px] sm:mx-[20px]">
