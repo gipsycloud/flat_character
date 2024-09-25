@@ -6,8 +6,13 @@ Rails.application.routes.draw do
   #   get 'dashboard/index'
   # end
   # resources :members
+  # if Rails.env.development? || Rails.env.staging?
+  #   get '/logs', to: 'logs#index'
+  # end
+
   authenticate :admin do
     mount Sidekiq::Web => '/sidekiq'
+    get '/logs', to: 'logs#index'
   end
 
   mount ActionCable.server => '/cable'

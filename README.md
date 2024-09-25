@@ -164,6 +164,9 @@ Background Job
 #### Mention User (@sample)
   - [Mention User](https://www.youtube.com/watch?v=C1N3Lpou6EA)
 
+#### Logs into
+  - [Logs into](https://flatmate.loggly.com/sources/setup/rails-app-setup)
+
 #### Command Line
 
 ```bash
