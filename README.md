@@ -166,6 +166,7 @@ Background Job
 
 #### Logs into
   - [Logs into](https://flatmate.loggly.com/sources/setup/rails-app-setup)
+  -  [Loggly](https://my.solarwinds.cloud/login)
 
 #### Command Line
 
