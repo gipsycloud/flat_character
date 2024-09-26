@@ -107,6 +107,9 @@ Start the server
 Tailwind
   - [Tailwind overscroll y not working properly](https://stackoverflow.com/questions/72191704/tailwind-overscroll-y-not-working-properly)
 
+Icon
+  - [Icon](https://pagedone.io/docs/social-media-icons)
+
 Devise
   - [Multiple Resources with Devise](https://www.driftingruby.com/episodes/multiple-resources-with-devise?query=devise)
 
