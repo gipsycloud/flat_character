@@ -8,10 +8,13 @@
 </div>
 
 <div id="<%= dom_id @room %>" class="mx-auto md:w-2/3 w-full mt-5">
-  <%= js_map rooms_path(format: :json), target: '_blank',
+  <%= js_map [{latitude: @room.latitude, longitude: @room.longitude, label: @room.roomType, tooltip: html_link_to(@room) }],
+                width: "100%", height: "500px", controls: true,
+                tooltips: {hover: false, html: true} %>
+                
+  <%#= js_map rooms_path(format: :json), target: '_blank',
               width: "800px", height: "500px", controls: true,
               tooltips: {hover: false, html: true} %>
-
   <%#= image_tag "https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s+ff0000(#{@room.longitude},#{@room.latitude})/#{@room.longitude},#{@room.latitude},13,0/300x200?access_token=#{ENV.fetch('MAPBOX_ACCESS_TOKEN')}" %>
 
   <div class="mt-6 border-t border-gray-100">
