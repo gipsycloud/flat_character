@@ -1,15 +1,12 @@
 <%= render "template/nav" %>
-
-<section class="bg-white dark:bg-gray-900 py-16 sm:py-16">
+<section class="bg-white dark:bg-gray-900 py-16 sm:py-16 mt-6 lg:max-w-none">
   <div class="py-0 px-4 mx-auto max-w-screen-xl lg:px-6">
-  <!-- more room photo -->
     <div class="bg-white">
       <div class="pt-2">
         <!-- Image gallery -->
-          <%= js_map [{latitude: @room.latitude, longitude: @room.longitude, label: @room.roomType, tooltip: html_link_to(@room) }],
-                width: "100%", height: "500px", controls: true,
-                tooltips: {hover: false, html: true} %>
-
+        <%= js_map [{latitude: @room.latitude, longitude: @room.longitude, label: @room.roomType, tooltip: html_link_to(@room) }],
+              width: "100%", height: "500px", controls: true,
+              tooltips: {hover: false, html: true} %>
       </div>
     </div>
   </div>
@@ -79,7 +76,6 @@
       <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
         <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl"><%= @room.roomType.titleize %></h1>
         <p class="text-xl font-semibold text-gray-900 dark:text-white"><%= @room.roomType %></p>
-
       </div>
 
       <!-- Options -->
@@ -114,123 +110,44 @@
           </div>
         </div>
         
+        <!-- room checkout-->
+        <%= form_with(model: @room, url: web_room_checkout_path, method: "post", :html => { class: "" }) do |form| %>
+          <%= form.hidden_field :room_id, value: form.object.id %>
+          <%= form.text_field :address %>
+          <%= form.label :phone_number %>
+          <%= form.number_field :phone_number %>
+          <%= form.date_field :start_date %>
+          <%= form.date_field :end_date %>
+          
+          <%= form.submit "Add", class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+        <% end %>
 
-        <form class="mt-10">
-          <div id="date-range-picker" date-rangepicker class="flex items-center">
-            <div class="relative">
-              <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                  </svg>
-              </div>
-              <input id="datepicker-range-start" name="start" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date start">
-            </div>
-            <span class="mx-4 text-gray-500">to</span>
-            <div class="relative">
-              <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                  </svg>
-              </div>
-              <input id="datepicker-range-end" name="end" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date end">
-          </div>
-          </div>
 
-          <!-- Sizes -->
-          <%# <div class="mt-10">
-            <div class="flex items-center justify-between">
-              <h3 class="text-sm font-medium text-gray-900">Size</h3>
-              <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Size guide</a>
-            </div>
-
-            <fieldset class="mt-4">
-              <legend class="sr-only">Choose a size</legend>
-              <div class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-                <!-- Active: "ring-2 ring-indigo-500" -->
-                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-not-allowed bg-gray-50 text-gray-200">
-                  <input type="radio" name="size-choice" value="XXS" disabled class="sr-only" aria-labelledby="size-choice-0-label">
-                  <span id="size-choice-0-label">XXS</span>
-                  <span aria-hidden="true" class="pointer-events-none absolute -inset-px rounded-md border-2 border-gray-200">
-                    <svg class="absolute inset-0 h-full w-full stroke-2 text-gray-200" viewBox="0 0 100 100" preserveAspectRatio="none" stroke="currentColor">
-                      <line x1="0" y1="100" x2="100" y2="0" vector-effect="non-scaling-stroke" />
+        <form class="mx-auto mt-10 flex-1 space-y-6 lg:mt-6 lg:w-full">
+          <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4  dark:bg-gray-800 sm:p-6">
+            <div id="date-range-picker" date-rangepicker class="flex items-center mb-3">
+              <div class="relative">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                     </svg>
-                  </span>
-                </label>
-                <!-- Active: "ring-2 ring-indigo-500" -->
-                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                  <input type="radio" name="size-choice" value="XS" class="sr-only" aria-labelledby="size-choice-1-label">
-                  <span id="size-choice-1-label">XS</span>
-                  <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                  <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                </label>
-                <!-- Active: "ring-2 ring-indigo-500" -->
-                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                  <input type="radio" name="size-choice" value="S" class="sr-only" aria-labelledby="size-choice-2-label">
-                  <span id="size-choice-2-label">S</span>
-                  <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                  <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                </label>
-                <!-- Active: "ring-2 ring-indigo-500" -->
-                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                  <input type="radio" name="size-choice" value="M" class="sr-only" aria-labelledby="size-choice-3-label">
-                  <span id="size-choice-3-label">M</span>
-                  <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                  <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                </label>
-                <!-- Active: "ring-2 ring-indigo-500" -->
-                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                  <input type="radio" name="size-choice" value="L" class="sr-only" aria-labelledby="size-choice-4-label">
-                  <span id="size-choice-4-label">L</span>
-                  <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                  <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                </label>
-                <!-- Active: "ring-2 ring-indigo-500" -->
-                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                  <input type="radio" name="size-choice" value="XL" class="sr-only" aria-labelledby="size-choice-5-label">
-                  <span id="size-choice-5-label">XL</span>
-                  <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                  <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                </label>
-                <!-- Active: "ring-2 ring-indigo-500" -->
-                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                  <input type="radio" name="size-choice" value="2XL" class="sr-only" aria-labelledby="size-choice-6-label">
-                  <span id="size-choice-6-label">2XL</span>
-                  <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                  <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                </label>
-                <!-- Active: "ring-2 ring-indigo-500" -->
-                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                  <input type="radio" name="size-choice" value="3XL" class="sr-only" aria-labelledby="size-choice-7-label">
-                  <span id="size-choice-7-label">3XL</span>
-                  <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                  <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                </label>
+                </div>
+                <input id="datepicker-range-start" name="start" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date start">
               </div>
-            </fieldset>
-          </div> %>
-           <div class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
-            <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
+              <span class="mx-4 text-gray-500">to</span>
+              <div class="relative">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                    </svg>
+                </div>
+                <input id="datepicker-range-end" name="end" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date end">
+              </div>
+            </div>
+
+            <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to bag</button>
+
+            <div class="space-y-4 rounded-lg bg-white p-0 dark:bg-gray-800 sm:p-0">
               <p class="text-xl font-semibold text-gray-900 dark:text-white">Order summary</p>
 
               <div class="space-y-4">
@@ -239,16 +156,6 @@
                     <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Original price</dt>
                     <dd class="text-base font-medium text-gray-900 dark:text-white"><%= @room.roomPrice %></dd>
                   </dl>
-
-                  <%# <dl class="flex items-center justify-between gap-4">
-                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Savings</dt>
-                    <dd class="text-base font-medium text-green-600">-$299.00</dd>
-                  </dl> %>
-
-                  <%# <dl class="flex items-center justify-between gap-4">
-                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Store Pickup</dt>
-                    <dd class="text-base font-medium text-gray-900 dark:text-white">$99</dd>
-                  </dl> %>
 
                   <dl class="flex items-center justify-between gap-4">
                     <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Tax</dt>
@@ -261,32 +168,8 @@
                   <dd class="text-base font-bold text-gray-900 dark:text-white">$ 105.00</dd>
                 </dl>
               </div>
-
-              <a href="#" class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Proceed to Checkout</a>
-
-              <%# <div class="flex items-center justify-center gap-2">
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> or </span>
-                <a href="#" title="" class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">
-                  Continue Shopping
-                  <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
-                  </svg>
-                </a>
-              </div> %>
-            </div>
-
-            <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
-              <form class="space-y-4">
-                <div>
-                  <label for="voucher" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Do you have a voucher or gift card? </label>
-                  <input type="text" id="voucher" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="" required />
-                </div>
-                <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Apply Code</button>
-              </form>
             </div>
           </div>
-
-          <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to bag</button>
         </form>
       </div>
 

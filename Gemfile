@@ -120,3 +120,4 @@ gem "geocoder", "~> 1.8"
 
 gem 'syslogger', '~> 1.6.0'
 gem 'lograge', '~> 0.3.1'
+gem 'image_size', '~> 3.0'

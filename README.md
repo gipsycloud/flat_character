@@ -101,6 +101,7 @@ Start the server
  - [ClouDNS](https://www.cloudns.net/zone-update-info/domain/5905280/)
  - [Readme Editor](https://readme.so/editor)
  - [Ruby Style Guide](https://github.com/rubocop/ruby-style-guide#naming)
+ - [How to Use Form_with](https://claire-deboer.medium.com/how-to-use-form-with-and-why-you-should-start-now-6fa669a0fb58)
 
 #### Rails Knowledge
 
@@ -265,6 +266,7 @@ For support, email fake@fake.com or join our Slack channel.
   - [social_link](https://stackoverflow.com/questions/20958255/how-to-link-a-social-media-image-in-rails-code)
   - [shared_link](https://github.com/huacnlee/social-share-button)
   - [Mailer](https://webcrunch.com/posts/email-subscription-workflow-ruby-on-rails)
+  -  [View Count](https://www.youtube.com/watch?v=hXQVltAu1oY)
 
   #### Design view
   - [Design View For Room](https://www.apartmentguide.com/apartments/North-Carolina/Asheville/111-Thurland-Ave/LV1334479033/)

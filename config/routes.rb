@@ -105,6 +105,10 @@ Rails.application.routes.draw do
   get "services" => "homes#services"
   get "contact" => "homes#contact"
 
+  namespace :web do
+      post "room_checkout" => "properties#room_checkout"
+  end
+
   get "/verify" => "verify#edit", :as => "verify"
   get "/verify" => "verify#new", :as => "new_verify"
   put "/verify" => "verify#update", :as => "update_verify"
@@ -117,7 +121,7 @@ Rails.application.routes.draw do
   root "homes#index"
 
 
-  # api
+  # apicontroller
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       devise_for :users, path: '', path_names: {
