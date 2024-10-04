@@ -4,3 +4,5 @@
 //= link_tree ../../../vendor/javascript .js
 //= link_tree ../builds
 //= link tailwind.css
+//= link jquery.min.js
+//= link jquery_ujs.js

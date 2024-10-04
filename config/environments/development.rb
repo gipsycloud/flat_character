@@ -67,6 +67,8 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  config.assets.debug = true
+
   # config.hosts << 'localhost'
   config.hosts << "flatmate-hotfix-one-bo91.onrender.com"
 

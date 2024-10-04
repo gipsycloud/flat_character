@@ -90,18 +90,19 @@ Start the server
 
 ## Acknowledgements
 
- - [Tailwind CSS, Flowbite Components](https://flowbite.com)
- - [Tailwind CSS Breadcrumbs](https://tw-elements.com/docs/standard/navigation/breadcrumbs/)
- - [Tailwindcomponents Cheatsheet](https://tailwindcomponents.com/cheatsheet/)
- - [Tailwind CSS Ruby on Rails ](https://flowbite.com/docs/getting-started/rails/)
- - [Swiper](https://www.jsdelivr.com/package/npm/swiper)
- - [SmartLook](https://www.smartlook.com)
- - [HyperUI](https://www.hyperui.dev/)
- - [Live Chat (Brevo.com)](https://login.brevo.com/?target=https%3A%2F%2Fconversations-app.brevo.com%2Fconversations%2FMbTxss4zWbjRkPWxA)
- - [ClouDNS](https://www.cloudns.net/zone-update-info/domain/5905280/)
- - [Readme Editor](https://readme.so/editor)
- - [Ruby Style Guide](https://github.com/rubocop/ruby-style-guide#naming)
- - [How to Use Form_with](https://claire-deboer.medium.com/how-to-use-form-with-and-why-you-should-start-now-6fa669a0fb58)
+ -  [Tailwind CSS, Flowbite Components](https://flowbite.com)
+ -  [Tailwind CSS Breadcrumbs](https://tw-elements.com/docs/standard/navigation/breadcrumbs/)
+ -  [Tailwindcomponents Cheatsheet](https://tailwindcomponents.com/cheatsheet/)
+ -  [Tailwind CSS Ruby on Rails ](https://flowbite.com/docs/getting-started/rails/)
+ -  [Swiper](https://www.jsdelivr.com/package/npm/swiper)
+ -  [SmartLook](https://www.smartlook.com)
+ -  [HyperUI](https://www.hyperui.dev/)
+ -  [Live Chat (Brevo.com)](https://login.brevo.com/?target=https%3A%2F%2Fconversations-app.brevo.com%2Fconversations%2FMbTxss4zWbjRkPWxA)
+ -  [ClouDNS](https://www.cloudns.net/zone-update-info/domain/5905280/)
+ -  [Readme Editor](https://readme.so/editor)
+ -  [Ruby Style Guide](https://github.com/rubocop/ruby-style-guide#naming)
+ -  [How to Use Form_with](https://claire-deboer.medium.com/how-to-use-form-with-and-why-you-should-start-now-6fa669a0fb58)
+ -  [About Form_with](https://raaynaldo.medium.com/lets-use-form-with-ruby-on-rails-a51a12da8ef8)
 
 #### Rails Knowledge
 
@@ -110,6 +111,10 @@ Tailwind
 
 Icon
   - [Icon](https://pagedone.io/docs/social-media-icons)
+
+DateTime Field custom CSS
+  - [DateTime Field](https://stackoverflow.com/questions/51334960/how-to-show-calendar-popup-when-inputtype-date-is-on-focus)
+  - [DateTime Field](ww.youtube.com/watch?v=Wgglt5_vaSA&list=PLOvEA8-W5LWkKKy2w8O0wyql8T3R_WEXl&index=2)
 
 Devise
   - [Multiple Resources with Devise](https://www.driftingruby.com/episodes/multiple-resources-with-devise?query=devise)

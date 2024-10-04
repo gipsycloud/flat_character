@@ -4,7 +4,7 @@
     <div class="bg-white">
       <div class="pt-2">
         <!-- Image gallery -->
-        <%= js_map [{latitude: @room.latitude, longitude: @room.longitude, label: @room.roomType, tooltip: html_link_to(@room) }],
+        <%#= js_map [{latitude: @room.latitude, longitude: @room.longitude, label: @room.roomType, tooltip: html_link_to(@room) }],
               width: "100%", height: "500px", controls: true,
               tooltips: {hover: false, html: true} %>
       </div>
@@ -111,66 +111,25 @@
         </div>
         
         <!-- room checkout-->
-        <%= form_with(model: @room, url: web_room_checkout_path, method: "post", :html => { class: "" }) do |form| %>
-          <%= form.hidden_field :room_id, value: form.object.id %>
-          <%= form.text_field :address %>
-          <%= form.label :phone_number %>
-          <%= form.number_field :phone_number %>
-          <%= form.date_field :start_date %>
-          <%= form.date_field :end_date %>
-          
-          <%= form.submit "Add", class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
-        <% end %>
-
-
-        <form class="mx-auto mt-10 flex-1 space-y-6 lg:mt-6 lg:w-full">
+        <%= form_with(model: @room, url: web_room_checkout_path, method: "post", 
+                      local: true,  # if you have a problem with validation error message,
+                      scope: "room", #prefix of parameter params["room"]["title"]
+                      id: "",
+                      class: "mx-auto mt-10 flex-1 space-y-6 lg:mt-6 lg:w-full") do |form| %>
           <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4  dark:bg-gray-800 sm:p-6">
-            <div id="date-range-picker" date-rangepicker class="flex items-center mb-3">
-              <div class="relative">
-                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                    </svg>
-                </div>
-                <input id="datepicker-range-start" name="start" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date start">
-              </div>
-              <span class="mx-4 text-gray-500">to</span>
-              <div class="relative">
-                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                    </svg>
-                </div>
-                <input id="datepicker-range-end" name="end" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date end">
-              </div>
-            </div>
-
-            <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to bag</button>
-
-            <div class="space-y-4 rounded-lg bg-white p-0 dark:bg-gray-800 sm:p-0">
-              <p class="text-xl font-semibold text-gray-900 dark:text-white">Order summary</p>
-
-              <div class="space-y-4">
-                <div class="space-y-2">
-                  <dl class="flex items-center justify-between gap-4">
-                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Original price</dt>
-                    <dd class="text-base font-medium text-gray-900 dark:text-white"><%= @room.roomPrice %></dd>
-                  </dl>
-
-                  <dl class="flex items-center justify-between gap-4">
-                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Tax</dt>
-                    <dd class="text-base font-medium text-gray-900 dark:text-white">$ 5</dd>
-                  </dl>
-                </div>
-
-                <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
-                  <dt class="text-base font-bold text-gray-900 dark:text-white">Total</dt>
-                  <dd class="text-base font-bold text-gray-900 dark:text-white">$ 105.00</dd>
-                </dl>
-              </div>
-            </div>
+            <%= form.hidden_field :room_id, value: form.object.id %>
+        
+            <%= form.date_field :start_date, required: true,
+                placeholder: "Start date", class: "date-picker block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xl 
+                                                  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 
+                                                  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            <%= form.date_field :end_date, required: true, 
+                class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xl focus:ring-blue-500 focus:border-blue-500 
+                      dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          
+            <%= form.submit "Add", class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
           </div>
-        </form>
+        <% end %>
       </div>
 
       <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
@@ -226,3 +185,9 @@
       </div>
     </div>
 </div>
+
+<%# <script>
+  $('.date-picker').click(function(){
+    alert('hello')
+});
+</script> %>
