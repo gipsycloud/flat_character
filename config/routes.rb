@@ -10,19 +10,9 @@ Rails.application.routes.draw do
   #   get '/logs', to: 'logs#index'
   # end
 
-  authenticate :admin do
-    mount Sidekiq::Web => '/sidekiq'
-    get '/logs', to: 'logs#index'
-  end
-
   mount ActionCable.server => '/cable'
 
-  devise_for :admins,
-    path: '/auth_admin', controllers: {
-      sessions: 'admins/sessions',
-      registrations: 'admins/registrations'
-    }
-
+  # user login routes for guest and room owner
   devise_for :users,
     path: '/auth',
     path_names: {
@@ -38,17 +28,6 @@ Rails.application.routes.draw do
     authenticated :user do
       namespace :users do
         get 'dashboard/index', as: :authenticated_root
-      end
-    end
-  end
-
-  devise_scope :admin do
-    authenticated :admin do
-      scope :main do
-        namespace :admins do
-          get 'dashboard/index', as: :authenticated_root
-          get 'homelist' => "dashboard#homelist"
-        end
       end
     end
   end
@@ -81,17 +60,51 @@ Rails.application.routes.draw do
     end
   end
 
-  scope :main do
-    resources :members
-    resources :plans
-  end
-
   resources :profile do
     collection do
       get 'detail' => "profile#profile"
     end
   end
 
+  ############
+  ############
+  ############
+  ############
+
+  # main admin routes for maintainance for all website
+  devise_for :admins,
+  path: '/auth_admin', controllers: {
+    sessions: 'admins/sessions',
+    registrations: 'admins/registrations'
+  }
+
+  devise_scope :admin do
+    authenticated :admin do
+      scope :main do
+        namespace :admins do
+          get 'dashboard/index', as: :authenticated_root
+          get 'homelist' => "dashboard#homelist"
+        end
+      end
+    end
+  end
+
+  scope :main do
+    resources :members
+    resources :plans
+  end
+
+  authenticate :admin do
+    mount Sidekiq::Web => '/sidekiq'
+    get '/logs', to: 'logs#index'
+  end
+
+  ###########
+  ##########
+  ############
+  ###############
+
+  # for website routes
   resources :subscriptions, only: [:index, :new, :create]
   resources :mailer_subscription_unsubcribes, only: %i[show update]
   # match 'mailer(/:action(/:id(.:format)))' => 'mailer#:action'
@@ -112,12 +125,9 @@ Rails.application.routes.draw do
   get "/verify" => "verify#edit", :as => "verify"
   get "/verify" => "verify#new", :as => "new_verify"
   put "/verify" => "verify#update", :as => "update_verify"
-  post "/verify" => "verify#create", :as => "resend_verify"
+  post "/verify" => "verify#create", :as => "resend_verify"  # Defines the root path route ("/")
   
   resources :posts
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
   root "homes#index"
 
 
