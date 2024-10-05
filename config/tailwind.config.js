@@ -83,6 +83,6 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/container-queries'),
-    require('flowbite/plugin')
+    require('flowbite/plugin')      //  error showing in render server logs
   ]
 }
