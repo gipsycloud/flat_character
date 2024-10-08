@@ -47,7 +47,7 @@ class User < ApplicationRecord
   after_create :update_subscription
 
   def paid_plan?
-    self.upgrade.plan.plan_name == 'Gold Plan'
+    self.upgrade.plan.plan_name == "Diamon Plan"
   end
 
   def free_plan?
