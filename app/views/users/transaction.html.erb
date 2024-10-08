@@ -42,7 +42,7 @@
                     <%= payment.input :card_number, label: false, class: "w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors", placeholder: "xxxx xxxx xxxx xxxx" %>
                 </div>
 
-                <label class="font-bold text-sm mb-2 ml-1">Expiration date *</label>
+                <label class="font-bold text-sm mb-2 ml-1">Card Expiration date *</label>
                 <div class="mb-3 -mx-2 flex items-end">
                     <div class="px-2 w-1/3">
                         <div>
@@ -63,6 +63,11 @@
                     <label class="font-bold text-sm mb-2 ml-1">Billing Address *</label>
                     <%= payment.input :billing_address, label: false, class: "w-25 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors", placeholder: "NY, America" %>
                 </div>
+
+                <%# <div class="mb-3"> %>
+                    <%# <label class="font-bold text-sm mb-2 ml-1">Upgrade Plan *</label> %>
+                    <%#= payment.input :plan_id, input_html: { value: Plan.last.id }, label: false, class: "w-25 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" %>
+                <%# </div> %>
             <% end %>
 
             <div class="mb-10">

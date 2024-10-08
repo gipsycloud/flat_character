@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   def plan_upgrade
     @user = User.find(params[:user_id])
-    @user.upgrade.plan_id = 1
+    @user.upgrade.plan_id = Plan.last.id
     @user.upgrade.startDate = DateTime.now
     @user.upgrade.endDate = DateTime.now + 5.month
     @user.upgrade.duration = (@user.upgrade.startDate.month..@user.upgrade.endDate.month).count
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
                       billing_address = params[:user][:payment][:billing_address]
                     )
     redirect_to upgrade_index_url
-    flash[:alert] = "Plan grade successfully updated."
+    flash[:alert] = "Plan ugrade successfully updated."
   end
 
   private
