@@ -15,6 +15,7 @@ class Room < ApplicationRecord
   enum room_type_num: { single_family: 1, apartment: 2, condo: 3, duplex: 4 }
   enum room_status_num: { active: 1, inactive: 2 }
 
+  has_one :property, class_name: 'Property', foreign_key: :room_id
   has_many :room_images, :dependent => :destroy
   accepts_nested_attributes_for :room_images, allow_destroy: true
 

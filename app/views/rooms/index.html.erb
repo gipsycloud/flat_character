@@ -79,6 +79,7 @@
         <span class="text-2xl font-medium text-gray-900"> <%= Room.where(user_id: current_user.id).count %> </span>
         <%# <span class="text-xs text-gray-500"> from $240.94 </span> %>
       </p>
+
     </div>
   </article>
   <article class="flex flex-col gap-4 rounded-lg border border-gray-100 bg-white p-6">
@@ -162,7 +163,7 @@
               RoomType
           </th>
           <th scope="col" class="px-6 py-3">
-              MaxPersons
+              MaxPersons | Room Status
           </th>
           <th scope="col" class="px-6 py-3">
               Room Price
@@ -171,7 +172,7 @@
               Gender
           </th>
           <th scope="col" class="px-6 py-3">
-              Room Number
+              Room Number / Floor
           </th>
           <th scope="col" class="px-6 py-3">
               Start Date
@@ -180,13 +181,10 @@
               End Date
           </th>
           <th scope="col" class="px-6 py-3">
-              Floor
-          </th>
-          <th scope="col" class="px-6 py-3">
               Room Address
           </th>
           <th scope="col" class="px-6 py-3">
-              Room Status
+              Rent Status
           </th>
           <th scope="col" class="px-6 py-3">
               Action
@@ -200,7 +198,7 @@
               <%= room.roomType %>
             </th>
             <td class="px-6 py-4">
-              <%= room.maxPersons %>
+              <%= room.maxPersons %> | <%= room.room_status %>
             </td>
             <td class="px-6 py-4">
               <%= room.roomPrice %>
@@ -209,28 +207,29 @@
               <%= room.gender %>
             </td>
             <td class="px-6 py-4">
-              <%= room.roomNumber %>
+              <%= room.roomNumber %> / <%= room.floor %>
             </td>
             <td class="px-6 py-4">
-              <%= room.startDate.to_time.strftime('%B %e %Y') if room.startDate? %>
+              <%= room.startDate.to_time.strftime('%B %e %Y') if room.startDate? %>     <!-- ('%B %e %Y') -->
             </td>
             <td class="px-6 py-4">
               <%= room.endDate.to_time.strftime('%B %e %Y') if room.endDate? %>
             </td>
             <td class="px-6 py-4">
-              <%= room.floor %>
-            </td>
-            <td class="px-6 py-4">
               <%= room.address %>
             </td>
             <td class="px-6 py-4">
-              <%= room.room_status %> |
-              <%= room.user_id %>
+              <% if room.property.nil? %>
+                <span> - </span>
+              <% else %>
+                <%= room.property.nil? ? '-' : room.property.start_date.strftime('%B %e %Y') %>
+                <span class="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10">Rented</span>
+              <% end %>
             </td>
             <td class="px-6 py-4">
-              <%= link_to "Show", room, class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
-              <%= link_to "Edit", edit_room_path(room), class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
-              <%= link_to "Delete", room_path(room), method: :delete, class: "rounded-lg py-2 px-4 bg-gray-100 inline-block font-medium" %>
+              <%= link_to "Show", room, class: "rounded-lg py-2 px-2 bg-gray-100 inline-block font-medium" %>
+              <%= link_to "Edit", edit_room_path(room), class: "rounded-lg py-2 px-2 bg-gray-100 inline-block font-medium" %>
+              <%= link_to "Delete", room_path(room), method: :delete, class: "rounded-lg py-2 px-2 bg-gray-100 inline-block font-medium" %>
             </td>
           </tr>
         <% end %>

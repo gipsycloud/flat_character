@@ -1,5 +1,3 @@
 class Property < ApplicationRecord
-#   include ActiveModel::Conversion
-# extend  ActiveModel::Naming
-
+  belongs_to :room, foreign_key: :room_id
 end
