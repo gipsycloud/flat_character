@@ -1,4 +1,5 @@
 <%= render "template/nav" %>
+<<<<<<< Updated upstream
 <section class="bg-white dark:bg-gray-900 py-16 sm:py-16 mt-6 lg:max-w-none">
   <div class="py-0 px-4 mx-auto max-w-screen-xl lg:px-6">
     <div class="bg-white">
@@ -31,159 +32,193 @@
             </svg>
           </div>
         </li>
+=======
+<div class="bg-white room_details">
+  <%# <nav aria-label="Breadcrumb">
+    <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+      <li>
+        <div class="flex items-center">
+          <a href="#" class="mr-2 text-sm font-medium text-gray-900">Men</a>
+          <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
+            <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
+          </svg>
+        </div>
+      </li>
+      <li>
+        <div class="flex items-center">
+          <a href="#" class="mr-2 text-sm font-medium text-gray-900">Clothing</a>
+          <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
+            <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
+          </svg>
+        </div>
+      </li>
+>>>>>>> Stashed changes
 
-        <li class="text-sm">
-          <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">Basic Tee 6-Pack</a>
-        </li>
-      </ol>
-    </nav> %>
+      <li class="text-sm">
+        <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">Basic Tee 6-Pack</a>
+      </li>
+    </ol>
+  </nav> %>
 
     <!-- Image gallery -->
-      <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 class="text-2xl font-bold tracking-tight text-gray-900">Room Gallery</h2>
-        <div class="">
-          <div class="mt-6 grid grid-cols-2 sm:grid-cols-2">
-            <div class="aspect-h-1 aspect-w-1 w-50 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-              <%= cl_image_tag(@room.image_url,  class: "h-full w-full object-cover object-center lg:h-full lg:w-full", default_image: "default_image.jpg") %>
-            </div>
-          </div>  
-          <div class="mt-6 grid grid-cols-1 gap-x-2 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-2">
-            <% @room.room_images.each do |r| %>
-              <div class="group relative">
-                <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                  <%= cl_image_tag(r.room_image_url,  class: "h-full w-full object-cover object-center lg:h-full lg:w-full", default_image: "default_image.jpg") %>
-                </div>
-                <%# <div class="mt-4 flex justify-between">
-                  <div>
-                    <h3 class="text-sm text-gray-700">
-                      <a href="#">
-                        <span aria-hidden="true" class="absolute inset-0"></span>
-                        Basic Tee
-                      </a>
-                    </h3>
-                    <p class="mt-1 text-sm text-gray-500">Black</p>
-                  </div>
-                  <p class="text-sm font-medium text-gray-900">$35</p>
-                </div> %>
-              </div>
-            <% end %>
-          </div>
-        </div>  
-      </div>
-  
-    <!-- Product info -->
-    <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
-      <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-        <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl"><%= @room.roomType.titleize %></h1>
-        <p class="text-xl font-semibold text-gray-900 dark:text-white"><%= @room.roomType %></p>
-      </div>
-
-      <!-- Options -->
-      <div class="mt-4 lg:row-span-3 lg:mt-0">
-        <h2 class="sr-only">Product information</h2>
-        <p class="text-3xl tracking-tight text-gray-900">$ <%= @room.roomPrice %></p>
-
-        <!-- Reviews -->
-        <div class="mt-6">
-          <h3 class="sr-only">Reviews</h3>
-          <div class="flex items-center">
-            <div class="flex items-center">
-              <!-- Active: "text-gray-900", Default: "text-gray-200" -->
-              <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-              </svg>
-              <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-              </svg>
-              <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-              </svg>
-              <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-              </svg>
-              <svg class="text-gray-200 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            <p class="sr-only">4 out of 5 stars</p>
-            <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">117 reviews</a>
-          </div>
+  <div class="mx-auto max-w-2xl mt-16 px-4 py-6 sm:px-6 lg:max-w-7xl lg:px-8">
+    <h2 class="text-2xl font-bold tracking-tight text-gray-900">Room Gallery</h2>
+    <div class="">
+      <div class="mt-6 grid grid-cols-2 sm:grid-cols-2">
+        <div class="aspect-h-1 aspect-w-1 w-50 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+          <%= cl_image_tag(@room.image_url,  class: "h-full w-full object-cover object-center lg:h-full lg:w-full", default_image: "default_image.jpg") %>
         </div>
-        
-        <!-- room checkout-->
-        <%= form_with(model: @room, url: web_room_checkout_path, method: "post", 
-                      local: true,  # if you have a problem with validation error message,
-                      scope: "room", #prefix of parameter params["room"]["title"]
-                      id: "",
-                      class: "mx-auto mt-10 flex-1 space-y-6 lg:mt-6 lg:w-full") do |form| %>
-          <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4  dark:bg-gray-800 sm:p-6">
-            <%= form.hidden_field :room_id, value: form.object.id %>
-        
-            <%= form.date_field :start_date, required: true,
-                placeholder: "Start date", class: "date-picker block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xl 
-                                                  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 
-                                                  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-            <%= form.date_field :end_date, required: true, 
-                class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xl focus:ring-blue-500 focus:border-blue-500 
-                      dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-          
-            <%= form.submit "Add", class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+      </div>  
+      <div class="mt-6 grid grid-cols-1 gap-x-2 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-2">
+        <% @room.room_images.each do |r| %>
+          <div class="group relative">
+            <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+              <%= cl_image_tag(r.room_image_url,  class: "h-full w-full object-cover object-center lg:h-full lg:w-full", default_image: "default_image.jpg") %>
+            </div>
+            <%# <div class="mt-4 flex justify-between">
+              <div>
+                <h3 class="text-sm text-gray-700">
+                  <a href="#">
+                    <span aria-hidden="true" class="absolute inset-0"></span>
+                    Basic Tee
+                  </a>
+                </h3>
+                <p class="mt-1 text-sm text-gray-500">Black</p>
+              </div>
+              <p class="text-sm font-medium text-gray-900">$35</p>
+            </div> %>
           </div>
         <% end %>
       </div>
+    </div>  
+  </div>
+  
+  <!-- Product info -->
+  <div class="mx-auto max-w-2xl px-4 pb-6 pt-6 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-10 lg:pt-16">
+    <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+      <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl"><%= @room.roomType.titleize %></h1>
+      <p class="text-xl font-semibold text-gray-900 dark:text-white"><%= @room.roomType %></p>
+    </div>
 
-      <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
-        <!-- Description and details -->
-        <div>
-          <h3 class="sr-only">Description</h3>
+    <!-- Options -->
+    <div class="mt-4 lg:row-span-3 lg:mt-0">
+      <h2 class="sr-only">Product information</h2>
+      <p class="text-3xl tracking-tight text-gray-900">$ <%= @room.roomPrice %></p>
 
-          <div class="space-y-6">
-            <p class="text-base text-gray-900"><%= @room.details %></p>
+      <!-- Reviews -->
+      <div class="mt-6">
+        <h3 class="sr-only">Reviews</h3>
+        <div class="flex items-center">
+          <div class="flex items-center">
+            <!-- Active: "text-gray-900", Default: "text-gray-200" -->
+            <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+            </svg>
+            <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+            </svg>
+            <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+            </svg>
+            <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+            </svg>
+            <svg class="text-gray-200 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+            </svg>
           </div>
+          <p class="sr-only">4 out of 5 stars</p>
+          <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">117 reviews</a>
         </div>
-
-        <div class="mt-10">
-          <h3 class="text-sm font-medium text-gray-900">Room Details</h3>
-
-          <div class="mt-4">
-            <dl class="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
-              <div class="border-t border-gray-200 pt-4">
-                <dt class="font-medium text-gray-900">Address</dt>
-                <dd class="mt-2 text-sm text-gray-500"><%= @room.address %></dd>
-              </div>
-              <div class="border-t border-gray-200 pt-4">
-                <dt class="font-medium text-gray-900">Max Person</dt>
-                <dd class="mt-2 text-sm text-gray-500"><%= @room.maxPersons %></dd>
-              </div>
-              <div class="border-t border-gray-200 pt-4">
-                <dt class="font-medium text-gray-900">Price</dt>
-                <dd class="mt-2 text-sm text-gray-500"><%= @room.roomPrice %></dd>
-              </div>
-              <div class="border-t border-gray-200 pt-4">
-                <dt class="font-medium text-gray-900">Gender</dt>
-                <dd class="mt-2 text-sm text-gray-500"><%= @room.gender %></dd>
-              </div>
-              <div class="border-t border-gray-200 pt-4">
-                <dt class="font-medium text-gray-900">Room Number</dt>
-                <dd class="mt-2 text-sm text-gray-500"><%= @room.roomNumber %></dd>
-              </div>
-              <div class="border-t border-gray-200 pt-4">
-                <dt class="font-medium text-gray-900">Room Status</dt>
-                <dd class="mt-2 text-sm text-gray-500"><%= @room.room_status %></dd>
-              </div>
-            </dl>
-          </div>
+      </div>
+      
+      <!-- room checkout-->
+      <%= form_with(model: @room, url: web_room_checkout_path, method: "post", 
+                    local: true,  # if you have a problem with validation error message,
+                    scope: "room", #prefix of parameter params["room"]["title"]
+                    id: "",
+                    class: "mx-auto mt-10 flex-1 space-y-6 lg:mt-6 lg:w-full") do |form| %>
+        <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4  dark:bg-gray-800 sm:p-6">
+          <%= form.hidden_field :room_id, value: form.object.id %>
+      
+          <%= form.date_field :start_date, required: true,
+              placeholder: "Start date", class: "date-picker block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xl 
+                                                focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 
+                                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          <%= form.date_field :end_date, required: true, 
+              class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xl focus:ring-blue-500 focus:border-blue-500 
+                    dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+        
+          <%= form.submit "Add", class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
         </div>
+      <% end %>
+    </div>
 
-        <%# <div class="mt-10">
-          <h2 class="text-sm font-medium text-gray-900">Details</h2>
+    <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
+      <!-- Description and details -->
+      <div>
+        <h3 class="sr-only">Description</h3>
 
-          <div class="mt-4 space-y-6">
-            <p class="text-sm text-gray-600">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-          </div>
-        </div> %>
+        <div class="space-y-6">
+          <p class="text-base text-gray-900"><%= @room.details %></p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <h3 class="text-sm font-medium text-gray-900">Room Details</h3>
+
+        <div class="mt-4">
+          <dl class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-10 lg:gap-x-8">
+            <div class="border-t border-gray-200 pt-4">
+              <dt class="font-medium text-gray-900">Address</dt>
+              <dd class="mt-2 text-sm text-gray-500"><%= @room.address %></dd>
+            </div>
+            <div class="border-t border-gray-200 pt-4">
+              <dt class="font-medium text-gray-900">Max Person</dt>
+              <dd class="mt-2 text-sm text-gray-500"><%= @room.maxPersons %></dd>
+            </div>
+            <div class="border-t border-gray-200 pt-4">
+              <dt class="font-medium text-gray-900">Price</dt>
+              <dd class="mt-2 text-sm text-gray-500"><%= @room.roomPrice %></dd>
+            </div>
+            <div class="border-t border-gray-200 pt-4">
+              <dt class="font-medium text-gray-900">Gender</dt>
+              <dd class="mt-2 text-sm text-gray-500"><%= @room.gender %></dd>
+            </div>
+            <div class="border-t border-gray-200 pt-4">
+              <dt class="font-medium text-gray-900">Room Number</dt>
+              <dd class="mt-2 text-sm text-gray-500"><%= @room.roomNumber %></dd>
+            </div>
+            <div class="border-t border-gray-200 pt-4">
+              <dt class="font-medium text-gray-900">Room Status</dt>
+              <dd class="mt-2 text-sm text-gray-500"><%= @room.room_status %></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <%# <div class="mt-10">
+        <h2 class="text-sm font-medium text-gray-900">Details</h2>
+
+        <div class="mt-4 space-y-6">
+          <p class="text-sm text-gray-600">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+        </div>
+      </div> %>
+    </div>
+  </div>
+
+  <section class="bg-white dark:bg-gray-900 py-0 sm:py-0 mt-0 mb-6 lg:max-w-none">
+    <div class="py-0 px-4 mx-auto max-w-screen-xl lg:px-6">
+      <div class="bg-white">
+        <div class="pt-2">
+          <!-- Image gallery -->
+          <%= js_map [{latitude: @room.latitude, longitude: @room.longitude, label: @room.roomType, tooltip: html_link_to(@room) }],
+                width: "100%", height: "500px", controls: true,
+                tooltips: {hover: false, html: true} %>
+        </div>
       </div>
     </div>
+  </section>
 </div>
 
 <%# <script>
