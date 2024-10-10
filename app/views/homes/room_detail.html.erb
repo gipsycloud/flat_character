@@ -1,32 +1,31 @@
 <%= render "template/nav" %>
-<div class="bg-white room_details">
-  <%# <nav aria-label="Breadcrumb">
-    <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-      <li>
-        <div class="flex items-center">
-          <a href="#" class="mr-2 text-sm font-medium text-gray-900">Men</a>
-          <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
-            <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-          </svg>
-        </div>
-      </li>
-      <li>
-        <div class="flex items-center">
-          <a href="#" class="mr-2 text-sm font-medium text-gray-900">Clothing</a>
-          <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
-            <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-          </svg>
-        </div>
-      </li>
-
-      <li class="text-sm">
-        <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">Basic Tee 6-Pack</a>
-      </li>
-    </ol>
-  </nav> %>
-
-    <!-- Image gallery -->
+<div class="bg-white room_details">  
+  <!-- Image gallery -->
   <div class="mx-auto max-w-2xl mt-16 px-4 py-6 sm:px-6 lg:max-w-7xl lg:px-8">
+    <%# <nav aria-label="Breadcrumb">
+      <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+        <li>
+          <div class="flex items-center">
+            <a href="#" class="mr-2 text-sm font-medium text-gray-900">Men</a>
+            <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
+              <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
+            </svg>
+          </div>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <a href="#" class="mr-2 text-sm font-medium text-gray-900">Clothing</a>
+            <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
+              <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
+            </svg>
+          </div>
+        </li>
+
+        <li class="text-sm">
+          <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">Basic Tee 6-Pack</a>
+        </li>
+      </ol>
+    </nav> %>
     <h2 class="text-2xl font-bold tracking-tight text-gray-900">Room Gallery</h2>
     <div class="">
       <div class="mt-6 grid grid-cols-2 sm:grid-cols-2">
@@ -114,8 +113,35 @@
               class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xl focus:ring-blue-500 focus:border-blue-500 
                     dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
         
-          <%= form.submit "Add", class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
-        </div>
+          <% if @room.property.room_id = @room.id %>
+            <button type="button" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" disabled>Sold Out</button>
+          <% else %>
+            <%= form.submit "Add Booking", class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+          <% end %>
+          <div class="space-y-4 bg-gray-50 p-6 dark:bg-gray-800">
+            <div class="space-y-2">
+                <dl class="flex items-center justify-between gap-4">
+                  <dt class="font-normal text-gray-500 dark:text-gray-400">Original price</dt>
+                  <dd value = "<%= @room.roomPrice %>" id = "room_price" class="font-medium text-gray-900 dark:text-white">$ <%= @room.roomPrice %></dd>
+                </dl>
+
+                <dl class="flex items-center justify-between gap-4">
+                  <dt class="font-normal text-gray-500 dark:text-gray-400">Service Fee</dt>
+                  <dd value = "50" id = "service_fee" class="text-base font-medium text-green-500">$ 50.00</dd>
+                </dl>
+
+                <%# <dl class="flex items-center justify-between gap-4">
+                  <dt class="font-normal text-gray-500 dark:text-gray-400">Tax</dt>
+                  <dd class="font-medium text-gray-900 dark:text-white">$799</dd>
+                </dl> %>
+              </div>
+            
+              <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
+                <dt class="text-lg font-bold text-gray-900 dark:text-white">Total</dt>
+                <dd id = "total" value = "total" class="text-lg font-bold text-gray-900 dark:text-white"></dd>
+              </dl>
+            </div>
+          </div>
       <% end %>
     </div>
 
@@ -178,16 +204,10 @@
         <div class="pt-2">
           <!-- Image gallery -->
           <%= js_map [{latitude: @room.latitude, longitude: @room.longitude, label: @room.roomType, tooltip: html_link_to(@room) }],
-                width: "100%", height: "500px", controls: true,
+                width: "100%", height: "500px", controls: true, zoom: 12,
                 tooltips: {hover: false, html: true} %>
         </div>
       </div>
     </div>
   </section>
 </div>
-
-<%# <script>
-  $('.date-picker').click(function(){
-    alert('hello')
-});
-</script> %>
