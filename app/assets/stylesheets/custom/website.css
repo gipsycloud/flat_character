@@ -12,7 +12,7 @@
   height: 676px;
 }
 
-.homes .room_details form {
+.homes-list_a_room .room_details form {
   input {
     border: none;
     box-sizing: border-box;
