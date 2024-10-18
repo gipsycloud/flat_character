@@ -98,14 +98,13 @@
       
       <!-- room checkout-->
       <%= form_with(model: @room, url: web_room_checkout_path, method: "post", 
-                    remote: true, data: { turbo: true },
+                    remote: true,
                     local: false,  # if you have a problem with validation error message,
                     scope: "room", #prefix of parameter params["room"]["title"]
                     id: "room_checkout", 
                     class: "mx-auto mt-10 flex-1 space-y-6 lg:mt-6 lg:w-full") do |form| %>
         <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4  dark:bg-gray-800 sm:p-6">
-          <%= form.hidden_field :room_id, value: form.object.id %>
-      
+          <%= form.hidden_field :room_id, value: form.object.id, id: 'hidden-field' %>
           <%= form.date_field :start_date, required: true,
               placeholder: "Start date", id: "start_date", placeholder: "Start date",
               class: "date-picker block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xl 
@@ -123,21 +122,23 @@
           <%# else %>
             <%# <button type="button" class="mt-10 flex w-full items-center justify-center rounded-md border border-gray-300  px-8 py-3 text-base font-medium text-black focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" disabled>Sold Out</button> %>
           <%# end %>
-          <%= form.submit "Add Booking", class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
-          <%# <button type="button" id="checkout" class = "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add Booking</button> %>
+          <%#= form.submit "Add Booking", id: "checkout", class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+          <button type="button" id="checkout" class = "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add Booking</button>
           
           <div class="space-y-4 bg-gray-50 p-6 dark:bg-gray-800">
             <div class="space-y-2">
                 <dl class="flex items-center justify-between gap-4">
                   <dt class="font-normal text-gray-500 dark:text-gray-400">Original price</dt>
-                  <input value = "<%= @room.roomPrice %>" name = "room[room_price]" id = "room_price" class = "font-medium text-gray-900 dark:text-white" >
+                  <%= form.hidden_field :room_price, id: 'price-input' %>
+                  <%# <input value = "<= @room.roomPrice >" name = "room[room_price]" id = "room_price" class = "font-medium text-gray-900 dark:text-white" > %>
+                  <span data-value="<%= @room.roomPrice %>" id = "room_price" class = "font-medium text-gray-900 dark:text-white"><%= @room.roomPrice %></span>
                   
                 </dl>
 
                 <dl class="flex items-center justify-between gap-4">
                   <dt class="font-normal text-gray-500 dark:text-gray-400">Service Fee</dt>
-                  <input value = "50" name = "room[service_fee]" id = "service_fee" class = "text-base font-medium text-green-500" >
-                  <%# <dd value = "50" id = "service_fee" class="text-base font-medium text-green-500">$ 50.00</dd> %>
+                  <%# <input value = "50" name = "room[service_fee]" id = "service_fee" class = "text-base font-medium text-green-500" > %>
+                  <span data-value = "50" id = "service_fee" class="text-base font-medium text-green-500">50.0</span>
                 </dl>
 
                 <%# <dl class="flex items-center justify-between gap-4">
@@ -148,8 +149,8 @@
             
               <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
                 <dt class="text-lg font-bold text-gray-900 dark:text-white">Total</dt>
-                <input id="total_checkout" class = "text-lg font-bold text-gray-900 dark:text-white" name = "room[total_checkout]" value="<%= @room.roomPrice.to_f + 50%>">
-                <%# <dd id = "total_checkout" value = "total" class="text-lg font-bold text-gray-900 dark:text-white"></dd> %>
+                <%= form.hidden_field :total_checkout, id: 'total-input' %>
+                <span id = "total_checkout" data-value = "<%= @room.roomPrice.to_f + 50%>" name = "room[total_checkout]" class="text-lg font-bold text-gray-900 dark:text-white"><%= @room.roomPrice.to_f + 50%></span>
               </dl>
             </div>
         </div>

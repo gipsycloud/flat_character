@@ -14,12 +14,12 @@ class Web::PropertiesController < ApplicationController
     # @checkout.save
     if @checkout.save
       respond_to do |format|
-        format.turbo_stream
+        # format.turbo_stream
         format.html { redirect_to root_url, notice: "Room Booking was successfully created." }
       end
     else
       respond_to do |format|
-        format.turbo_stream
+        # format.turbo_stream
         format.html
       end
     end

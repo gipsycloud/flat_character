@@ -20,6 +20,7 @@
     padding: .75rem;
     position: relative;
     width: 100%;
+    /* background: none; */
   }
 
   input[type="date"]::-webkit-calendar-picker-indicator {
