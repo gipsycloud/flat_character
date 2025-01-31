@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_05_174515) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_24_112341) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_05_174515) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "articles", force: :cascade do |t|
+    t.string "article_title"
+    t.string "article_content"
+    t.string "article_image"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -48,13 +58,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_05_174515) do
     t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "jwt_denylists", force: :cascade do |t|
-    t.string "jti"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["jti"], name: "index_jwt_denylists_on_jti"
   end
 
   create_table "members", force: :cascade do |t|
@@ -100,6 +103,23 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_05_174515) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "properties", force: :cascade do |t|
+    t.bigint "room_id"
+    t.bigint "user_id"
+    t.string "cupon_code"
+    t.string "discount_amount"
+    t.string "tax"
+    t.string "phone_number"
+    t.string "room_price"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "total_amount"
+    t.index ["room_id"], name: "index_properties_on_room_id"
+    t.index ["user_id"], name: "index_properties_on_user_id"
+  end
+
   create_table "room_images", force: :cascade do |t|
     t.integer "room_id"
     t.string "room_image"
@@ -123,11 +143,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_05_174515) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.string "room_photo"
     t.string "image"
     t.string "slug"
-    t.string "room_images", default: [], array: true
-    t.json "room_photos"
     t.float "latitude"
     t.float "longitude"
     t.index ["slug"], name: "index_rooms_on_slug", unique: true
@@ -138,6 +155,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_05_174515) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "notify_when_added_to_room", default: true
   end
 
   create_table "upgrades", force: :cascade do |t|
@@ -191,14 +209,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_05_174515) do
     t.datetime "pin_sent_at"
     t.boolean "verified", default: false
     t.string "avatar"
-    t.string "unsubscribe_hash"
     t.boolean "notify_when_added_to_room", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "articles", "users"
   add_foreign_key "members", "rooms"
   add_foreign_key "payments", "users"
+  add_foreign_key "properties", "rooms"
+  add_foreign_key "properties", "users"
   add_foreign_key "rooms", "users"
   add_foreign_key "upgrades", "plans"
   add_foreign_key "upgrades", "users"

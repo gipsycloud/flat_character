@@ -2,6 +2,7 @@ require 'sidekiq/web'
 require 'sidekiq-status/web'
 
 Rails.application.routes.draw do
+  resources :articles
   # namespace :admins do
   #   get 'dashboard/index'
   # end

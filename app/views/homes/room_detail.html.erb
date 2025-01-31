@@ -110,7 +110,7 @@
               class: "date-picker block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xl 
                                                 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 
                                                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-          <%= form.date_field :end_date, required: true, 
+          <%= form.date_field :end_date, required: true, id: 'end_date', placeholder: 'choose end date', required: true,
               class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xl focus:ring-blue-500 focus:border-blue-500 
                     dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
           <%= form.number_field :phone_number, placeholder: "+0123456789",
@@ -122,8 +122,8 @@
           <%# else %>
             <%# <button type="button" class="mt-10 flex w-full items-center justify-center rounded-md border border-gray-300  px-8 py-3 text-base font-medium text-black focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" disabled>Sold Out</button> %>
           <%# end %>
-          <%#= form.submit "Add Booking", id: "checkout", class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
-          <button type="button" id="checkout" class = "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add Booking</button>
+          <%= form.submit "Add Booking", id: "checkout", class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+          <%# <button type="button" id="checkout" class = "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add Booking</button> %>
           
           <div class="space-y-4 bg-gray-50 p-6 dark:bg-gray-800">
             <div class="space-y-2">

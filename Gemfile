@@ -95,6 +95,8 @@ gem 'pundit', '~> 1.1'
 # gem 'attachinary'
 gem 'carrierwave', '~> 3.0'
 gem 'cloudinary'
+gem 'aws-sdk-s3'
+gem 's3_direct_upload'
 gem "responders"
 gem 'simple_form'
 gem 'simple_form-tailwind', '~> 0.1.1'
