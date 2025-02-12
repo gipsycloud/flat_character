@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   if (document.body.classList.contains('homes-room_detail')) {
     // $('#room_price').text();
     $('#checkout').on("click", function (event) {
