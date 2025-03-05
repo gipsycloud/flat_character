@@ -100,9 +100,6 @@ Rails.application.routes.draw do
   end
 
   ###########
-  ##########
-  ############
-  ###############
 
   # for website routes
   resources :subscriptions, only: [:index, :new, :create]
@@ -119,7 +116,8 @@ Rails.application.routes.draw do
   get "contact" => "homes#contact"
 
   namespace :web do
-      post "room_checkout" => "properties#room_checkout"
+    post "room_checkout" => "properties#room_checkout"
+    get "reserve" => "properties#reserve"
   end
 
   get "/verify" => "verify#edit", :as => "verify"

@@ -1,10 +1,11 @@
 class Web::PropertiesController < ApplicationController
-  before_action :require_login
+  # before_action :require_login
+   layout 'layouts/application_web'
 
   def room_checkout
     @checkout = Property.new
     @checkout.room_id = params[:room][:room_id]
-    @checkout.user_id = current_user.id
+    # @checkout.user_id = current_user.id
     @checkout.phone_number = params[:room][:phone_number]
     @checkout.room_price = params[:room][:room_price]
     @checkout.total_amount = params[:room][:total_checkout]
@@ -23,6 +24,10 @@ class Web::PropertiesController < ApplicationController
         format.html
       end
     end
+  end
+
+  def reserve
+  
   end
 
   private

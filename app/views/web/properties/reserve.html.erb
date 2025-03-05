@@ -1,0 +1,90 @@
+<%= render "template/nav" %>
+
+<div class="isolate bg-white px-6 py-24 sm:py-30 lg:px-8">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="min-h-screen flex items-center justify-center p-6">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl">
+        <!-- Header Section -->
+        <div class="bg-blue-600 text-white p-6">
+          <h1 class="text-2xl font-bold">Confirm and Pay</h1>
+          <p class="text-sm">Please review your booking details and proceed to payment.</p>
+        </div>
+
+        <!-- Main Content Section -->
+        <div class="p-6">
+          <!-- Booking Details -->
+          <div class="mb-8">
+            <h2 class="text-xl font-semibold mb-4">Your Booking Details</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <p class="text-gray-700">Check-in:</p>
+                <p class="font-medium"><span id = "start_date"></span></p>
+              </div>
+              <div>
+                <p class="text-gray-700">Check-out:</p>
+                <p class="font-medium"><span id = "end_date"></span></p>
+              </div>
+              <div>
+                <p class="text-gray-700">Guests:</p>
+                <p class="font-medium">2 Adults</p>
+              </div>
+              <div>
+                <p class="text-gray-700">Total Nights:</p>
+                <p class="font-medium">5 Nights</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Summary -->
+          <div class="mb-8">
+            <h2 class="text-xl font-semibold mb-4">Payment Summary</h2>
+            <div class="space-y-2">
+              <div class="flex justify-between">
+                <p class="text-gray-700">$200 x 5 nights</p>
+                <p class="font-medium">$1000</p>
+              </div>
+              <div class="flex justify-between">
+                <p class="text-gray-700">Service fee</p>
+                <p class="font-medium">$50</p>
+              </div>
+              <div class="flex justify-between border-t pt-2">
+                <p class="text-gray-700 font-semibold">Total</p>
+                <p class="font-bold text-blue-600">$1050</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Method -->
+          <div class="mb-8">
+            <h2 class="text-xl font-semibold mb-4">Payment Method</h2>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <p class="text-gray-700">Credit/Debit Card</p>
+              <p class="text-sm text-gray-500">We accept Visa, MasterCard, and American Express.</p>
+            </div>
+          </div>
+
+          <!-- Confirm and Pay Button -->
+          <div class="text-center">
+            <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+              Confirm and Pay
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="lg:my-20 lg:mx-[100px] sm:mx-[20px]">
+  <div id = "form-container" class="w-full flex justify-between items-center">
+    <form action = "/save_action" method = "post">
+      <input type = "text" name = "customer_phone" id = "price_input" class="w-1/2 p-2 border border-gray-300 rounded-lg">
+      <input type = "text" name = "customer_phone" id = "total_input" class="w-1/2 p-2 border border-gray-300 rounded-lg">
+      <input type = "text" name = "customer_phone" id = "customer_phone" class="w-1/2 p-2 border border-gray-300 rounded-lg">
+      <input type="datetime" name="" id="start_date">
+      <input type="datetime" name="" id="end_date">
+      <button type = "submit" class="p-2 bg-blue-500 text-white rounded-lg">Save</button>
+    </form>
+  </div>
+</div>
+
