@@ -1,5 +1,5 @@
 <%= render "template/nav" %>
-<div class="bg-white room_details">  
+<div class="bg-white room_details" data-turbo="false">  
   <!-- Image gallery -->
   <div class="mx-auto max-w-2xl mt-16 px-4 py-6 sm:px-6 lg:max-w-7xl lg:px-8">
     <%# <nav aria-label="Breadcrumb">
@@ -60,14 +60,14 @@
   <!-- Product info -->
   <div class="mx-auto max-w-2xl px-4 pb-6 pt-6 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-10 lg:pt-4">
     <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-      <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl"><%= @room.roomType.titleize %></h1>
+      <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl" id = "room_type" data-value="<%= @room.roomType %>"><%= @room.roomType.titleize %></h1>
       <p class="text-xl font-semibold text-gray-900 dark:text-white"><%= @room.roomType %></p>
     </div>
 
     <!-- Options -->
     <div class="mt-4 lg:row-span-3 lg:mt-0">
       <h2 class="sr-only">Product information</h2>
-      <p class="text-3xl tracking-tight text-gray-900">$ <%= @room.roomPrice %></p>
+      <p class="text-3xl tracking-tight text-gray-900" id = "roomPrice" data-value="<%= @room.roomPrice %>">$ <%= @room.roomPrice %> night</p>
 
       <!-- Reviews -->
       <div class="mt-6">
@@ -97,69 +97,101 @@
       </div>
       
       <!-- room checkout-->
-      <%= form_with(model: @room, url: web_room_checkout_path, method: "post", 
+      <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4  dark:bg-gray-800 sm:p-6">
+        <%= form_with(model: @room, url: web_room_checkout_path, method: "get", 
                     remote: true,
-                    local: false,  # if you have a problem with validation error message,
-                    scope: "room", #prefix of parameter params["room"]["title"]
+                    local: false,  
+                    scope: "room", 
                     id: "room_checkout", 
                     class: "mx-auto mt-10 flex-1 space-y-6 lg:mt-6 lg:w-full") do |form| %>
-        <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4  dark:bg-gray-800 sm:p-6">
-          <%= form.hidden_field :room_id, value: form.object.id, id: 'hidden-field' %>
-          <%= form.date_field :start_date, required: true,
-              placeholder: "Start date", id: "start_date", placeholder: "Start date",
-              class: "date-picker block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xl 
-                                                focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 
-                                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-          <%= form.date_field :end_date, required: true, id: 'end_date', placeholder: 'choose end date', required: true,
-              class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xl focus:ring-blue-500 focus:border-blue-500 
-                    dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-          <%= form.number_field :phone_number, placeholder: "+0123456789",
-              class: "block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 
-                      dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-          
-          <%# if @room.property.nil? %>
-            <%#= form.submit "Add Booking", class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
-          <%# else %>
-            <%# <button type="button" class="mt-10 flex w-full items-center justify-center rounded-md border border-gray-300  px-8 py-3 text-base font-medium text-black focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" disabled>Sold Out</button> %>
-          <%# end %>
-          <%= form.submit "Add Booking", id: "checkout", class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
-          <%# <button type="button" id="checkout" class = "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add Booking</button> %>
-          
           <div class="space-y-4 bg-gray-50 p-6 dark:bg-gray-800">
             <div class="space-y-2">
-                <dl class="flex items-center justify-between gap-4">
-                  <dt class="font-normal text-gray-500 dark:text-gray-400">Original price</dt>
-                  <%= form.hidden_field :room_price, id: 'price-input' %>
-                  <%# <input value = "<= @room.roomPrice >" name = "room[room_price]" id = "room_price" class = "font-medium text-gray-900 dark:text-white" > %>
-                  <span data-value="<%= @room.roomPrice %>" id = "room_price" class = "font-medium text-gray-900 dark:text-white"><%= @room.roomPrice %></span>
-                  
-                </dl>
+              <dl class="flex items-center justify-between gap-4">
+                <dt class="font-normal text-gray-500 dark:text-gray-400">Price</dt>
+                <%= form.hidden_field :room_price, id: 'price-input' %>
+                <span id = "room_price" data-value = "<%= @room.roomPrice %>" class = "font-medium text-gray-900 dark:text-white"><%= @room.roomPrice %></span>
+              </dl>
 
-                <dl class="flex items-center justify-between gap-4">
-                  <dt class="font-normal text-gray-500 dark:text-gray-400">Service Fee</dt>
-                  <%# <input value = "50" name = "room[service_fee]" id = "service_fee" class = "text-base font-medium text-green-500" > %>
-                  <span data-value = "50" id = "service_fee" class="text-base font-medium text-green-500">50.0</span>
-                </dl>
+              <dl class="flex items-center justify-between gap-4">
+                <dt class="font-normal text-gray-500 dark:text-gray-400">Service Fee</dt>
+                <span data-value = "50" id = "service_fee" class="font-medium text-green-500">50.0</span>
+              </dl>
 
-                <%# <dl class="flex items-center justify-between gap-4">
-                  <dt class="font-normal text-gray-500 dark:text-gray-400">Tax</dt>
-                  <dd class="font-medium text-gray-900 dark:text-white">$799</dd>
-                </dl> %>
-              </div>
-            
               <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
                 <dt class="text-lg font-bold text-gray-900 dark:text-white">Total</dt>
                 <%= form.hidden_field :total_checkout, id: 'total-input' %>
-                <span id = "total_checkout" data-value = "<%= @room.roomPrice.to_f + 50%>" name = "room[total_checkout]" class="text-lg font-bold text-gray-900 dark:text-white"><%= @room.roomPrice.to_f + 50%></span>
+                <span id = "total_checkout" data-value = "<%= @room.roomPrice.to_f + 50 %>" class="text-lg font-bold text-gray-900 dark:text-white"><%= @room.roomPrice.to_f + 50%></span>
               </dl>
             </div>
-        </div>
-      <% end %>
+          </div>          
+          <%= form.hidden_field :room_id, value: @room.id, id: 'room_id' %>
+          <%= form.date_field :start_date, required: false, 
+              placeholder: "Start date", id: "start_date", 
+              class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xl focus:ring-blue-500 focus:border-blue-500 
+                      dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          <%= form.date_field :end_date, required: false, id: 'end_date', 
+              placeholder: "End date",
+              class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xl focus:ring-blue-500 focus:border-blue-500 
+                      dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          <%= form.number_field :phone_number, placeholder: "+0123456789", id: 'customer_phone',
+              class: "block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 
+                      dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                              <!-- guest choose -->
+          <div class="relative inline-block text-left w-full">
+              <div>
+                <button type="button" class="inline-flex justify-between w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm 
+                                            font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" 
+                                      id="menu-button" aria-expanded="true" aria-haspopup="true">
+                  <b>Guest</b> <span class="ml-2 text-gray-500" id="guests-count"></span>
+                  <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+
+                              <!-- Dropdown menu -->
+            <div class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden" id="dropdown-menu" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+              <div class="py-1" role="none">
+                <!-- Adult count -->
+                <div class="flex justify-between items-center px-4 py-2 text-sm text-gray-700">
+                  <span>Adults</span>
+                  <div class="flex items-center">
+                    <button class="p-1 rounded-full hover:bg-gray-200" onclick="updateCount('adults', -1)">-</button>
+                    <span class="mx-2" id="adults-count">1</span>
+                    <button class="p-1 rounded-full hover:bg-gray-200" onclick="updateCount('adults', 1)">+</button>
+                  </div>
+                </div>
+                <%#-- Children count -->
+                <div class="flex justify-between items-center px-4 py-2 text-sm text-gray-700">
+                  <span>Children</span>
+                  <div class="flex items-center">
+                    <button class="p-1 rounded-full hover:bg-gray-200" onclick="updateCount('children', -1)">-</button>
+                    <span class="mx-2" id="children-count">0</span>
+                    <button class="p-1 rounded-full hover:bg-gray-200" onclick="updateCount('children', 1)">+</button>
+                  </div>
+                </div>
+                <!-- Infants count -->
+                <div class="flex justify-between items-center px-4 py-2 text-sm text-gray-700">
+                  <span>Infants</span>
+                  <div class="flex items-center">
+                    <button class="p-1 rounded-full hover:bg-gray-200" onclick="updateCount('infants', -1)">-</button>
+                    <span class="mx-2" id="infants-count">0</span>
+                    <button class="p-1 rounded-full hover:bg-gray-200" onclick="updateCount('infants', 1)">+</button>
+                  </div>
+                </div> --%>
+              </div>
+            </div>
+          </div>
+<!-- -->              
+        <% end %>
+        <button id="reserve" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base
+         font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Reseve</button>
+      </div>
     </div>
 
-    <!-- description -->
+<!-- description -->
     <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
-      <!-- Description and details -->
+<!-- Description and details -->
       <div>
         <h3 class="sr-only">Description</h3>
         <div class="space-y-6">
@@ -194,7 +226,7 @@
       </div>
 
 
-      <!-- room details -->
+<!-- room details -->
       <div class="mt-10">
         <h3 class="text-sm font-medium text-gray-900">Room Details</h3>
         <div class="mt-4">
@@ -237,7 +269,7 @@
     </div>
   </div>
 
-  <!-- show map -->
+<!-- show map -->
   <section class="bg-white dark:bg-gray-900 py-0 sm:py-0 mt-0 mb-6 lg:max-w-none">
     <div class="py-0 px-4 mx-auto max-w-screen-xl lg:px-6">
       <div class="bg-white">
@@ -251,3 +283,59 @@
     </div>
   </section>
 </div>
+
+          <%#= form.submit "Add Booking", id: "checkout", 
+              class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+          <%# if @room.property.nil? %>
+            <%#= form.submit "Add Booking", class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+          <%# else %>
+            <%# <button type="button" class="mt-10 flex w-full items-center justify-center rounded-md border border-gray-300  px-8 py-3 text-base font-medium text-black focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" disabled>Sold Out</button> %>
+          <%# end %>
+
+<script>
+  // Initialize counts
+  let counts = {
+    adults: 1,
+    // children: 0,
+    // infants: 0
+  };
+
+  // limit the number of
+  const maxLimits = {
+    adults: <%= @room.maxPersons %>,
+    // children: 2,
+    // infants: 1
+  }
+
+  // Function to update counts
+  function updateCount(type, change, event) {
+    const newCount = counts[type] + change;
+    if (newCount >= 0 && newCount <= maxLimits[type]) {
+      counts[type] = newCount;
+      document.getElementById(`${type}-count`).textContent = counts[type];
+    }
+    document.getElementById('guests-count').textContent = `${type}` + " " + counts.adults;
+    const element = document.getElementById('guests-count');
+    element.setAttribute('data-value', `${type}` + " " + counts.adults);
+
+    // document.getElementById('roomPrice').getAttribute('data-value');
+    // document.getElementById('price-input').value = document.getElementById('roomPrice').getAttribute('data-value') * counts.adults;
+    // document.getElementById('total_checkout').textContent = document.getElementById('roomPrice').getAttribute('data-value') * counts.adults + 50;
+    // document.getElementById('total-input').value = document.getElementById('roomPrice').getAttribute('data-value') * counts.adults + 50;
+  }
+
+  // Toggle dropdown menu
+  const dropdownButton = document.getElementById('menu-button');
+  const dropdownMenu = document.getElementById('dropdown-menu');
+
+  dropdownButton.addEventListener('click', () => {
+    dropdownMenu.classList.toggle('hidden');
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (event) => {
+    if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+      dropdownMenu.classList.add('hidden');
+    }
+  });
+</script>
