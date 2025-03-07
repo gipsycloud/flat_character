@@ -116,8 +116,9 @@ Rails.application.routes.draw do
   get "contact" => "homes#contact"
 
   namespace :web do
-    post "room_checkout" => "properties#room_checkout"
+    get "room_checkout" => "properties#room_checkout"
     get "reserve" => "properties#reserve"
+    post "confirm_reserve" => "properties#confirm_reserve"
   end
 
   get "/verify" => "verify#edit", :as => "verify"
