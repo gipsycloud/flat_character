@@ -29,9 +29,9 @@
     <h2 class="text-2xl font-bold tracking-tight text-gray-900">Room Gallery</h2>
     <div class="">
       <div class="mt-6 grid grid-cols-2 sm:grid-cols-2">
-        <div class="aspect-h-1 aspect-w-1 w-50 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-          <%= cl_image_tag(@room.image_url,  class: "h-full w-full object-cover object-center lg:h-full lg:w-full", default_image: "default_image.jpg") %>
-        </div>
+        <%# <div class="aspect-h-1 aspect-w-1 w-50 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80"> %>
+          <%#= cl_image_tag(@room.image_url,  class: "h-full w-full object-cover object-center lg:h-full lg:w-full", default_image: "default_image.jpg") %>
+        <%# </div> %>
       </div>  
       <div class="mt-6 grid grid-cols-1 gap-x-2 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-2">
         <% @room.room_images.each do |r| %>
@@ -109,8 +109,9 @@
               <dl class="flex items-center justify-between gap-4">
                 <dt class="font-normal text-gray-500 dark:text-gray-400">Price</dt>
                 <%= form.hidden_field :room_price, id: 'price-input' %>
-                <span id = "room_price" data-value = "<%= @room.roomPrice %>" class = "font-medium text-gray-900 dark:text-white"><%= @room.roomPrice %></span>
+                <span id = "room_price" class = "font-medium text-gray-900 dark:text-white"></span>
               </dl>
+              <%# data-value = @room.roomPrice  %>
 
               <dl class="flex items-center justify-between gap-4">
                 <dt class="font-normal text-gray-500 dark:text-gray-400">Service Fee</dt>
@@ -120,10 +121,10 @@
               <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
                 <dt class="text-lg font-bold text-gray-900 dark:text-white">Total</dt>
                 <%= form.hidden_field :total_checkout, id: 'total-input' %>
-                <span id = "total_checkout" data-value = "<%= @room.roomPrice.to_f + 50 %>" class="text-lg font-bold text-gray-900 dark:text-white"><%= @room.roomPrice.to_f + 50%></span>
+                <span id = "total_checkout" class="text-lg font-bold text-gray-900 dark:text-white"></span>
               </dl>
             </div>
-          </div>          
+          </div>          <%#= @room.roomPrice.to_f + 50%>
           <%= form.hidden_field :room_id, value: @room.id, id: 'room_id' %>
           <%= form.date_field :start_date, required: false, 
               placeholder: "Start date", id: "start_date", 
@@ -142,7 +143,7 @@
                 <button type="button" class="inline-flex justify-between w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm 
                                             font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" 
                                       id="menu-button" aria-expanded="true" aria-haspopup="true">
-                  <b>Guest</b> <span class="ml-2 text-gray-500" id="guests-count"></span>
+                  <b>Guest</b> <span class="ml-2 text-gray-500" id="guests-count" data-value="adults 1" guest-count="1"></span>
                   <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                   </svg>
@@ -156,9 +157,9 @@
                 <div class="flex justify-between items-center px-4 py-2 text-sm text-gray-700">
                   <span>Adults</span>
                   <div class="flex items-center">
-                    <button class="p-1 rounded-full hover:bg-gray-200" onclick="updateCount('adults', -1)">-</button>
+                    <button class="p-1 rounded-full hover:bg-gray-200 guest-button" id="decrease-adults">-</button>
                     <span class="mx-2" id="adults-count">1</span>
-                    <button class="p-1 rounded-full hover:bg-gray-200" onclick="updateCount('adults', 1)">+</button>
+                    <button class="p-1 rounded-full hover:bg-gray-200 guest-button" id="increase-adults">+</button>
                   </div>
                 </div>
                 <%#-- Children count -->
@@ -237,11 +238,11 @@
             </div>
             <div class="border-t border-gray-200 pt-4">
               <dt class="font-medium text-gray-900">Max Person</dt>
-              <dd class="mt-2 text-sm text-gray-500"><%= @room.maxPersons %></dd>
+              <dd class="mt-2 text-sm text-gray-500" id="maxPersons" data-value="<%= @room.maxPersons%>"><%= @room.maxPersons %></dd>
             </div>
             <div class="border-t border-gray-200 pt-4">
               <dt class="font-medium text-gray-900">Price</dt>
-              <dd class="mt-2 text-sm text-gray-500"><%= @room.roomPrice %></dd>
+              <dd class="mt-2 text-sm text-gray-500" id="room_price_detail" data-value="<%= @room.roomPrice %>"><%= @room.roomPrice %></dd>
             </div>
             <div class="border-t border-gray-200 pt-4">
               <dt class="font-medium text-gray-900">Gender</dt>
@@ -294,35 +295,42 @@
 
 <script>
   // Initialize counts
-  let counts = {
-    adults: 1,
-    // children: 0,
-    // infants: 0
-  };
+  // let counts = {
+  //   adults: 1,
+  //   // children: 0,
+  //   // infants: 0
+  // };
 
-  // limit the number of
-  const maxLimits = {
-    adults: <%= @room.maxPersons %>,
-    // children: 2,
-    // infants: 1
-  }
+  // // limit the number of
+  // const maxLimits = {
+  //   adults: <%#= @room.maxPersons %>,
+  //   // children: 2,
+  //   // infants: 1
+  // }
 
   // Function to update counts
-  function updateCount(type, change, event) {
-    const newCount = counts[type] + change;
-    if (newCount >= 0 && newCount <= maxLimits[type]) {
-      counts[type] = newCount;
-      document.getElementById(`${type}-count`).textContent = counts[type];
-    }
-    document.getElementById('guests-count').textContent = `${type}` + " " + counts.adults;
-    const element = document.getElementById('guests-count');
-    element.setAttribute('data-value', `${type}` + " " + counts.adults);
+  // function updateCount(type, change, event) {
+  //   const newCount = counts[type] + change;
+  //   if (newCount >= 0 && newCount <= maxLimits[type]) {
+  //     counts[type] = newCount;
+  //     document.getElementById(`${type}-count`).textContent = counts[type];
+  //   }
+  //   document.getElementById('guests-count').textContent = `${type}` + " " + counts.adults;
+    
+  //   var element = document.getElementById('guests-count');
+  //   element.setAttribute('data-value', `${type}` + " " + counts.adults);
+  //   element.setAttribute('guest-count', counts.adults);
+
+  //   var room_price_detail = document.getElementById('room_price_detail').getAttribute('data-value');
+  //   var guest_count = document.getElementById('guests-count').getAttribute('guest-count');
+  //   var room_price = parseInt(room_price_detail) * parseInt(guest_count);
+  //   $('#room_price').text(room_price);   
 
     // document.getElementById('roomPrice').getAttribute('data-value');
     // document.getElementById('price-input').value = document.getElementById('roomPrice').getAttribute('data-value') * counts.adults;
     // document.getElementById('total_checkout').textContent = document.getElementById('roomPrice').getAttribute('data-value') * counts.adults + 50;
     // document.getElementById('total-input').value = document.getElementById('roomPrice').getAttribute('data-value') * counts.adults + 50;
-  }
+  // }
 
   // Toggle dropdown menu
   const dropdownButton = document.getElementById('menu-button');
