@@ -104,10 +104,13 @@
                     scope: "room", 
                     id: "room_checkout", 
                     class: "mx-auto mt-10 flex-1 space-y-6 lg:mt-6 lg:w-full") do |form| %>
+
           <div class="space-y-4 bg-gray-50 p-6 dark:bg-gray-800">
             <div class="space-y-2">
               <dl class="flex items-center justify-between gap-4">
-                <dt class="font-normal text-gray-500 dark:text-gray-400">Price</dt>
+                <dt class="font-normal text-gray-500 dark:text-gray-400">
+                  $ <%= @room.roomPrice %> * <span id="days-count">0 night</span>
+                </dt>
                 <%= form.hidden_field :room_price, id: 'price-input' %>
                 <span id = "room_price" class = "font-medium text-gray-900 dark:text-white"></span>
               </dl>

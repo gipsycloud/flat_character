@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   if (document.body.classList.contains('homes-room_detail')) {
+    setUpDatepicker();
     var room_price_detail = document.getElementById('room_price_detail').getAttribute('data-value');
     var default_guest_count = document.getElementById('guests-count').getAttribute('data-value');
     var service_fee = document.getElementById('service_fee').getAttribute('data-value');
+    var room_type = document.getElementById('room_type').getAttribute('data-value');
     var maxPersons = document.getElementById('maxPersons').getAttribute('data-value');
     $('#room_price').text(room_price_detail);   // showing price for website
     $('#guests-count').text(default_guest_count);
@@ -24,70 +26,79 @@ document.addEventListener("DOMContentLoaded", function () {
       if (newCount >= 0 && newCount <= maxLimits[type]) {
         counts[type] = newCount;
         document.getElementById(`${type}-count`).textContent = counts[type];
+        updateDisplayAndPricing(type);
+      }
+    }
+
+    let start_date = null;
+    let end_date = null;
+    let numberOfDays = 0;
+
+    function calculateDays() {
+      if (start_date && end_date) {
+        const oneDay = 24 * 60 * 60 * 1000;
+        const diff = end_date - start_date;
+        numberOfDays = Math.round(diff / oneDay);
+        return numberOfDays >= 0 ? numberOfDays : 0;
+      }
+      console.log(numberOfDays);
+      return 0;
+    }
+
+    function setUpDatepicker() {
+      const start_date_input = document.getElementById('start_date');
+      const end_date_input = document.getElementById('end_date');
+
+      start_date_input.addEventListener('change', (e) => {
+        start_date = new Date(e.target.value);
+        if (end_date && start_date > end_date) {
+          end_date = null;
+          end_date_input.value = '';
+        }
+        numberOfDays = calculateDays();
         updateDisplayAndPricing();
+      });
+
+      end_date_input.addEventListener('change', (e) => {
+        end_date = new Date(e.target.value);
+        if (start_date && start_date > end_date) {
+          start_date = null;
+          start_date_input.value = '';
+        }
+        numberOfDays = calculateDays();
+        updateDisplayAndPricing();
+      });
+    }
+
+    function updateDisplayAndPricing(type) {
+      document.getElementById('guests-count').textContent = `${type}` + " " + counts.adults;
+
+      var element = document.getElementById('guests-count');
+      element.setAttribute('data-value', `${type}` + " " + counts.adults);
+      element.setAttribute('guest-count', counts.adults);
+
+      const dayCount = document.getElementById('days-count');
+      if (dayCount) {
+        dayCount.textContent = `${numberOfDays} night${numberOfDays !== 1 ? 's' : ''}`;
       }
 
-      function updateDisplayAndPricing() {
-        document.getElementById('guests-count').textContent = `${type}` + " " + counts.adults;
+      var room_price_detail = document.getElementById('room_price_detail').getAttribute('data-value'); // get price from html
+      var guest_count = document.getElementById('guests-count').getAttribute('guest-count');
+      var room_price = parseInt(room_price_detail) * parseInt(guest_count) * (numberOfDays || 1);
+      $('#room_price').text(room_price);   // showing price for website
 
-        var element = document.getElementById('guests-count');
-        element.setAttribute('data-value', `${type}` + " " + counts.adults);
-        element.setAttribute('guest-count', counts.adults);
-
-        var room_price_detail = document.getElementById('room_price_detail').getAttribute('data-value');
-        var guest_count = document.getElementById('guests-count').getAttribute('guest-count');
-        var room_price = parseInt(room_price_detail) * parseInt(guest_count);
-
-        $('#room_price').text(room_price);   // showing price for website
-
-        var total_checkout = document.getElementById('total_checkout');
-        total_checkout.setAttribute('data-value', room_price);
-        $('#total_checkout').text(room_price + parseInt(service_fee));
-      }
-
-      // if (counts[type] + change >= 0) {
-      //   counts[type] += change;
-      //   document.getElementById(`${type}-count`).textContent = counts[type];
-      // }
-      // else {
-      //   counts[type] = 0;
-      //   document.getElementById(`${type}-count`).textContent = counts[type];
-      // }
-
-      // document.getElementById('guests-count').textContent = `${type}` + " " + counts.adults;
-
-      // var element = document.getElementById('guests-count');
-      // element.setAttribute('data-value', `${type}` + " " + counts.adults);
-      // element.setAttribute('guest-count', counts.adults);
-
-      // var default_guest_value = document.getElementById('guests-count').getAttribute('guest-count');  // default 1
-      // var room_price_detail = document.getElementById('room_price_detail').getAttribute('data-value');
-      // var guest_count = document.getElementById('guests-count').getAttribute('guest-count');
-      // var room_price = parseInt(room_price_detail) * parseInt(guest_count);
-
-      // $('#room_price').text(room_price);   // showing price for website
-
-      // var total_checkout = document.getElementById('total_checkout');
-      // total_checkout.setAttribute('data-value', room_price);
-      // $('#total_checkout').text(room_price + parseInt(service_fee));
-
+      var total_checkout = document.getElementById('total_checkout');
+      total_checkout.setAttribute('data-value', room_price);
+      $('#total_checkout').text(room_price + parseInt(service_fee));
     }
 
     // Add event listeners for buttons
     document.getElementById('decrease-adults').addEventListener('click', () => updateCount('adults', -1));
     document.getElementById('increase-adults').addEventListener('click', () => updateCount('adults', 1));
 
-    // var room_price = document.getElementById('room_price').getAttribute('data-value');
-    // var room_price_detail = document.getElementById('room_price_detail').getAttribute('data-value');
-    var room_type = document.getElementById('room_type').getAttribute('data-value');
-    var service_fee = document.getElementById('service_fee').getAttribute('data-value');
-    var start_date = $('#start_date').val();
-    var end_date = $('#end_date').val();
+    // var start_date = $('#start_date').val();
+    // var end_date = $('#end_date').val();
     // var room_price = room_price_detail.replace(/,/g, ''); // remove comma from price
-    // var guest_count = document.getElementById('guests-count').getAttribute('guest-count');
-    // var room_price = parseInt(room_price_detail) + parseInt(guest_count);
-    // console.log(room_price + ' guest count');
-    // $('#room_price').text(room_price);    // showing price for website
 
     $('#reserve').on("click", function (event) {
       event.preventDefault();
@@ -126,9 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(sum);
     });
   }
-});
 
-document.addEventListener("DOMContentLoaded", function () {
   if (document.body.classList.contains('properties-reserve')) {
     let formdata = JSON.parse(localStorage.getItem('formdata'));
     if (formdata) {
@@ -181,12 +190,24 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-//   $.ajax({
-//     type: "POST",
-//     url: $('#room_checkout').attr('action'),
-//     data: $('#room_checkout').serialize(),
-// });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+
+// });
 
 
 
