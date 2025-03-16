@@ -30,6 +30,27 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
+    function updateDisplayAndPricing(type) {
+      document.getElementById('guests-count').textContent = `${type}` + " " + counts.adults;
+      var element = document.getElementById('guests-count');
+      element.setAttribute('data-value', `${type}` + " " + counts.adults);
+      element.setAttribute('guest-count', counts.adults);
+
+      const dayCount = document.getElementById('days-count');
+      if (dayCount) {
+        dayCount.textContent = `${numberOfDays} night${numberOfDays !== 1 ? 's' : ''}`;
+      }
+
+      var room_price_detail = document.getElementById('room_price_detail').getAttribute('data-value'); // get price from html
+      var guest_count = document.getElementById('guests-count').getAttribute('guest-count');
+      var room_price = parseInt(room_price_detail) * parseInt(guest_count) * (numberOfDays || 1);
+      $('#room_price').text(room_price);   // showing price for website
+
+      var total_checkout = document.getElementById('total_checkout');
+      total_checkout.setAttribute('data-value', room_price + parseInt(service_fee));
+      $('#total_checkout').text(room_price + parseInt(service_fee));
+    }
+
     let start_date = null;
     let end_date = null;
     let numberOfDays = 0;
@@ -56,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
           end_date_input.value = '';
         }
         numberOfDays = calculateDays();
-        updateDisplayAndPricing();
+        updateDisplayAndPricing('adults');
       });
 
       end_date_input.addEventListener('change', (e) => {
@@ -66,30 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
           start_date_input.value = '';
         }
         numberOfDays = calculateDays();
-        updateDisplayAndPricing();
+        updateDisplayAndPricing('adults');
       });
-    }
-
-    function updateDisplayAndPricing(type) {
-      document.getElementById('guests-count').textContent = `${type}` + " " + counts.adults;
-
-      var element = document.getElementById('guests-count');
-      element.setAttribute('data-value', `${type}` + " " + counts.adults);
-      element.setAttribute('guest-count', counts.adults);
-
-      const dayCount = document.getElementById('days-count');
-      if (dayCount) {
-        dayCount.textContent = `${numberOfDays} night${numberOfDays !== 1 ? 's' : ''}`;
-      }
-
-      var room_price_detail = document.getElementById('room_price_detail').getAttribute('data-value'); // get price from html
-      var guest_count = document.getElementById('guests-count').getAttribute('guest-count');
-      var room_price = parseInt(room_price_detail) * parseInt(guest_count) * (numberOfDays || 1);
-      $('#room_price').text(room_price);   // showing price for website
-
-      var total_checkout = document.getElementById('total_checkout');
-      total_checkout.setAttribute('data-value', room_price);
-      $('#total_checkout').text(room_price + parseInt(service_fee));
     }
 
     // Add event listeners for buttons
@@ -103,10 +102,8 @@ document.addEventListener("DOMContentLoaded", function () {
     $('#reserve').on("click", function (event) {
       event.preventDefault();
       $('span.validation').remove();
-      // var sum = parseInt(room_price) + parseInt(service_fee);
-      // var room_price_sum = parseInt(room_price) * parseInt(guest_count);
-      // var service_fee_sum = parseInt(service_fee) * parseInt(guest_count);
-      // var sum = room_price_sum + service_fee_sum;
+      var sum = document.getElementById('total_checkout').getAttribute('data-value');
+      var guest = document.getElementById('guests-count').getAttribute('data-value');
 
       if (start_date < 1) {
         $('#start_date').after('<span class="text-sm text-red-800 validation">*Please choose start date</span>');
@@ -121,11 +118,11 @@ document.addEventListener("DOMContentLoaded", function () {
       let formdata = {
         room_id: $('#room_id').val(),
         room_type: room_type,
-        guest_count: guest_count,
+        guest_count: guest,
         service_fee: service_fee,
         start_date: start_date,
         end_date: end_date,
-        price: room_price,
+        price: room_price_detail,
         total: sum,
         customer_phone: $('#customer_phone').val(),
       }
@@ -146,8 +143,9 @@ document.addEventListener("DOMContentLoaded", function () {
       $('#guest_count').text(formdata.guest_count);
       $('#start_date').text(formdata.start_date);
       $('#end_date').text(formdata.end_date);
-      $('#price_input').text(formdata.price);
-      $('#total_input').text(formdata.total);
+      $('#room_price').text(formdata.price);
+      $('#total_room_price').text(formdata.price);
+      $('#total_price').text(formdata.total);
       $('#customer_phone').text(formdata.customer_phone);
     }
 

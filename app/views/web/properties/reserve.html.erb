@@ -13,7 +13,7 @@
         <!-- Main Content Section -->
         <div class="p-6">
           <!-- Booking Details -->
-          <div class="mb-8">
+          <div class="mb-0">
             <h2 class="text-xl font-semibold mb-4">Your Booking Details</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -25,14 +25,18 @@
                 <p class="font-medium"><span id = "end_date"></span></p>
               </div>
               <div>
-                <p class="text-gray-700">Guests:</p>
-                <p class="font-medium"><span id = "guest_count"></span></p>
+                <p class="text-gray-700">Room Price:</p>
+                <p class="font-medium"><span id = "room_price"></span></p>
               </div>
               <div>
                 <p class="text-gray-700">Phone Number:</p>
-                <p class="font-medium"><span id = "customer_phone"></span></p>
+                <p class="font-medium"><span id = "customer_phone"></span>33333333</p>
               </div>
             </div>
+
+            <div class="mt-4 border-t pt-4">
+              <p class="text-gray-700">You are booking a <b><span id = "room_type"></span></b> for <span id = "guest_count"></span> guests.</p><br/>
+            </div>  
           </div>
 
           <!-- Payment Summary -->
@@ -41,7 +45,7 @@
             <div class="space-y-2">
               <div class="flex justify-between">
                 <p class="text-gray-700">Room Price: </p>
-                <p class="font-medium">$ <span id = "price_input"></span></p>
+                <p class="font-medium">$ <span id = "total_room_price"></span></p>
               </div>
               <div class="flex justify-between">
                 <p class="text-gray-700">Service fee</p>
@@ -49,7 +53,7 @@
               </div>
               <div class="flex justify-between border-t pt-2">
                 <p class="text-gray-700 font-semibold">Total</p>
-                <p class="font-bold text-blue-600">$ <span id = "total_input"></span></p>
+                <p class="font-bold text-blue-600">$ <span id = "total_price"></span></p>
               </div>
             </div>
           </div>
