@@ -34,8 +34,11 @@ class Web::PropertiesController < ApplicationController
     @checkout = Property.new
     @checkout.room_id = params[:room_id]
     @checkout.user_id = current_user.id if current_user
+    @checkout.guest_count = params[:guest_count]
     @checkout.phone_number = params[:customer_phone]
     @checkout.room_price = params[:price]
+    @checkout.service_fee = params[:service_fee]
+    @checkout.cleaning_fee = params[:cleaning_fee] || '0'
     @checkout.total_amount = params[:total]
     @checkout.start_date = params[:start_date]
     @checkout.end_date = params[:end_date]
