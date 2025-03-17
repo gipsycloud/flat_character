@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   if (document.body.classList.contains('homes-room_detail')) {
     setUpDatepicker();
-    var room_price_detail = document.getElementById('room_price_detail').getAttribute('data-value');
+    var room_price_detail = document.getElementById('room_price_detail').getAttribute('data-value');  // get value from detail information
+    var room_price_reserve = document.getElementById('room_price');                                   // get value from reserve checkout
     var default_guest_count = document.getElementById('guests-count').getAttribute('data-value');
     var service_fee = document.getElementById('service_fee').getAttribute('data-value');
     var room_type = document.getElementById('room_type').getAttribute('data-value');
@@ -28,6 +29,28 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById(`${type}-count`).textContent = counts[type];
         updateDisplayAndPricing(type);
       }
+    }
+
+    function updateDisplayAndPricing(type) {
+      document.getElementById('guests-count').textContent = `${type}` + " " + counts.adults;
+      var element = document.getElementById('guests-count');
+      element.setAttribute('data-value', `${type}` + " " + counts.adults);
+      element.setAttribute('guest-count', counts.adults);
+
+      const dayCount = document.getElementById('days-count');
+      if (dayCount) {
+        dayCount.textContent = `${numberOfDays} night${numberOfDays !== 1 ? 's' : ''}`;
+      }
+
+      // var room_price_detail = document.getElementById('room_price_detail').getAttribute('data-value'); // get price from html
+      var guest_count = document.getElementById('guests-count').getAttribute('guest-count');
+      var room_price = parseInt(room_price_detail) * parseInt(guest_count) * (numberOfDays || 1);
+      room_price_reserve.setAttribute('reserve-value', room_price);
+      $('#room_price').text(room_price);   // showing price for website
+
+      var total_checkout = document.getElementById('total_checkout');
+      total_checkout.setAttribute('data-value', room_price + parseInt(service_fee));
+      $('#total_checkout').text(room_price + parseInt(service_fee));
     }
 
     let start_date = null;
@@ -96,17 +119,12 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('decrease-adults').addEventListener('click', () => updateCount('adults', -1));
     document.getElementById('increase-adults').addEventListener('click', () => updateCount('adults', 1));
 
-    // var start_date = $('#start_date').val();
-    // var end_date = $('#end_date').val();
-    // var room_price = room_price_detail.replace(/,/g, ''); // remove comma from price
-
     $('#reserve').on("click", function (event) {
       event.preventDefault();
       $('span.validation').remove();
-      // var sum = parseInt(room_price) + parseInt(service_fee);
-      // var room_price_sum = parseInt(room_price) * parseInt(guest_count);
-      // var service_fee_sum = parseInt(service_fee) * parseInt(guest_count);
-      // var sum = room_price_sum + service_fee_sum;
+      var sum = document.getElementById('total_checkout').getAttribute('data-value');
+      var guest = document.getElementById('guests-count').getAttribute('data-value');
+      var reserve = room_price_reserve.getAttribute('reserve-value');
 
       if (start_date < 1) {
         $('#start_date').after('<span class="text-sm text-red-800 validation">*Please choose start date</span>');
@@ -125,7 +143,8 @@ document.addEventListener("DOMContentLoaded", function () {
         service_fee: service_fee,
         start_date: start_date,
         end_date: end_date,
-        price: room_price,
+        room_price_reserve: reserve,
+        price: room_price_detail,
         total: sum,
         customer_phone: $('#customer_phone').val(),
       }
@@ -146,8 +165,9 @@ document.addEventListener("DOMContentLoaded", function () {
       $('#guest_count').text(formdata.guest_count);
       $('#start_date').text(formdata.start_date);
       $('#end_date').text(formdata.end_date);
-      $('#price_input').text(formdata.price);
-      $('#total_input').text(formdata.total);
+      $('#room_price').text(formdata.price);
+      $('#room_price_reserve').text(formdata.room_price_reserve);
+      $('#total_price').text(formdata.total);
       $('#customer_phone').text(formdata.customer_phone);
     }
 
@@ -185,6 +205,10 @@ document.addEventListener("DOMContentLoaded", function () {
       //   $('#customer_email').after('<span class="text-sm text-red-800 validation">*Please enter your email</span>');
       //   return false;
       // }
+
+      // var start_date = $('#start_date').val();
+      // var end_date = $('#end_date').val();
+      // var room_price = room_price_detail.replace(/,/g, ''); // remove comma from price
     });
   }
 });
