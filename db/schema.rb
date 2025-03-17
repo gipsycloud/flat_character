@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_05_174515) do
+ActiveRecord::Schema[7.0].define(version: 2025_03_17_034456) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -98,6 +98,28 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_05_174515) do
     t.string "post_body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.bigint "room_id"
+    t.bigint "user_id"
+    t.string "cupon_code"
+    t.string "discount_amount"
+    t.string "tax"
+    t.string "phone_number"
+    t.string "room_price"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "total_amount"
+    t.string "guest_count"
+    t.string "day_count"
+    t.string "service_fee"
+    t.string "cleaning_fee"
+    t.string "rent_service"
+    t.index ["room_id"], name: "index_properties_on_room_id"
+    t.index ["user_id"], name: "index_properties_on_user_id"
   end
 
   create_table "room_images", force: :cascade do |t|
