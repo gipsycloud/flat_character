@@ -29,9 +29,9 @@
     <h2 class="text-2xl font-bold tracking-tight text-gray-900">Room Gallery</h2>
     <div class="">
       <div class="mt-6 grid grid-cols-2 sm:grid-cols-2">
-        <%# <div class="aspect-h-1 aspect-w-1 w-50 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80"> %>
-          <%#= cl_image_tag(@room.image_url,  class: "h-full w-full object-cover object-center lg:h-full lg:w-full", default_image: "default_image.jpg") %>
-        <%# </div> %>
+        <div class="aspect-h-1 aspect-w-1 w-50 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+          <%= cl_image_tag(@room.image_url,  class: "h-full w-full object-cover object-center lg:h-full lg:w-full", default_image: "default_image.jpg") %>
+        </div>
       </div>  
       <div class="mt-6 grid grid-cols-1 gap-x-2 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-2">
         <% @room.room_images.each do |r| %>
@@ -188,8 +188,14 @@
           </div>
 <!-- --> 
         <% end %>
-        <button id="reserve" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base
-         font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Reserve</button>
+        <%#= form.submit "Add Booking", id: "checkout", 
+              class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+          <% if @room.property.nil? %>
+            <button id="reserve" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base
+                                        font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Reserve</button>
+          <% else %>
+            <button type="button" class="mt-10 flex w-full items-center justify-center rounded-md border border-gray-300  px-8 py-3 text-base font-medium text-black focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" disabled>Sold Out</button>
+          <% end %>
       </div>
     </div>
 
@@ -287,14 +293,6 @@
     </div>
   </section>
 </div>
-
-          <%#= form.submit "Add Booking", id: "checkout", 
-              class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
-          <%# if @room.property.nil? %>
-            <%#= form.submit "Add Booking", class: "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
-          <%# else %>
-            <%# <button type="button" class="mt-10 flex w-full items-center justify-center rounded-md border border-gray-300  px-8 py-3 text-base font-medium text-black focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" disabled>Sold Out</button> %>
-          <%# end %>
 
 <script>
   // Initialize counts
