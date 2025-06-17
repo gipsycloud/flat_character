@@ -5,7 +5,7 @@ class NotificationService
   base_uri ENV['NOTIFICATION_SERVICE_URL'] || 'http://localhost:3001'
 
   def self.notify_user(user_id, message)
-    Rails.logger.info "[NotificationService] Sending to user #{user_id}: #{message.truncate(50)}"
+    Rails.logger.info "[NotificationService] Sending to user #{user_id}: #{message}"
     begin
       response = post('/notify', 
                 body: { userId: user_id, message: message}.to_json,
