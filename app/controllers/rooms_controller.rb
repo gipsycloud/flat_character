@@ -17,6 +17,10 @@ class RoomsController < ApplicationController
   def new
     @room = Room.new
     @room_image = @room.room_images.build
+    NotificationService.notify_user(
+      current_user.id,
+      Rails.logger.debug { "CURRENT USER ID: " + current_user.id.to_s }
+    )
   end
 
   # GET /rooms/1/edit
@@ -40,6 +44,12 @@ class RoomsController < ApplicationController
           format.json { render json: @room.errors, status: :unprocessable_entity }
         end
       end
+
+      NotificationService.notify_user(
+        current_user.id,
+        "Your room '#{@room.roomType}' was created successfully."
+        # Rails.logger.debug { "CURRENT USER ID: " + current_user.id.to_s }
+      )
     else
       redirect_to rooms_url, alert: 'You have reached your room limit'
     end

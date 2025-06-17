@@ -17,6 +17,8 @@ module Blog
 
     config.assets.css_compressor = nil
 
+    config.autoload_paths += %W(#{config.root}/app/services)
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

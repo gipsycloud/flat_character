@@ -1,4 +1,4 @@
-version: '3.8'
+# version: '3.8'
 services:
   db:
     image: postgres:latest
@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
   redis:
-    image: 'redis'
+    image: "redis"
     command: redis-server
   web:
     build: .
@@ -32,9 +32,9 @@ services:
     volumes:
       - .:/myapp
     depends_on:
-      - 'redis'  
+      - "redis"
     env_file:
-    - .env      
+      - .env
 volumes:
   db-data:
 networks:
