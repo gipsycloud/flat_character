@@ -1,4 +1,9 @@
-<%= @notification_response  %>1
+<% if @notification_response.present? %>
+  <div class="notification">
+    <strong><%= @notification_response["data"]["data"] %></strong>
+  </div>
+<% else %>
+<% end %>
 
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">

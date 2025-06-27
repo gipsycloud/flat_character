@@ -10,19 +10,11 @@ class RoomsController < ApplicationController
 
   # GET /rooms/1 or /rooms/1.json
   def show
-
-    response = NotificationService.notify_user(
-    current_user.id,
-    "Your room '#{@room.roomType}' was updated successfully."
-  )
-  
-  if response && response['data']['data'] == @room.roomType
-    @notification_response = response.parsed_response
-    flash[:notification_response] = @notification_response
-  else
-    # @notification_response = { "error" => "Notification service failed." }
-    # flash[:notification_response] = @notification_response
-  end
+    if flash[:notification_response].present?
+      @notification_response = flash[:notification_response]
+    else
+      @notification_response = nil
+    end
 
     # authorize! :read, @room 
   end
@@ -73,13 +65,8 @@ class RoomsController < ApplicationController
       geocode_address
       if @room.update(room_params)
         store_image
-        response = NotificationService.notify_user(
-          current_user.id,
-          "Your room '#{@room.roomType}' was updated successfully."
-        )
-        @notification_response = response.parsed_response
-        flash[:notification_response] = @notification_response
-         # if @post_attachment.update(post_attachment_params)
+        notification_response
+        # if @post_attachment.update(post_attachment_params)
         #   format.html { redirect_to @post_attachment.post, notice: 'Post attachment was successfully updated.' }
         # end
         format.html { redirect_to room_url(@room), notice: "Room was successfully updated." }
@@ -127,5 +114,14 @@ class RoomsController < ApplicationController
 
     def geocode_address
       @room.geocode
+    end
+
+    def notification_response
+      response = NotificationService.notify_user(
+        current_user.id,
+        "Your room '#{@room.roomType}' was updated successfully."
+      )
+      @notification_response = response.parsed_response
+      flash[:notification_response] = @notification_response
     end
 end
