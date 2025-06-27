@@ -13,3 +13,4 @@ pin "jquery_ujs", to: "jquery_ujs.js", preload: true
 pin "flowbite", to: "https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.turbo.min.js"
 pin "flowbite-datepicker", to: "https://cdn.jsdelivr.net/npm/flowbite@2.3.0/dist/datepicker.turbo.min.js"
 pin_all_from "app/javascript/controllers", under: "controllers"
+pin "socket.io-client", to: "https://cdn.jsdelivr.net/npm/socket.io-client@4.7.2/dist/socket.io.esm.min.js"

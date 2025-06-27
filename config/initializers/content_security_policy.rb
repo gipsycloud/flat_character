@@ -23,3 +23,8 @@
 #   # Report violations without enforcing the policy.
 #   # config.content_security_policy_report_only = true
 # end
+
+# config/initializers/content_security_policy.rb
+Rails.application.config.content_security_policy do |policy|
+  policy.connect_src :self, :https, 'ws://localhost:3001', 'http://localhost:3001'
+end

@@ -10,7 +10,7 @@ import 'flowbite-datepicker'
 import "./jqueryjs"
 import "./custom/swiper"
 import './room_checkout'
-import './notification'
+import "./notification"
 import "mapkick/bundle"
 
 import "./controllers"

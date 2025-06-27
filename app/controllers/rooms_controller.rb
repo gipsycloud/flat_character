@@ -10,6 +10,20 @@ class RoomsController < ApplicationController
 
   # GET /rooms/1 or /rooms/1.json
   def show
+
+    response = NotificationService.notify_user(
+    current_user.id,
+    "Your room '#{@room.roomType}' was updated successfully."
+  )
+  
+  if response && response['data']['data'] == @room.roomType
+    @notification_response = response.parsed_response
+    flash[:notification_response] = @notification_response
+  else
+    # @notification_response = { "error" => "Notification service failed." }
+    # flash[:notification_response] = @notification_response
+  end
+
     # authorize! :read, @room 
   end
 
@@ -17,10 +31,8 @@ class RoomsController < ApplicationController
   def new
     @room = Room.new
     @room_image = @room.room_images.build
-    NotificationService.notify_user(
-      current_user.id,
-      Rails.logger.debug { "CURRENT USER ID: " + current_user.id.to_s }
-    )
+    response = NotificationService.notify_user(current_user.id, "Create now room")
+    @notification_response = response.parsed_response
   end
 
   # GET /rooms/1/edit
@@ -45,11 +57,11 @@ class RoomsController < ApplicationController
         end
       end
 
-      NotificationService.notify_user(
+      response = NotificationService.notify_user(
         current_user.id,
         "Your room '#{@room.roomType}' was created successfully."
-        # Rails.logger.debug { "CURRENT USER ID: " + current_user.id.to_s }
       )
+      @notification_response = response.parsed_response
     else
       redirect_to rooms_url, alert: 'You have reached your room limit'
     end
@@ -61,6 +73,12 @@ class RoomsController < ApplicationController
       geocode_address
       if @room.update(room_params)
         store_image
+        response = NotificationService.notify_user(
+          current_user.id,
+          "Your room '#{@room.roomType}' was updated successfully."
+        )
+        @notification_response = response.parsed_response
+        flash[:notification_response] = @notification_response
          # if @post_attachment.update(post_attachment_params)
         #   format.html { redirect_to @post_attachment.post, notice: 'Post attachment was successfully updated.' }
         # end
@@ -71,6 +89,7 @@ class RoomsController < ApplicationController
         format.json { render json: @room.errors, status: :unprocessable_entity }
       end
     end
+    
   end
 
   # DELETE /rooms/1 or /rooms/1.json

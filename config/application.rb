@@ -17,7 +17,8 @@ module Blog
 
     config.assets.css_compressor = nil
 
-    config.autoload_paths += %W(#{config.root}/app/services)
+    # config.autoload_paths += %W(#{config.root}/app/services)
+    config.autoload_paths << Rails.root.join('app/services')
 
     # Configuration for the application, engines, and railties goes here.
     #
