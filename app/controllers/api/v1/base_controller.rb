@@ -7,7 +7,6 @@ class Api::V1::BaseController < ApplicationController
   private
 
   def authenticate_request
-    authorization_header = request.headers['Authorization']
     if request.headers["Authorization"]
       begin
         auth_header = request.headers["Authorization"]

@@ -147,6 +147,9 @@ Rails.application.routes.draw do
       namespace :rooms do
         resources :rooms
       end
+
+      get "trigger_task", to: "tasks#trigger"
+      post "trigger_task", to: "tasks#trigger"
     end
   end
 
