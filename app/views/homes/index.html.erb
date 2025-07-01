@@ -240,10 +240,25 @@
 
               <div class="mt-2">
                 <dl>
-                  <div>
-                    <dt class="sr-only">Price</dt>
+                  <div class="w-full flex justify-between p-2">
+                    <div>
+                      <dt class="sr-only">Price</dt>
 
-                    <dd class="text-sm text-gray-500"><%= room.roomPrice %></dd>
+                      <dd class="text-sm text-gray-500"><%= room.roomPrice %></dd>
+                    </div>
+
+                    <div>
+                      <dt class="sr-only">Status</dt>
+
+                      <dd class="text-sm text-gray-500">
+                        <% if room.property.nil? %>
+                          <span></span>
+                        <% else %>
+                          <%#= room.property.start_date.nil? ? '' : room.property.start_date.strftime('%B %e %Y') %>
+                          <span class="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10">Rented</span>
+                        <% end %>
+                      </dd>
+                    </div>
                   </div>
 
                   <div>
