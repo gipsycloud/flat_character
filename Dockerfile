@@ -16,8 +16,8 @@ RUN bundle install
 COPY . /myapp
 
 # Precompile assets and other necessary tasks
-RUN bundle exec rake assets:precompile
-RUN bundle exec rake assets:clean
+# RUN bundle exec rake assets:precompile
+# RUN bundle exec rake assets:clean
 
 # Expose port 3000 to the Docker host
 EXPOSE 3000
