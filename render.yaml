@@ -1,35 +1,49 @@
 # Exported from Render on 2024-05-03T06:25:00Z
 services:
-- type: web
-  name: RoomMateCharacter
-  runtime: ruby
-  repo: https://github.com/gipsycloud/flat_character
-  plan: free
-  envVars:
-  - key: SMTP_USERNAME
-    sync: false
-  - key: SMTP_PASSWORD
-    sync: false
-  - key: REDIS_URL
-    sync: false
-  - key: DB_USERNAME
-    sync: false
-  - key: DB_PASSWORD
-    sync: false
-  - key: DB_HOST
-    sync: false
-  - key: CLOUDINARY_SECRET
-    sync: false
-  - key: CLOUDINARY_NAME
-    sync: false
-  - key: CLOUDINARY_KEY
-    sync: false
-  region: singapore
-  buildCommand: bundle install; bundle exec rake db:migrate; bundle exec rake assets:precompile;
-    bundle exec rake assets:clean;
-  startCommand: bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development};
-    bundle exec sidekiq -C config/sidekiq.yml;
-  domains:
-  - matecharacter.zwewintmann.com
-  pullRequestPreviewsEnabled: true
+  - type: web
+    name: RoomMateCharacter
+    runtime: ruby
+    repo: https://github.com/gipsycloud/flat_character
+    plan: free
+    envVars:
+      - key: SMTP_USERNAME
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_HOST
+        sync: false
+      - key: CLOUDINARY_SECRET
+        sync: false
+      - key: CLOUDINARY_NAME
+        sync: false
+      - key: CLOUDINARY_KEY
+        sync: false
+    region: singapore
+    buildCommand:
+      bundle install; bundle exec rake db:migrate; bundle exec rake assets:precompile;
+      bundle exec rake assets:clean;
+    startCommand:
+      bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development};
+      bundle exec sidekiq -C config/sidekiq.yml;
+    domains:
+      - matecharacter.zwewintmann.com
+    pullRequestPreviewsEnabled: true
+
+# Exported from Render on 2025-08-26T06:03:58Z
+databases:
+  - name: flatmate
+    databaseName: roommatecharacter_db_xf5o
+    user: roommatecharacter_user
+    plan: free
+    region: singapore
+    ipAllowList:
+      - source: 0.0.0.0/0
+        description: everywhere
+    postgresMajorVersion: "16"
 version: "1"

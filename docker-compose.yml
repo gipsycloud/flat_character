@@ -37,6 +37,6 @@ services:
     - .env      
 volumes:
   db-data:
-networks:
-  default:
-    driver: bridge
+# networks:
+#   default:
+#     driver: bridge
