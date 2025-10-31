@@ -11,12 +11,12 @@ development:
   # password: password
   host: localhost
   # database: blog_development
-  url: <%= ENV['DATABASE'] %>
+  url: <%= ENV['DATABASE_URL'] %>
 
 production:
   <<: *default
   host: <%= ENV['DB_HOST'] %>
-  url: <%= ENV['DATABASE'] %>
+  url: <%= ENV['DATABASE_URL'] %>
   # username: <%= ENV['DB_USERNAME'] %>
   # password: <%= ENV['DB_PASSWORD'] %> # or leave blank if you didn't set a password
   # database: <%= ENV['DATABASE'] %>
