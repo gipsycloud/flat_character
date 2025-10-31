@@ -31,7 +31,7 @@ class Room < ApplicationRecord
   # end
 
   def notify_subscribers
-    SubscriptionMailer.new_room_notification(self).deliver_now
+    SubscriptionMailer.new_room_notification(self).deliver_later
   end
 
   private
