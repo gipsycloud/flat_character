@@ -23,11 +23,12 @@ class User < ApplicationRecord
   validates :phone_number, presence: true
   validates :address, presence: true
   
-  has_many :rooms, foreign_key: :user_id
+  has_many :rooms, foreign_key: :user_id, dependent: :destroy
   has_one :user_info, dependent: :destroy
-  has_one :upgrade, foreign_key: :user_id
-  has_many :payments, foreign_key: :user_id
+  has_one :upgrade, foreign_key: :user_id, dependent: :destroy
+  has_many :payments, foreign_key: :user_id, dependent: :destroy
   has_and_belongs_to_many :subscriptions, foreign_key: :email, primary_key: :email
+  has_one :subscription, foreign_key: :email, primary_key: :email, dependent: :destroy
   
   accepts_nested_attributes_for :user_info
   # accepts_nested_attributes_for :subscription
@@ -81,6 +82,7 @@ class User < ApplicationRecord
   def send_pin!
     reset_pin!
     unverify!
+    update_column(:pin_sent_at, Time.now)
     # Perform the job to send the PIN
     SendPinJob.perform_later(self)
   end
