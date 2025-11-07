@@ -65,7 +65,7 @@ class User < ApplicationRecord
 
   # Method to update the user's email verification status to true
   def update_user_verified_column_to_true
-    UpdateUserJob.perform_later(self)
+    UpdateUserJob.set(wait_until: Time.current + 10.seconds).perform_later(self)
   end
 
   # Method to reset the PIN for email verification
@@ -84,7 +84,7 @@ class User < ApplicationRecord
     unverify!
     update_column(:pin_sent_at, Time.now)
     # Perform the job to send the PIN
-    SendPinJob.perform_later(self)
+    SendPinJob.set(wait_until: Time.current + 10.seconds).perform_later(self)
   end
 
   def avatar_thumbnail
