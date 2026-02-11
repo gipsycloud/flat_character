@@ -1,7 +1,7 @@
 name: Auto Delete History
 on:
   schedule:
-    - cron: "28 16 * * *" # Runs every night at midnight
+    - cron: "33 16 * * *" # Runs every night at midnight
   workflow_dispatch:      # Allows you to run it manually whenever you want
 
 jobs:
