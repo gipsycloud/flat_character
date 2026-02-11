@@ -1,0 +1,20 @@
+name: Auto Delete History
+on:
+  schedule:
+    - cron: "28 16 * * *" # Runs every night at midnight
+  workflow_dispatch:      # Allows you to run it manually whenever you want
+
+jobs:
+  delete-runs:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 7       # Keep only the last 7 days of history
+          keep_minimum_runs: 5 # Always keep at least 5 runs
