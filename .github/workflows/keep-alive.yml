@@ -2,12 +2,36 @@ name: Keep Render Alive
 
 on:
   schedule:
-    - cron: "*/5 * * * *" # Every 14 minutes
-  workflow_dispatch: # Manual trigger
+    - cron: "*/14 * * * *"
+  workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Render App
-        run: curl -fLs https://roommatecharacter.onrender.com > /dev/null || echo "Ping failed, but keeping workflow green"
+      - name: Ping Render App with Retry
+        run: |
+          URL="https://roommatecharacter.onrender.com"
+          MAX_RETRIES=5
+          RETRY_DELAY=10
+
+          echo "Pinging $URL"
+
+          for i in $(seq 1 $MAX_RETRIES); do
+            echo "Attempt $i of $MAX_RETRIES..."
+
+            if curl -fsS --max-time 15 "$URL" > /dev/null; then
+              echo "Ping successful ✅"
+              exit 0
+            else
+              echo "Attempt $i failed."
+            fi
+
+            if [ "$i" -lt "$MAX_RETRIES" ]; then
+              echo "Waiting $RETRY_DELAY seconds before retry..."
+              sleep $RETRY_DELAY
+            fi
+          done
+
+          echo "All retry attempts failed, but keeping workflow green."
+          exit 0
