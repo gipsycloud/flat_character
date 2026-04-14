@@ -6,3 +6,4 @@
 //= link tailwind.css
 //= link jquery.min.js
 //= link jquery_ujs.js
+//= link application.css
