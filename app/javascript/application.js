@@ -7,10 +7,9 @@ import "jquery_ujs"
 import 'flowbite'
 import 'flowbite-datepicker'
 
-import "./jqueryjs"
-import "./custom/swiper"
-import './room_checkout'
+import "jqueryjs"
+import "custom/swiper"
+import "room_checkout"
 import "mapkick/bundle"
 
-import "./controllers"
-
+import "controllers"
