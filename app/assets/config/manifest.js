@@ -7,4 +7,3 @@
 //= link jquery.min.js
 //= link jquery_ujs.js
 //= link application.css
-//= link inter-font.css
