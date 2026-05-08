@@ -56,6 +56,9 @@ Rails.application.configure do
   # config.force_ssl = true
 
   # Include generic and useful information about system operation, but avoid logging too much
+  config.hosts << "flatmate-hotfix-one-bo91.onrender.com"
+  config.hosts << "roommatecharacter.onrender.com"
+
   # information to avoid inadvertent exposure of personally identifiable information (PII).
   config.log_level = :info
 
