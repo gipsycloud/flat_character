@@ -31,7 +31,7 @@ services:
     buildCommand:
       bundle install; npm install; bundle exec rake db:migrate; bundle exec rake assets:precompile;
       bundle exec rake assets:clean;
-    startCommand: bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}
+    startCommand: bundle exec puma -t 5:5 -p ${PORT} -e ${RAILS_ENV:-production}
     domains:
       - matecharacter.zwewintmann.com
     pullRequestPreviewsEnabled: true
