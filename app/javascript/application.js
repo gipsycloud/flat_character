@@ -4,12 +4,12 @@ import "@hotwired/turbo-rails"
 import "jquery"
 import "jquery_ujs"
 
+// import "./jqueryjs"
 import 'flowbite'
 import 'flowbite-datepicker'
 
-import "jqueryjs"
-import "custom/swiper"
-import "room_checkout"
+import "./custom/swiper"
+import "./room_checkout"
 import "mapkick/bundle"
 
 import "controllers"

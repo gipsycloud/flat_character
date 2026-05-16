@@ -7,8 +7,10 @@ pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 pin "mapkick/bundle", to: "mapkick.bundle.js"
 # pin "flowbite", to: "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.turbo.min.js"
 # pin "flowbite-datepicker", to: "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/datepicker.turbo.min.js"
-pin "jquery", to: "jquery.min.js", preload: true
-pin "jquery_ujs", to: "jquery_ujs.js", preload: true
+# pin "jquery", to: "jquery.min.js", preload: true
+# pin "jquery_ujs", to: "jquery_ujs.js", preload: true
+pin "jquery", to: "https://ga.jspm.io/npm:jquery@3.7.1/dist/jquery.js", preload: true
+pin "jquery_ujs", to: "https://ga.jspm.io/npm:jquery-ujs@1.2.3/src/rails.js", preload: true
 
 pin "flowbite", to: "https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.turbo.min.js"
 pin "flowbite-datepicker", to: "https://cdn.jsdelivr.net/npm/flowbite@2.3.0/dist/datepicker.turbo.min.js"
