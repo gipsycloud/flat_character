@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
+import $ from "jquery";
+
+document.addEventListener("turbo:load", function () {
   if (document.body.classList.contains('homes-room_detail')) {
     setUpDatepicker();
     var room_price_detail = document.getElementById('room_price_detail').getAttribute('data-value');  // get value from detail information
@@ -124,13 +126,13 @@ document.addEventListener("DOMContentLoaded", function () {
         room_price_reserve: reserve,
         price: room_price_detail,
         total: sum,
-        customer_phone: $('#customer_phone').val(),
-      }
+        customer_phone: $('#customer_phone').val()
+      };
       // save localstorage
       localStorage.setItem('formdata', JSON.stringify(formdata));
       window.location.href = '/web/reserve';
 
-      console.log(room_price, service_fee);
+      console.log(reserve, service_fee);
       console.log(sum);
     });
   }
@@ -167,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
         error: function (jqXHR, textStatus, errorThrown) {
           console.log('error', jqXHR, textStatus, errorThrown);
         }
-      })
+      });
 
       // var customer_name = document.getElementById('customer_name').value;
       // var customer_email = document.getElementById('customer_email').value;
