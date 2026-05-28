@@ -5,7 +5,6 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
-  config.logger = Syslogger.new("blog",Syslog::LOG_PID, Syslog::LOG_LOCAL7)
   config.lograge.enabled = true
   config.lograge.formatter = Lograge::Formatters::Json.new
   
@@ -27,13 +26,16 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
+  # On Render, enable static file serving so the precompiled /public/assets files are delivered.
+  # config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present? || ENV["RENDER"].present?
+  # Explicitly enabling this ensures that Rails serves precompiled assets if a proxy like Nginx isn't present.
+  config.public_file_server.enabled = true
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = true
+  config.assets.compile = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
@@ -54,6 +56,9 @@ Rails.application.configure do
   # config.force_ssl = true
 
   # Include generic and useful information about system operation, but avoid logging too much
+  config.hosts << "flatmate-hotfix-one-bo91.onrender.com"
+  config.hosts << "roommatecharacter.onrender.com"
+
   # information to avoid inadvertent exposure of personally identifiable information (PII).
   config.log_level = :info
 

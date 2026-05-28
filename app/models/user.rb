@@ -23,11 +23,12 @@ class User < ApplicationRecord
   validates :phone_number, presence: true
   validates :address, presence: true
   
-  has_many :rooms, foreign_key: :user_id
+  has_many :rooms, foreign_key: :user_id, dependent: :destroy
   has_one :user_info, dependent: :destroy
-  has_one :upgrade, foreign_key: :user_id
-  has_many :payments, foreign_key: :user_id
+  has_one :upgrade, foreign_key: :user_id, dependent: :destroy
+  has_many :payments, foreign_key: :user_id, dependent: :destroy
   has_and_belongs_to_many :subscriptions, foreign_key: :email, primary_key: :email
+  has_one :subscription, foreign_key: :email, primary_key: :email, dependent: :destroy
   
   accepts_nested_attributes_for :user_info
   # accepts_nested_attributes_for :subscription
@@ -64,7 +65,7 @@ class User < ApplicationRecord
 
   # Method to update the user's email verification status to true
   def update_user_verified_column_to_true
-    UpdateUserJob.perform_later(self)
+    UpdateUserJob.set(wait_until: Time.current + 10.seconds).perform_later(self)
   end
 
   # Method to reset the PIN for email verification
@@ -81,8 +82,9 @@ class User < ApplicationRecord
   def send_pin!
     reset_pin!
     unverify!
+    update_column(:pin_sent_at, Time.now)
     # Perform the job to send the PIN
-    SendPinJob.perform_later(self)
+    SendPinJob.set(wait_until: Time.current + 10.seconds).perform_later(self)
   end
 
   def avatar_thumbnail

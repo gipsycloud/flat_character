@@ -36,7 +36,7 @@ Every 3 minutes someone finds a flatmate on SpareRoom. With the biggest selectio
 * System dependencies [x86_64-linux]
 
 * Configuration
-  hotwire, cloudinary (coming soon)
+  hotwire, flowbite, cloudinary (coming soon)
 
 * Database creation (Postgresql)
 
