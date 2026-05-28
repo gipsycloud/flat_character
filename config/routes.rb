@@ -153,4 +153,7 @@ Rails.application.routes.draw do
     end
   end
 
+  # Route for Chrome DevTools app-specific configuration, returning 404 if not found
+  get "/.well-known/appspecific/com.chrome.devtools.json", to: proc { [404, {}, ['']] }
+
 end

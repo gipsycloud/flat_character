@@ -10,4 +10,5 @@ Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'build
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
-Rails.application.config.assets.precompile += %w(application.js tailwind.css inter-font.css jquery.min.js jquery_ujs.js)
+# Rails.application.config.assets.precompile += %w(application.js tailwind.css inter-font.css jquery.min.js jquery_ujs.js room_checkout.js custom/swiper.js)
+Rails.application.config.assets.precompile += %w(application.js room_checkout.js custom/swiper.js)
