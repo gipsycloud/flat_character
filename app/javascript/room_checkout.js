@@ -132,7 +132,7 @@ document.addEventListener("turbo:load", function () {
       localStorage.setItem('formdata', JSON.stringify(formdata));
       window.location.href = '/web/reserve';
 
-      console.log(reserve, service_fee);
+      console.log(room_price, service_fee);
       console.log(sum);
     });
   }
