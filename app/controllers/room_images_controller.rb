@@ -1,25 +1,26 @@
 class RoomImagesController < ApplicationController
-  before_action :set_room_image
+  before_action :set_room
 
   def create
-    @room_image = RoomImage.create(room_id: @image.id, room_image: params[:room][:room_image])
-    @room_image.save
-    redirect_to @image
-    flash[:alert] = "Image has been deleted." unless @room_image.save
+    @room_image = @room.room_images.build(room_image: params.dig(:room, :room_image))
+
+    if @room_image.save
+      redirect_to @room, notice: "Image has been uploaded."
+    else
+      redirect_to @room, alert: @room_image.errors.full_messages.to_sentence
+    end
   end
 
   def destroy
-    room = Room.find_by_id(params[:room_id])
-    @image = RoomImage.find(params[:id])
+    @image = @room.room_images.find(params[:id])
     @image.destroy
 
-    redirect_to room
-    flash[:alert] = "Image has been deleted."
+    redirect_to @room, notice: "Image has been deleted."
   end
 
   private
 
-  def set_room_image
-    @image = Room.find_by_slug(params[:room_id])
+  def set_room
+    @room = Room.find(params[:room_id])
   end
 end
