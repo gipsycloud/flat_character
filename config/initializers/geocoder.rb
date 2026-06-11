@@ -2,12 +2,13 @@ Geocoder.configure(
   # Geocoding options
   # lookup: :google,
   language: :en,              # ISO-639 language code
-  timeout: 30,                 # geocoding service timeout (secs)
+  timeout: 15,                 # geocoding service timeout (secs)
   lookup: :nominatim,         # name of geocoding service (symbol)
   ip_lookup: :freegeoip,      # name of IP address geocoding service (symbol)
-  use_https: false,           # use HTTPS for lookup requests? (if supported)
+  use_https: true,            # use HTTPS for lookup requests (nominatim requires HTTPS)
+  http_headers: { "User-Agent" => "Flatmatecharacter/1.0" },
   api_key: nil,               # API key for geocoding service
-  cache: Redis.new,                 # cache object (must respond to #[], #[]=, and #del)
+  cache: Redis.new,           # cache object (must respond to #[], #[]=, and #del)
   # https_proxy: nil,           # HTTPS proxy server (user:pass@host:port)
   # http_proxy: nil,            # HTTP proxy server (user:pass@host:port)
 
