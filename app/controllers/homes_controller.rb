@@ -4,7 +4,8 @@ class HomesController < ApplicationController
 
   # GET /homes or /homes.json
   def index
-    @rooms = Room.order(updated_at: :desc).limit(4)
+    @featured_rooms = Room.order(updated_at: :desc).limit(4)
+    @map_rooms = Room.where.not(latitude: nil, longitude: nil)
     @plans = Plan.first
     @q = User.ransack(params[:q])
     @members = @q.result(distinct: true)
