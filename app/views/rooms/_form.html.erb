@@ -35,7 +35,7 @@
     <% end %>    
 
   <%#= cl_image_tag(@room.image_url,  class: "h-auto max-w-lg rounded-lg", default_image: "default_image.jpg") %>
-  <div class="grid gap-4 mb-6 md:grid-cols-2 mt-7">
+  <div class="grid gap-4 mb-6 md:grid-cols-2 mt-7" data-controller="map-search">
     <div class="">
       <%= form.label :roomType, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
       <%= select_tag "room[roomType]", options_for_select(Room.room_type_nums.map {|k,v| [t("room.room_type.#{k}"), k]}, selected: @room.roomType ), class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
@@ -67,9 +67,44 @@
     <%= form.number_field :floor, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
   </div>
 
+  <!-- Map Search Section -->
+  <div class="mb-5 md:col-span-2">
+    <div class="">
+      <label for="location-search" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Search Location</label>
+      <div class="relative">
+        <input 
+          type="text" 
+          id="location-search" 
+          data-map-search-target="searchInput"
+          placeholder="Search for a location..." 
+          class="block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        />
+        <!-- Suggestions dropdown -->
+        <div 
+          id="suggestions-dropdown" 
+          data-map-search-target="suggestionsDropdown"
+          class="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-lg mt-1 max-h-60 overflow-y-auto hidden z-50 dark:bg-gray-700 dark:border-gray-600"
+        ></div>
+      </div>
+    </div>
+
+    <!-- Map Container -->
+    <div class="mt-4 mb-4">
+      <div 
+        id="location-map" 
+        data-map-search-target="mapContainer"
+        class="w-full h-80 rounded-lg border border-gray-300"
+      ></div>
+    </div>
+
+    <!-- Latitude and Longitude Fields (Hidden) -->
+    <%= form.hidden_field :latitude, data: { "map-search-target": "latitudeField" } %>
+    <%= form.hidden_field :longitude, data: { "map-search-target": "longitudeField" } %>
+  </div>
+
   <div class="">
     <%= form.label :address, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-    <%= form.text_field :address, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
+    <%= form.text_field :address, data: { "map-search-target": "addressField" }, class: "block w-full p-3 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 md:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>  
   </div>
 
   <div class="">
@@ -127,5 +162,3 @@
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
-
-

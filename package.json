@@ -3,7 +3,8 @@
     "argon2": "^0.40.3",
     "flowbite": "^2.5.2",
     "flowbite-datepicker": "^1.2.6",
-    "swiper": "^12.1.4"
+    "swiper": "^12.1.4",
+    "mapbox-gl": "^2.15.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
