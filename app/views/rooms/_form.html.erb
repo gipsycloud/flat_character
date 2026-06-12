@@ -1,4 +1,4 @@
-<%= form_with(model: room, class: "w-50") do |form| %>
+<%= form_with(model: room, class: "w-full") do |form| %>
   <% if room.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(room.errors.count, "error") %> prohibited this room from being saved:</h2>
@@ -21,14 +21,20 @@
     </div>
 
     <% if @room.image.present? %>
-      <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <% @room.room_images.each_with_index do |image, v| %>
-          <div class="group relative">
-              <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-80">
+          <div class="group overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+            <div class="relative aspect-[4/3] bg-gray-100">
+
                 <%#= image.id %>
-                <%= cl_image_tag(image.room_image_url, class: "h-full w-full lg:h-full lg:w-full") %>
-              </div>
+                <%= cl_image_tag(image.room_image_url, class: "h-full w-full object-cover object-center transition duration-300 group-hover:scale-105") %>
+  
               <%= link_to "Delete", room_room_image_path(@room.id, image.id), method: :delete, class: "mt-5 rounded-lg py-3 px-5 bg-red-500 font-medium" if @room.nil? %>
+            </div>
+            <div class="px-4 py-3">
+              <p class="text-sm font-medium text-gray-900">Room Image</p>
+              <p class="text-xs text-gray-500">Additional gallery photo</p>
+            </div>
           </div>
         <% end %>
       </div>
