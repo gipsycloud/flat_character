@@ -1,30 +1,32 @@
 // app/javascript/packs/swiper.js
 // https://swiperjs.com/get-started
 
-// import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
-import swiper from 'https://cdn.jsdelivr.net/npm/swiper@11.0.3/+esm'
 import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
 
 document.addEventListener('turbo:load', () => {
-    // Initialize Swiper
-    new Swiper('.swiper', {
-      slidesPerView: 5,
-      spaceBetween: 15,
+  document.querySelectorAll('.swiper').forEach((element) => {
+    if (element.swiper) return
+
+    new Swiper(element, {
+      slidesPerView: 1.2,
+      spaceBetween: 16,
       loop: true,
-      centeredSlides: true,
-      effect: 'fade',
       grabCursor: true,
-      autoHeight: true,
       observer: true,
       observeParents: true,
       keyboard: true,
-      autoplay: false,
       autoplay: {
         delay: 5000,
+        disableOnInteraction: false,
       },
-      navigation: {
-        nextEl: '.button-next',
-        prevEl: '.button-prev',
+      breakpoints: {
+        640: {
+          slidesPerView: 2.2,
+        },
+        1024: {
+          slidesPerView: 4,
+        },
       },
-    });
+    })
   });
+})
