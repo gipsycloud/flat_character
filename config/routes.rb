@@ -2,6 +2,7 @@ require 'sidekiq/web'
 require 'sidekiq-status/web'
 
 Rails.application.routes.draw do
+  get "/up", to: proc { [200, {}, ["OK"]] }
   resources :articles
   # namespace :admins do
   #   get 'dashboard/index'
@@ -106,6 +107,11 @@ Rails.application.routes.draw do
   resources :subscriptions, only: [:index, :new, :create]
   resources :mailer_subscription_unsubcribes, only: %i[show update]
   # match 'mailer(/:action(/:id(.:format)))' => 'mailer#:action'
+  resources :rooms do
+    collection do
+      post :generate_details
+    end
+  end
   resources :homes
   resources :makes, path: :find_a_flatmate, as: :find_a_flatmate
   get "room/(:slug)", to: "homes#room_detail", as: "room_"
