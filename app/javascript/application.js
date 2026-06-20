@@ -11,6 +11,7 @@ import 'flowbite'
 import 'flowbite-datepicker'
 
 import "custom/swiper"
+import "custom/password_toggle"
 import "room_checkout"
 import "mapkick/bundle"
 

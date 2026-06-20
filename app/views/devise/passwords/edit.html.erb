@@ -15,12 +15,46 @@
           <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em><br />
           <% end %>
-          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "w-full rounded-lg border-gray-400 p-4 pe-12 text-sm shadow-sm" %>
+          <%= f.password_field :password, id: "reset_password_password", autofocus: true, autocomplete: "new-password", class: "w-full rounded-lg border-gray-400 p-4 pe-12 text-sm shadow-sm" %>
+          <button
+            type="button"
+            data-password-toggle-button="true"
+            data-password-toggle-target="reset_password_password"
+            aria-label="Show new password"
+            class="absolute inset-y-0 end-0 grid place-content-center px-4 text-gray-400"
+          >
+            <svg data-password-toggle-eye="true" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+            <svg data-password-toggle-eye-off="true" class="hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3l18 18" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.478 10.478a3 3 0 104.243 4.243" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.88 9.88c-1.123 1.123-1.971 2.436-2.558 3.898A9.956 9.956 0 008.5 19.5c4.478 0 8.268-2.943 9.542-7a9.96 9.96 0 00-1.264-2.454" />
+            </svg>
+          </button>
         </div>
 
-        <div class="field">
+        <div class="field relative">
           <%= f.label :password_confirmation, "Confirm new password" %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full rounded-lg border-gray-400 p-4 pe-12 text-sm shadow-sm" %>
+          <%= f.password_field :password_confirmation, id: "reset_password_password_confirmation", autocomplete: "new-password", class: "w-full rounded-lg border-gray-400 p-4 pe-12 text-sm shadow-sm" %>
+          <button
+            type="button"
+            data-password-toggle-button="true"
+            data-password-toggle-target="reset_password_password_confirmation"
+            aria-label="Show password confirmation"
+            class="absolute inset-y-0 end-0 grid place-content-center px-4 text-gray-400"
+          >
+            <svg data-password-toggle-eye="true" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+            <svg data-password-toggle-eye-off="true" class="hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3l18 18" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.478 10.478a3 3 0 104.243 4.243" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.88 9.88c-1.123 1.123-1.971 2.436-2.558 3.898A9.956 9.956 0 008.5 19.5c4.478 0 8.268-2.943 9.542-7a9.96 9.96 0 00-1.264-2.454" />
+            </svg>
+          </button>
         </div>
 
         <div class="mt-3">
