@@ -27,7 +27,6 @@ class User < ApplicationRecord
   has_one :user_info, dependent: :destroy
   has_one :upgrade, foreign_key: :user_id, dependent: :destroy
   has_many :payments, foreign_key: :user_id, dependent: :destroy
-  has_and_belongs_to_many :subscriptions, foreign_key: :email, primary_key: :email
   has_one :subscription, foreign_key: :email, primary_key: :email, dependent: :destroy
   
   accepts_nested_attributes_for :user_info

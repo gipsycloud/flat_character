@@ -58,6 +58,8 @@ Rails.application.configure do
   # Include generic and useful information about system operation, but avoid logging too much
   config.hosts << "flatmate-hotfix-one-bo91.onrender.com"
   config.hosts << "roommatecharacter.onrender.com"
+  config.hosts << "localhost"
+  config.hosts << "127.0.0.1"
 
   # information to avoid inadvertent exposure of personally identifiable information (PII).
   config.log_level = :info
