@@ -1,123 +1,138 @@
 <%= render "template/nav" %>
 
-<!-- room details -->
-<div class="lg:my-20 lg:mx-[100px] sm:mx-[20px]">
-  <div class="w-full flex justify-between items-center">
-  <h2 class="text-xl font-semibold">Featured rooms:</h2>
-  <%#= link_to list_a_room_url do %>
-    <%# <div class="flex items-center space-x-4"> %>
-      <%# <p>List all Rooms</p> %>
-      <%# <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-      </svg> %>
-    <%# </div> %>
-  <%# end %>
-  </div>
-  <div class="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-1">
-    <% @rooms.each do |room| %>
-      <div class="h-auto">
-        <div class="group relative">
-          <div class="flex p-6 max-w-md mx-auto">
-            <%# <a href="#" class="block rounded-lg p-4 shadow-sm shadow-indigo-100"> %>
-            <%= link_to room__path(slug: room.slug), class: "block rounded-lg p-4 shadow-sm shadow-indigo-100" do %>
-              <%# <img
-                alt="Home"
-                src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                class="h-56 w-full rounded-md object-cover"
-              /> %>
-              <%= cl_image_tag(room.image_url, class: "h-56 w-full rounded-md object-cover", default_image: "default_image.jpg") %>
+<!-- Subtle background pattern -->
+<div class="relative min-h-screen bg-stone-50">
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 1px 1px, #1c1917 1px, transparent 0); background-size: 32px 32px;"></div>
 
-              <div class="mt-2">
-                <dl>
-                  <div>
-                    <dt class="sr-only">Price</dt>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
 
-                    <dd class="text-sm text-gray-500"><%= room.roomPrice %></dd>
-                  </div>
-
-                  <div>
-                    <dt class="sr-only">Address</dt>
-
-                    <dd class="font-medium"><%= room.address %></dd>
-                  </div>
-                </dl>
-
-                <div class="mt-6 flex items-center gap-8 text-xs">
-                  <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
-                    <svg
-                      class="h-4 w-4 text-indigo-700"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
-                      />
-                    </svg>
-
-                    <div class="mt-1.5 sm:mt-0">
-                      <p class="text-gray-500">Gender</p>
-
-                      <p class="font-medium"><%= room.gender %></p>
-                    </div>
-                  </div>
-
-                  <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
-                    <svg
-                      class="h-4 w-4 text-indigo-700"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                      />
-                    </svg>
-
-                    <div class="mt-1.5 sm:mt-0">
-                      <p class="text-gray-500">Bathroom</p>
-
-                      <p class="font-medium">2 rooms</p>
-                    </div>
-                  </div>
-
-                  <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
-                    <svg
-                      class="h-4 w-4 text-indigo-700"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                      />
-                    </svg>
-
-                    <div class="mt-1.5 sm:mt-0">
-                      <p class="text-gray-500">Bedroom</p>
-
-                      <p class="font-medium">4 rooms</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <%# </a> %>
-            <% end %>
-          </div>
-        </div>
+    <!-- Header -->
+    <div class="mb-12">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="inline-block w-8 h-0.5 bg-amber-500 rounded-full"></span>
+        <p class="text-xs font-semibold tracking-[0.2em] uppercase text-amber-600">Curated Selection</p>
       </div>
-    <% end %>  
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight">
+          Featured Rooms
+        </h2>
+        <p class="text-stone-500 text-sm max-w-xs">
+          Hand-picked spaces that balance comfort, location, and value.
+        </p>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+
+      <% @rooms.each do |room| %>
+        <%= link_to room__path(slug: room.slug),
+            class: "group relative bg-white rounded-2xl overflow-hidden border border-stone-200/80 hover:border-stone-300 shadow-sm hover:shadow-lg hover:shadow-stone-200/50 transition-all duration-300 hover:-translate-y-1" do %>
+
+          <!-- Image wrapper -->
+          <div class="relative overflow-hidden aspect-[4/3]">
+            <%= cl_image_tag room.image_url,
+                class: "h-full w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out",
+                default_image: "default_image.jpg" %>
+
+            <!-- Gradient overlay on hover -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+            <!-- Gender badge -->
+            <div class="absolute top-3 left-3">
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase
+                <%= room.gender&.downcase == 'male' ? 'bg-sky-500/90 text-white' : room.gender&.downcase == 'female' ? 'bg-pink-500/90 text-white' : 'bg-white/90 text-stone-700 backdrop-blur-sm' %>
+                shadow-sm">
+                <%= room.gender %>
+              </span>
+            </div>
+
+            <!-- Favorite button (visual only) -->
+            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 shadow-sm"
+                    onclick="event.preventDefault(); this.querySelector('svg').classList.toggle('fill-red-500'); this.querySelector('svg').classList.toggle('text-red-500');">
+              <svg class="w-4 h-4 text-stone-400 transition-colors duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </button>
+
+            <!-- View label on hover -->
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+              <span class="px-4 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-stone-800 shadow-sm">
+                View Details →
+              </span>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="p-5">
+
+            <!-- Price & type row -->
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <p class="text-xl font-extrabold text-stone-900 tracking-tight">
+                <span class="text-sm font-medium text-stone-400 mr-0.5">₹</span><%= room.roomPrice %>
+                <span class="text-xs font-normal text-stone-400">/mo</span>
+              </p>
+            </div>
+
+            <!-- Address -->
+            <p class="text-sm text-stone-600 leading-relaxed line-clamp-2 mb-4">
+              <%= room.address %>
+            </p>
+
+            <!-- Divider -->
+            <div class="h-px bg-stone-100 mb-4"></div>
+
+            <!-- Features -->
+            <div class="flex items-center justify-between">
+
+              <div class="flex items-center gap-1.5 text-stone-500">
+                <div class="w-7 h-7 rounded-lg bg-stone-50 flex items-center justify-center">
+                  <svg class="w-3.5 h-3.5 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/>
+                  </svg>
+                </div>
+                <span class="text-xs font-medium text-stone-600">4 Bed</span>
+              </div>
+
+              <div class="flex items-center gap-1.5 text-stone-500">
+                <div class="w-7 h-7 rounded-lg bg-stone-50 flex items-center justify-center">
+                  <svg class="w-3.5 h-3.5 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                  </svg>
+                </div>
+                <span class="text-xs font-medium text-stone-600">2 Bath</span>
+              </div>
+
+              <div class="flex items-center gap-1.5 text-stone-500">
+                <div class="w-7 h-7 rounded-lg bg-stone-50 flex items-center justify-center">
+                  <svg class="w-3.5 h-3.5 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                  </svg>
+                </div>
+                <span class="text-xs font-medium text-stone-600">800 sqft</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        <% end %>
+      <% end %>
+
+    </div>
+
+    <!-- Empty state (shown when @rooms is empty) -->
+    <% if @rooms.empty? %>
+      <div class="flex flex-col items-center justify-center py-24 text-center">
+        <div class="w-20 h-20 rounded-2xl bg-stone-100 flex items-center justify-center mb-6">
+          <svg class="w-8 h-8 text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2z"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-stone-700 mb-2">No rooms available yet</h3>
+        <p class="text-sm text-stone-400 max-w-sm">We're curating new spaces. Check back soon for fresh listings in your area.</p>
+      </div>
+    <% end %>
+
   </div>
 </div>
