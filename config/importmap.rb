@@ -13,6 +13,7 @@ pin "flowbite-datepicker", to: "https://cdn.jsdelivr.net/npm/flowbite@2.3.0/dist
 pin "custom/swiper", to: "custom/swiper.js"
 pin "custom/password_toggle", to: "custom/password_toggle.js"
 pin "room_checkout", to: "room_checkout.js"
+pin "gallery", to: "gallery_controller.js"
 pin_all_from "app/javascript/controllers", under: "controllers"
 
 # pin "flowbite", to: "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.turbo.min.js"

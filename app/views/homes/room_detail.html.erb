@@ -1,60 +1,138 @@
 <%= render "template/nav" %>
-<div class="bg-white room_details" data-turbo="false">  
-  <!-- Image gallery -->
-  <div class="mx-auto max-w-2xl mt-16 px-4 py-6 sm:px-6 lg:max-w-7xl lg:px-8">
-    <%# <nav aria-label="Breadcrumb">
-      <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-        <li>
-          <div class="flex items-center">
-            <a href="#" class="mr-2 text-sm font-medium text-gray-900">Men</a>
-            <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
-              <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-            </svg>
-          </div>
-        </li>
-        <li>
-          <div class="flex items-center">
-            <a href="#" class="mr-2 text-sm font-medium text-gray-900">Clothing</a>
-            <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
-              <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-            </svg>
-          </div>
-        </li>
+<div class="bg-stone-50 min-h-screen room_details" data-turbo="false">  
 
-        <li class="text-sm">
-          <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">Basic Tee 6-Pack</a>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
+    <nav aria-label="Breadcrumb">
+      <ol class="flex items-center gap-1.5 text-sm">
+        <li>
+          <a href="<%= root_path %>" class="text-stone-400 hover:text-stone-600 transition-colors">Home</a>
         </li>
+        <li>
+          <svg class="w-3.5 h-3.5 text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+          </svg>
+        </li>
+        <li>
+          <a href="#" class="text-stone-400 hover:text-stone-600 transition-colors">Rooms</a>
+        </li>
+        <li>
+          <svg class="w-3.5 h-3.5 text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+          </svg>
+        </li>
+        <li class="text-stone-700 font-medium truncate max-w-[200px]"><%= @room.roomType.titleize %></li>
       </ol>
-    </nav> %>
-    <h2 class="text-2xl font-bold tracking-tight text-gray-900">Room Gallery</h2>
-    <div class="">
-      <div class="mt-6 grid grid-cols-2 sm:grid-cols-2">
-        <div class="aspect-h-1 aspect-w-1 w-50 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-          <%= cl_image_tag(@room.image_url,  class: "h-full w-full object-cover object-center lg:h-full lg:w-full", default_image: "default_image.jpg") %>
+    </nav>
+  </div>
+
+  <!-- Image gallery -->
+  <div class="mx-auto max-w-7xl px-4 py-10">
+  <h2 class="text-3xl font-bold mb-6">Room Gallery</h2>
+
+  <!-- Main Gallery -->
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+
+    <!-- Featured Image -->
+    <div class="lg:col-span-3">
+      <%= cl_image_tag(
+            @room.image_url,
+            class: "w-full h-[500px] rounded-xl object-cover shadow-lg",
+            default_image: "default_image.jpg"
+          ) %>
+    </div>
+
+    <!-- Thumbnail Column -->
+    <div class="grid grid-cols-2 lg:grid-cols-1 gap-4">
+      <% @room.room_images.limit(4).each do |image| %>
+        <div class="overflow-hidden rounded-xl shadow-md">
+          <%= cl_image_tag(
+                image.room_image_url,
+                class: "w-full h-32 object-cover hover:scale-110 transition duration-300 cursor-pointer",
+                default_image: "default_image.jpg"
+              ) %>
         </div>
-      </div>  
-      <div class="mt-6 grid grid-cols-1 gap-x-2 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-2">
-        <% @room.room_images.each do |r| %>
-          <div class="group relative">
-            <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-              <%= cl_image_tag(r.room_image_url,  class: "h-full w-full object-cover object-center lg:h-full lg:w-full", default_image: "default_image.jpg") %>
-            </div>
-            <%# <div class="mt-4 flex justify-between">
-              <div>
-                <h3 class="text-sm text-gray-700">
-                  <a href="#">
-                    <span aria-hidden="true" class="absolute inset-0"></span>
-                    Basic Tee
-                  </a>
-                </h3>
-                <p class="mt-1 text-sm text-gray-500">Black</p>
-              </div>
-              <p class="text-sm font-medium text-gray-900">$35</p>
-            </div> %>
+      <% end %>
+
+      <% if @room.room_images.count > 4 %>
+        <div class="relative overflow-hidden rounded-xl">
+          <%= cl_image_tag(
+                @room.room_images[4].room_image_url,
+                class: "w-full h-32 object-cover brightness-50",
+                default_image: "default_image.jpg"
+              ) %>
+
+          <div class="absolute inset-0 flex items-center justify-center">
+            <span class="text-white text-xl font-bold">
+              +<%= @room.room_images.count - 4 %> Photos
+            </span>
           </div>
-        <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+  <div data-controller="gallery">
+    <!-- Gallery Preview -->
+    <div class="relative">
+      <%= cl_image_tag(
+            @room.image_url,
+            class: "w-full h-32 object-cover brightness-50",
+            default_image: "default_image.jpg"
+          ) %>
+
+      <button
+        data-action="click->gallery#open"
+        class="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/50 transition"
+      >
+        <span class="px-4 py-2 bg-white rounded-lg font-semibold">
+          View All Photos (<%= @room.room_images.count + 1 %>)
+        </span>
+      </button>
+    </div>
+
+    <!-- Modal -->
+    <div
+      data-gallery-target="modal"
+      data-action="click->gallery#closeOnBackground"
+      class="hidden fixed inset-0 z-50 bg-black/90 overflow-y-auto"
+    >
+      <div class="max-w-7xl mx-auto p-6">
+
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-white text-2xl font-bold">
+            Room Photos
+          </h2>
+
+          <button
+            data-action="click->gallery#close"
+            class="text-white text-4xl hover:text-gray-300"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          <div>
+            <%= cl_image_tag(
+                  @room.image_url,
+                  class: "w-full rounded-lg object-cover",
+                  default_image: "default_image.jpg"
+                ) %>
+          </div>
+
+          <% @room.room_images.each do |image| %>
+            <div>
+              <%= cl_image_tag(
+                    image.room_image_url,
+                    class: "w-full rounded-lg object-cover"
+                  ) %>
+            </div>
+          <% end %>
+
+        </div>
       </div>
-    </div>  
+    </div>
   </div>
   
   <!-- Product info -->
