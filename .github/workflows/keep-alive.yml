@@ -2,17 +2,32 @@
 # keep_alive.sh
 
 RENDER_URL="https://roommatecharacter.onrender.com/up"
-INTERVAL=840  # 14 minutes in seconds
+name: Keep Render Awake
+on:
+  schedule:
+    - cron: '*/14 * * * *'
+  workflow_dispatch:
 
-while true; do
-  TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
-  RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" "$RENDER_URL")
-  
-  echo "[$TIMESTAMP] Status: $RESPONSE"
-  
-  if [ "$RESPONSE" != "200" ]; then
-    echo "[$TIMESTAMP] ⚠️ Warning: Non-200 response"
-  fi
-  
-  sleep $INTERVAL
-done
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Ping Render App
+        env:
+          RENDER_URL: ${{ RENDER_URL }}
+        run: |
+          echo "=== Keep Alive Ping ==="
+          echo "Time: $(date -u)"
+          echo "URL: ${RENDER_URL}"
+          
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" "${RENDER_URL}")
+          echo "HTTP Status: ${RESPONSE}"
+          
+          if [ "${RESPONSE}" = "200" ]; then
+            echo "Result: SUCCESS"
+            exit 0
+          else
+            echo "Result: FAILED"
+            exit 1
+          fi
