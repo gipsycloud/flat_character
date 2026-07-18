@@ -1,37 +1,18 @@
-name: Keep Render Alive
+#!/bin/bash
+# keep_alive.sh
 
-on:
-  schedule:
-    - cron: "*/14 * * * *"
-  workflow_dispatch:
+RENDER_URL="https://roommatecharacter.onrender.com/up"
+INTERVAL=840  # 14 minutes in seconds
 
-jobs:
-  ping:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Ping Render App with Retry
-        run: |
-          URL="https://roommatecharacter.onrender.com"
-          MAX_RETRIES=5
-          RETRY_DELAY=10
-
-          echo "Pinging $URL"
-
-          for i in $(seq 1 $MAX_RETRIES); do
-            echo "Attempt $i of $MAX_RETRIES..."
-
-            if curl -fsS --max-time 15 "$URL" > /dev/null; then
-              echo "Ping successful ✅"
-              exit 0
-            else
-              echo "Attempt $i failed."
-            fi
-
-            if [ "$i" -lt "$MAX_RETRIES" ]; then
-              echo "Waiting $RETRY_DELAY seconds before retry..."
-              sleep $RETRY_DELAY
-            fi
-          done
-
-          echo "All retry attempts failed, but keeping workflow green."
-          exit 0
+while true; do
+  TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+  RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" "$RENDER_URL")
+  
+  echo "[$TIMESTAMP] Status: $RESPONSE"
+  
+  if [ "$RESPONSE" != "200" ]; then
+    echo "[$TIMESTAMP] ⚠️ Warning: Non-200 response"
+  fi
+  
+  sleep $INTERVAL
+done
