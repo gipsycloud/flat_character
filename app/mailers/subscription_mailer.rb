@@ -1,10 +1,7 @@
 class SubscriptionMailer < ApplicationMailer
   def new_room_notification(room)
     @room = room
-    @subscriptions = Subscription.all
-
-    @subscriptions.each do |subscription|
-      mail(to: subscription.email, subject: "New Room Notification")
-    end
+    recipients = Subscription.pluck(:email).uniq
+    mail(to: recipients, subject: "New Room Notification")
   end
 end

@@ -7,7 +7,7 @@ class Room < ApplicationRecord
   geocoded_by :address
   # after_validation :geocode
   after_validation :geocode, if: :address_changed?
-  after_create :notify_subscribers
+  after_create_commit :notify_subscribers
   belongs_to :user, class_name: 'User', foreign_key: :user_id, optional: true
   # normalizes :slug, with: -> slug { slug.titlesize }
 
@@ -31,7 +31,7 @@ class Room < ApplicationRecord
   # end
 
   def notify_subscribers
-    SubscriptionMailer.new_room_notification(self).deliver_now
+    SubscriptionMailer.new_room_notification(self).deliver_later
   end
 
   private
