@@ -1,5 +1,16 @@
 class AvatarUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
+
+  def delete!(new_file = nil)
+    super
+  rescue Cloudinary::Api::Error, Cloudinary::CarrierWave::Error => e
+    Rails.logger.warn("Cloudinary delete failed for #{model&.class&.name}: #{e.message}")
+    true
+  rescue StandardError => e
+    Rails.logger.warn("Cloudinary delete failed unexpectedly for #{model&.class&.name}: #{e.message}")
+    true
+  end
+
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
