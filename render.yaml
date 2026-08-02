@@ -32,11 +32,11 @@ services:
       bundle install; npm install; bundle exec rake db:migrate; bundle exec rake assets:precompile;
       bundle exec rake assets:clean;
     startCommand: bundle exec puma -t 5:5 -p ${PORT} -e ${RAILS_ENV:-production}
-    domains:
-      - matecharacter.zwewintmann.com
+    # domains:
+      # - matecharacter.zwewintmann.com
     pullRequestPreviewsEnabled: true
-
   - type: worker
+      bundle exec sidekiq -e ${RAILS_ENV:-production} -r ./config/environment -C config/sidekiq.yml
     name: RoomMateWorker
     runtime: ruby
     repo: https://github.com/gipsycloud/flat_character
@@ -45,7 +45,7 @@ services:
     envVars:
       - key: REDIS_URL
         sync: false
-    startCommand: bundle exec sidekiq -C config/sidekiq.yml
+    startCommand: bundle exec sidekiq -e ${RAILS_ENV:-production} -r ./config/environment -C config/sidekiq.yml
 
 # Exported from Render on 2025-08-26T06:03:58Z
 databases:

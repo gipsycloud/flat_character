@@ -3,37 +3,34 @@ require 'sidekiq/web'
 require 'sidekiq-status'
 require 'sidekiq/cron/web'
 
-redis_url = ENV.fetch("REDIS_URL")
+redis_url = ENV["REDIS_URL"]
 
 Sidekiq.configure_client do |config|
+  config.redis = { url: redis_url } if redis_url.present?
+
   config.client_middleware do |chain|
-    # accepts :expiration (optional)
-    config.redis = { url: redis_url }
-    chain.add Sidekiq::Status::ClientMiddleware, expiration: 30.minutes # default
+    chain.add Sidekiq::Status::ClientMiddleware, expiration: 30.minutes
   end
 end
 
 Sidekiq.configure_server do |config|
-  # config.on(:startup) do
-  #   Sidekiq.schedule = YAML.load_file(File.expand_path('../../schedule.yml', __FILE__))
-  #   Sidekiq::Scheduler.reload_schedule!
-  # end
-  # schedule_file = "config/schedule.yml"
-  # if File.exist?(schedule_file) && Sidekiq.server?
-  #   Sidekiq::Cron::Job.load_from_hash YAML.load_file(schedule_file)
-  # end
+  config.redis = { url: redis_url } if redis_url.present?
+
   config.server_middleware do |chain|
-    # accepts :expiration (optional)
-    config.redis = { url: redis_url }
-    chain.add Sidekiq::Status::ServerMiddleware, expiration: 30.minutes # default
+    chain.add Sidekiq::Status::ServerMiddleware, expiration: 30.minutes
   end
+
   config.client_middleware do |chain|
-    # accepts :expiration (optional)
-    config.redis = { url: redis_url }
-    chain.add Sidekiq::Status::ClientMiddleware, expiration: 30.minutes # default
+    chain.add Sidekiq::Status::ClientMiddleware, expiration: 30.minutes
+  end
+
+  config.on(:startup) do
+    if defined?(SidekiqScheduler)
+      SidekiqScheduler.load_schedule!
+    end
   end
 end
 
-# sidekiq_cronの設定
-schedule_file = 'config/schedule.yml'
-Sidekiq::Cron::Job.load_from_hash YAML.load_file(schedule_file) if File.exist?(schedule_file) && Sidekiq.server?
+if defined?(Rails) && Rails.application && Sidekiq.server?
+  SidekiqScheduler.load_schedule! if defined?(SidekiqScheduler)
+end
