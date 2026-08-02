@@ -1,4 +1,5 @@
 require 'sidekiq'
+require 'sidekiq-cron'
 require 'sidekiq/web'
 require 'sidekiq-status'
 require 'sidekiq/cron/web'
@@ -15,6 +16,12 @@ end
 
 Sidekiq.configure_server do |config|
   config.redis = { url: redis_url } if redis_url.present?
+
+  schedule_file = Rails.root.join('config/schedule.yml')
+
+  if File.exist?(schedule_file)
+    Sidekiq::Cron::Job.load_from_hash(YAML.load_file(schedule_file))
+  end
 
   config.server_middleware do |chain|
     chain.add Sidekiq::Status::ServerMiddleware, expiration: 30.minutes
