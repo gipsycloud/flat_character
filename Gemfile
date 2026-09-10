@@ -96,6 +96,8 @@ gem 'cancancan', '~> 3.5'
 gem 'pundit', '~> 1.1'
 # gem 'attachinary'
 gem 'carrierwave', '~> 3.0'
+# Active Storage requires ruby-vips 2.2.1+ to safely disable unfuzzed libvips operations.
+gem 'ruby-vips', '>= 2.2.1'
 gem 'cloudinary'
 gem 'aws-sdk-s3'
 gem 's3_direct_upload'
