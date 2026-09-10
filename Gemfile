@@ -36,6 +36,9 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
 gem "redis-actionpack"
+# Rails 7.2's Redis cache store passes connection options as a hash.
+# connection_pool 3.x only accepts keyword arguments.
+gem "connection_pool", "< 3"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
