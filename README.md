@@ -9,7 +9,7 @@ Every 3 minutes someone finds a flatmate on SpareRoom. With the biggest selectio
 
 **Client:** HTML, CSS, TailwindCSS, Javascript, jQuery, Ajax
 
-**Server:** Ruby on Rails, Postgresql, Redis, Sidekiq, Delay Job
+**Server:** Ruby on Rails, Postgresql, Redis, Solid Queue
 
 **Cloud Service:** Cloudinary
 
@@ -31,7 +31,7 @@ Every 3 minutes someone finds a flatmate on SpareRoom. With the biggest selectio
 
 * ruby 3.2.1 (2023-02-08 revision 31819e82c8)
 
-* Rails 7.0.8 
+* Rails 7.2
 
 * System dependencies [x86_64-linux]
 
@@ -165,6 +165,10 @@ Background Job
   - [Generating Devise Controllers - Rails Devise](https://stackoverflow.com/questions/41972575/generating-devise-controllers-rails-devise)
 
 
+#### Design, Visualize & Document Databases at the Speed of Thought
+https://dbmaps.innoaya.org/app  
+
+
 #### MapBox View
   - [Map Box](https://blog.corsego.com/gem-geocoder-ruby)
   - [Map Box Youtube](https://www.youtube.com/watch?v=oeeqEA_mdJs)
@@ -175,7 +179,11 @@ Background Job
 
 #### Logs into
   - [Logs into](https://flatmate.loggly.com/sources/setup/rails-app-setup)
-  -  [Loggly](https://my.solarwinds.cloud/login)
+  - [Loggly](https://my.solarwinds.cloud/login)
+
+#### Rails 7.2 Upgrade
+  - The same Rails 7.2 issue will affect the other “*_num” enums too: those attributes are virtual names, while the real columns are strings (gender, roomType, room_status, status) or an
+  array (manner_categories). I’m correcting the models to use the actual persisted columns and retaining compatibility helpers used by the existing forms.  
 
 #### Command Line
 
@@ -276,6 +284,5 @@ For support, email fake@fake.com or join our Slack channel.
   #### Design view
   - [Design View For Room](https://www.apartmentguide.com/apartments/North-Carolina/Asheville/111-Thurland-Ave/LV1334479033/)
   - [Google Map](https://gorails.com/episodes/google-maps-places-autocomplete-with-rails)
-
 
 

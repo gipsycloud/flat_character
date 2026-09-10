@@ -1,6 +1,3 @@
-require 'sidekiq/web'
-require 'sidekiq-status/web'
-
 Rails.application.routes.draw do
   get "/up", to: proc { [200, {}, ["OK"]] }
   resources :articles
@@ -97,7 +94,6 @@ Rails.application.routes.draw do
   end
 
   authenticate :admin do
-    mount Sidekiq::Web => '/sidekiq'
     get '/logs', to: 'logs#index'
   end
 

@@ -4,7 +4,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.2.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.4", ">= 7.0.4.3"
+gem "rails", "~> 7.2.0"
+gem "solid_queue", "~> 1.3"
 
 gem "rake"
 
@@ -64,7 +65,6 @@ group :development do
   gem "hotwire-livereload"
   gem 'better_errors', '~> 2.9', '>= 2.9.1'
   gem "binding_of_caller"
-  gem "meta_request"
   gem 'letter_opener'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
@@ -104,11 +104,6 @@ gem 'simple_form'
 gem 'simple_form-tailwind', '~> 0.1.1'
 
 gem 'uri'
-
-# gem 'sidekiq', '~> 7.1', '>= 7.1.2'
-gem 'sidekiq', '~> 5.2.8'
-gem 'sidekiq-status'
-gem 'sidekiq-cron'
 
 gem 'friendly_id', '~> 5.1'
 

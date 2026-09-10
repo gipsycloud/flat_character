@@ -1,6 +1,21 @@
 class UserInfo < ApplicationRecord
   belongs_to :user
-  enum manner_categories_num: { relax: 1, roommates_belongings: 2, respect: 3, chores_equally: 4, pay_bill: 5, quiet_person: 6, messy_one: 7, serious_person: 8 }
+  MANNER_CATEGORIES = {
+    relax: "relax",
+    roommates_belongings: "roommates_belongings",
+    respect: "respect",
+    chores_equally: "chores_equally",
+    pay_bill: "pay_bill",
+    quiet_person: "quiet_person",
+    messy_one: "messy_one",
+    serious_person: "serious_person"
+  }.freeze
+
+  # Compatibility name used by the profile form. The persisted attribute is
+  # the string array `manner_categories`, not an enum column.
+  def self.manner_categories_nums
+    MANNER_CATEGORIES
+  end
 
   validates :details, presence: true
 
