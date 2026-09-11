@@ -2,7 +2,10 @@ require 'jwt'
 module JsonWebToken
   extend ActiveSupport::Concern
   
-  JWT_SECRET = Rails.application.secrets.secret_key_base
+  # `Rails.application.secrets` was removed from newer Rails versions.
+  # Use a dedicated JWT secret when configured, falling back to Rails' main
+  # application secret for existing deployments.
+  JWT_SECRET = ENV.fetch("JWT_SECRET_KEY") { Rails.application.secret_key_base }.freeze
 
   class DecodeError < StandardError; end
   class ExpiredSignature < StandardError; end
