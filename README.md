@@ -286,3 +286,7 @@ For support, email fake@fake.com or join our Slack channel.
   - [Google Map](https://gorails.com/episodes/google-maps-places-autocomplete-with-rails)
 
 
+  ####  Temp render start command
+  bundle exec puma -t 5:5 -p ${PORT} -e ${RAILS_ENV:-production};
+
+

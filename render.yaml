@@ -34,7 +34,7 @@ services:
     buildCommand:
       bundle install; npm install; bundle exec rake db:prepare; bundle exec rake assets:precompile;
       bundle exec rake assets:clean;
-    startCommand: bundle exec puma -t 5:5 -p ${PORT} -e ${RAILS_ENV:-production}
+    startCommand: bundle exec puma -C config/puma.rb -p ${PORT} -e ${RAILS_ENV:-production}
     # domains:
       # - matecharacter.zwewintmann.com
     pullRequestPreviewsEnabled: true
