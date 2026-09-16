@@ -42,7 +42,7 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
 
-plugin: solid_queue if ENV["SOLID_QUEUE_IN_PUMA"] == true
+plugin :solid_queue if ENV["SOLID_QUEUE_IN_PUMA"] == true
 
 # Run Solid Queue inside the web process in production. The environment
 # variable remains available to disable it for a deployment if needed.
