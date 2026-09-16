@@ -44,5 +44,5 @@ plugin :tmp_restart
 
 # Run Solid Queue inside the web process in production. The environment
 # variable remains available to disable it for a deployment if needed.
-solid_queue_enabled = ENV.fetch("SOLID_QUEUE_IN_PUMA", ENV.fetch("RAILS_ENV", "development") == "production" ? "true" : "false")
+# solid_queue_enabled = ENV.fetch("SOLID_QUEUE_IN_PUMA", ENV.fetch("RAILS_ENV", "development") == "production" ? "true" : "false")
 plugin :solid_queue if solid_queue_enabled == "true"

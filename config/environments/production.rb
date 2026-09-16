@@ -56,8 +56,8 @@ Rails.application.configure do
   # config.force_ssl = true
 
   # Include generic and useful information about system operation, but avoid logging too much
-  config.hosts << "flatmate-hotfix-one-bo91.onrender.com"
-  config.hosts << "roommatecharacter.onrender.com"
+  config.hosts << "hostelmate.asia"
+  config.hosts << "www.hostelmate.asia"
   config.hosts << "localhost"
   config.hosts << "127.0.0.1"
 
