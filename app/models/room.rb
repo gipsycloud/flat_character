@@ -11,9 +11,22 @@ class Room < ApplicationRecord
   belongs_to :user, class_name: 'User', foreign_key: :user_id, optional: true
   # normalizes :slug, with: -> slug { slug.titlesize }
 
-  enum gender_num: { male: 1, female: 2, couple: 3, siblings: 4 }
-  enum room_type_num: { single_family: 1, apartment: 2, condo: 3, duplex: 4 }
-  enum room_status_num: { active: 1, inactive: 2 }
+  enum :gender, { male: "male", female: "female", couple: "couple", siblings: "siblings" }
+  enum :roomType, { single_family: "single_family", apartment: "apartment", condo: "condo", duplex: "duplex" }
+  enum :room_status, { active: "active", inactive: "inactive" }
+
+  # Compatibility names used by the existing form helpers.
+  def self.gender_nums
+    genders
+  end
+
+  def self.room_type_nums
+    roomTypes
+  end
+
+  def self.room_status_nums
+    room_statuses
+  end
 
   has_one :property, class_name: 'Property', foreign_key: :room_id
   has_many :room_images, :dependent => :destroy

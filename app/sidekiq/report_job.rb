@@ -1,5 +1,4 @@
-class ReportJob
-  include Sidekiq::Worker
+class ReportJob < ApplicationJob
 
   def perform(*args)
     # Do something

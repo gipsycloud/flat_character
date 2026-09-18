@@ -1,16 +1,16 @@
 default: &default
   adapter: postgresql
-  p  ping 13.228.46.236ool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
   <<: *default
-
-  # host: <%= ENV.fetch('DB_HOST', 'localhost') %>
-  # username: postgres
-  # password: password
   host: localhost
-  # database: blog_development
+  url: <%= ENV['DATABASE_URL'] %>
+  sslmode: disable
+
+test:
+  <<: *default
   url: <%= ENV['DATABASE_URL'] %>
   sslmode: disable
 
@@ -19,5 +19,3 @@ production:
   host: <%= ENV['DB_HOST'] %>
   url: <%= ENV['DATABASE_URL'] %>
   sslmode: disable
-  # Ensure the connection pool is handled for high-concurrency environments like Render
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
