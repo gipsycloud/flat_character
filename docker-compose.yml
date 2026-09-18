@@ -25,14 +25,13 @@ services:
     depends_on:
       - db
       - redis
-      - sidekiq
-  sidekiq:
+  worker:
     build: .
-    command: bundle exec sidekiq
+    command: bundle exec bin/jobs start
     volumes:
       - .:/myapp
     depends_on:
-      - 'redis'  
+      - db
     env_file:
     - .env      
 volumes:

@@ -10,10 +10,10 @@ module Blog
   class Application < Rails::Application
     # Use the responders controller from the responders gem
     config.app_generators.scaffold_controller :responders_controller
-    config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_adapter = :solid_queue
 
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
+    config.load_defaults 7.2
     config.autoload_paths << Rails.root.join('app', 'services')
 
     config.assets.css_compressor = nil

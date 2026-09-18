@@ -1,6 +1,3 @@
-require 'sidekiq/web'
-require 'sidekiq-status/web'
-
 Rails.application.routes.draw do
   get "/up", to: proc { [200, {}, ["OK"]] }
   resources :articles
@@ -97,7 +94,6 @@ Rails.application.routes.draw do
   end
 
   authenticate :admin do
-    mount Sidekiq::Web => '/sidekiq'
     get '/logs', to: 'logs#index'
   end
 
@@ -161,5 +157,5 @@ Rails.application.routes.draw do
 
   # Route for Chrome DevTools app-specific configuration, returning 404 if not found
   get "/.well-known/appspecific/com.chrome.devtools.json", to: proc { [404, {}, ['']] }
-
+  get "/health/redis", to: "health#redis"
 end

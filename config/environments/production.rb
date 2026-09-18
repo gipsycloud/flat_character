@@ -56,8 +56,8 @@ Rails.application.configure do
   # config.force_ssl = true
 
   # Include generic and useful information about system operation, but avoid logging too much
-  config.hosts << "flatmate-hotfix-one-bo91.onrender.com"
-  config.hosts << "roommatecharacter.onrender.com"
+  config.hosts << "hostelmate.asia"
+  config.hosts << "www.hostelmate.asia"
   config.hosts << "localhost"
   config.hosts << "127.0.0.1"
 
@@ -70,8 +70,8 @@ Rails.application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
-  # Use a real queuing backend for Active Job (and separate queues per environment).
-  # config.active_job.queue_adapter     = :resque
+  # Use Solid Queue for Active Job in production.
+  config.active_job.queue_adapter = :solid_queue
   # config.active_job.queue_name_prefix = "blog_production"
 
   config.action_mailer.perform_caching = false

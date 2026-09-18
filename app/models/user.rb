@@ -7,7 +7,7 @@ class User < ApplicationRecord
   attr_accessor :pin_0, :pin_1, :pin_2, :pin_3
 
   # enum role: %i[member admin]
-  enum role: {
+  enum :role, {
     member: 0,
     admin: 1
   }
@@ -114,11 +114,11 @@ class User < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["phone_number", "user_name"]
+    %w[user_name phone_number]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["payments", "rooms", "upgrade", "user_info"]
+    %w[payments rooms upgrade user_info]
   end
 
   private
