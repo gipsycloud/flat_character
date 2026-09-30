@@ -1,3 +1,6 @@
+<% content_for :title, "#{@post.post_title} | Hostelmate.asia" %>
+<% content_for :description, strip_tags(@post.post_body.to_s).truncate(160, omission: "") if @post.post_body.present? %>
+
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
     <% if notice.present? %>

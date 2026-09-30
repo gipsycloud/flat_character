@@ -1,8 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Flatmatecharacter</title>
+    <title><%= content_for(:title).presence || "Hostelmate.asia | Find a Room or Flatmate in Asia" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="<%= content_for(:description).presence || "Find rooms, shared homes, and flatmates across Asia with Hostelmate.asia." %>">
+    <link rel="canonical" href="https://hostelmate.asia<%= request.path %>">
+    <meta property="og:site_name" content="Hostelmate.asia">
+    <meta property="og:title" content="<%= content_for(:title).presence || "Hostelmate.asia | Find a Room or Flatmate in Asia" %>">
+    <meta property="og:description" content="<%= content_for(:description).presence || "Find rooms, shared homes, and flatmates across Asia with Hostelmate.asia." %>">
+    <meta property="og:url" content="https://hostelmate.asia<%= request.path %>">
+    <meta property="og:type" content="website">
+    <% indexable_page = (controller_name == "homes" && %w[index room_detail find_a_home list_a_room].include?(action_name) && params[:q].blank?) ||
+                        (controller_name == "makes" && action_name == "index") ||
+                        (controller_name == "posts" && action_name == "show") %>
+    <% unless indexable_page %>
+      <meta name="robots" content="noindex, nofollow">
+    <% end %>
     <meta name="turbo-visit-control" content="reload">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>

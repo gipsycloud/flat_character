@@ -1,3 +1,6 @@
+<% content_for :title, "Rooms for Rent Across Asia | Hostelmate.asia" %>
+<% content_for :description, "Browse room listings across Asia on Hostelmate.asia and find a shared home that fits your needs." %>
+
 <%= render "template/nav" %>
 
 <!-- Subtle background pattern -->
@@ -33,6 +36,7 @@
           <div class="relative overflow-hidden aspect-[4/3]">
             <%= cl_image_tag room.image_url,
                 class: "h-full w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out",
+                alt: "#{room.roomType.to_s.titleize} for rent in #{room.address.presence || 'Asia'}",
                 default_image: "default_image.jpg" %>
 
             <!-- Gradient overlay on hover -->

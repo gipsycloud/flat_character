@@ -289,4 +289,16 @@ For support, email fake@fake.com or join our Slack channel.
   ####  Temp render start command
   bundle exec puma -t 5:5 -p ${PORT} -e ${RAILS_ENV:-production};
 
+For hostelmate.asia, I’d focus on making the public pages easy for search engines to understand, then building useful content around the cities and countries you actually serve.
 
+What I noticed in the app: both layouts use the generic title “Flatmatecharacter” and don’t currently set page-specific descriptions, canonical URLs, or social-sharing metadata.  public/robots.txt  is only a comment, and I didn’t find a sitemap. The homepage also contains “SpareRoom” copy and mixed brand names; replace those with accurate Hostelmate content.
+
+Recommended priorities:
+
+1. Choose your first target markets. “Asia” is broad. Pick the countries and cities you can genuinely serve, then create helpful, distinct landing pages such as “Rooms for rent in [City]” or “Find a flatmate in [City]”—not thin pages that only swap the location name. Use the languages and currencies relevant to those markets.
+2. Add unique metadata to public pages. Give the homepage, city pages, room listings, and articles descriptive titles and meta descriptions. For example: “Rooms and Flatmates in [City] | Hostelmate.asia”. Add canonical URLs and Open Graph tags; keep private dashboards and account pages out of search results.
+3. Create a sitemap and deliberate robots rules. Include canonical public pages and available room listings; exclude admin, login, account, and duplicate/filter URLs. Submit the sitemap in Google Search Console and Bing Webmaster Tools.
+4. Improve room-listing pages. Use stable, descriptive URLs; show useful listing details and availability; add meaningful image alt text; and avoid indexing expired listings as if they were still available. Add structured data only where it accurately matches the visible page content.
+5. Build trust and local relevance. Publish original guides for renters and flatmates in your target cities, keep contact/about information clear, and encourage genuine reviews where appropriate. Make sure the site loads quickly and works well on mobile.
+
+I’d start with the branding/content cleanup and technical basics—metadata, canonical URLs, sitemap, and indexing rules—before investing heavily in a large set of location pages.

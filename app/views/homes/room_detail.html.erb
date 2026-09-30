@@ -1,3 +1,6 @@
+<% content_for :title, "#{@room.roomType.to_s.titleize} for Rent in #{@room.address.presence || "Asia"} | Hostelmate.asia" %>
+<% content_for :description, strip_tags(@room.details.to_s).truncate(160, omission: "") if @room.details.present? %>
+
 <%= render "template/nav" %>
 <div class="bg-stone-50 min-h-screen room_details" data-turbo="false">  
 
@@ -37,6 +40,7 @@
       <%= cl_image_tag(
             @room.image_url,
             class: "w-full h-[500px] rounded-xl object-cover shadow-lg",
+            alt: "#{@room.roomType.to_s.titleize} for rent in #{@room.address.presence || 'Asia'}",
             default_image: "default_image.jpg"
           ) %>
     </div>
@@ -48,6 +52,7 @@
           <%= cl_image_tag(
                 image.room_image_url,
                 class: "w-full h-32 object-cover hover:scale-110 transition duration-300 cursor-pointer",
+                alt: "Room photo for #{@room.roomType.to_s.titleize} in #{@room.address.presence || 'Asia'}",
                 default_image: "default_image.jpg"
               ) %>
         </div>
@@ -58,6 +63,7 @@
           <%= cl_image_tag(
                 @room.room_images[4].room_image_url,
                 class: "w-full h-32 object-cover brightness-50",
+                alt: "Additional room photo for #{@room.roomType.to_s.titleize} in #{@room.address.presence || 'Asia'}",
                 default_image: "default_image.jpg"
               ) %>
 

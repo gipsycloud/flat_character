@@ -1,1 +1,11 @@
-# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+User-agent: *
+Allow: /
+Disallow: /auth
+Disallow: /auth_admin
+Disallow: /admins
+Disallow: /users
+Disallow: /rooms
+Disallow: /api/
+Disallow: /main/
+Disallow: /web/
+Disallow: /verify

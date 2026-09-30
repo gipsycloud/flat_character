@@ -1,3 +1,6 @@
+<% content_for :title, "Find a Flatmate in Asia | Hostelmate.asia" %>
+<% content_for :description, "Browse flatmate profiles and connect with people looking for a place to live across Asia." %>
+
 <%= render "template/nav" %>
 
 <section class="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-24 sm:py-32 relative overflow-hidden">
@@ -42,7 +45,7 @@
           <!-- Avatar Section -->
           <div class="relative h-56 overflow-hidden">
             <a href="#" class="block h-full">
-              <%= cl_image_tag(u.avatar_url, width: 400, height: 300, :crop=>"fill", class: "w-full h-full object-cover transition-transform duration-700 group-hover:scale-105") %>
+              <%= cl_image_tag(u.avatar_url, width: 400, height: 300, :crop=>"fill", class: "w-full h-full object-cover transition-transform duration-700 group-hover:scale-105", alt: "#{u.user_name} flatmate profile") %>
             </a>
             <!-- Gradient overlay -->
             <div class="absolute inset-0 bg-gradient-to-t from-[rgba(24,24,27,0.9)] via-transparent to-transparent"></div>
