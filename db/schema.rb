@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_09_10_000000) do
+ActiveRecord::Schema[7.2].define(version: 2026_10_08_180140) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,6 +43,21 @@ ActiveRecord::Schema[7.2].define(version: 2026_09_10_000000) do
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
+  create_table "crawl_sessions", force: :cascade do |t|
+    t.bigint "job_source_id", null: false
+    t.integer "job_count", default: 0, null: false
+    t.integer "listings_found", default: 0
+    t.integer "listings_created", default: 0
+    t.integer "listings_updated", default: 0
+    t.datetime "started_at", null: false
+    t.datetime "finished_at"
+    t.integer "status", default: 0, null: false
+    t.text "error_message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_source_id"], name: "index_crawl_sessions_on_job_source_id"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -56,6 +71,53 @@ ActiveRecord::Schema[7.2].define(version: 2026_09_10_000000) do
 
   create_table "homes", force: :cascade do |t|
     t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "job_categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_job_categories_on_name", unique: true
+  end
+
+  create_table "job_listings", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "company", null: false
+    t.string "location", null: false
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
+    t.integer "salary_min"
+    t.integer "salary_max"
+    t.string "salary_currency"
+    t.integer "employment_type"
+    t.integer "experience_level"
+    t.integer "remote_status"
+    t.string "currency", default: "USD"
+    t.text "description"
+    t.string "source_url", null: false
+    t.string "url_digest", null: false
+    t.datetime "posted_at"
+    t.datetime "expires_at"
+    t.integer "status", default: 0, null: false
+    t.jsonb "metadata", default: {}, null: false
+    t.bigint "job_category_id"
+    t.bigint "job_source_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_category_id"], name: "index_job_listings_on_job_category_id"
+    t.index ["job_source_id"], name: "index_job_listings_on_job_source_id"
+  end
+
+  create_table "job_sources", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "base_url", null: false
+    t.string "crawler_class", null: false
+    t.jsonb "config", default: {}, null: false
+    t.boolean "active", default: true, null: false
+    t.integer "crawl_interval", default: 60, null: false
+    t.datetime "last_crawled_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -154,6 +216,17 @@ ActiveRecord::Schema[7.2].define(version: 2026_09_10_000000) do
     t.float "longitude"
     t.index ["slug"], name: "index_rooms_on_slug", unique: true
     t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
+  create_table "saved_jobs", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "job_listing_id", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_listing_id"], name: "index_saved_jobs_on_job_listing_id"
+    t.index ["user_id", "job_listing_id"], name: "index_saved_jobs_on_user_id_and_job_listing_id", unique: true
+    t.index ["user_id"], name: "index_saved_jobs_on_user_id"
   end
 
   create_table "solid_queue_batch_executions", force: :cascade do |t|
@@ -370,11 +443,16 @@ ActiveRecord::Schema[7.2].define(version: 2026_09_10_000000) do
   end
 
   add_foreign_key "articles", "users"
+  add_foreign_key "crawl_sessions", "job_sources"
+  add_foreign_key "job_listings", "job_categories"
+  add_foreign_key "job_listings", "job_sources"
   add_foreign_key "members", "rooms"
   add_foreign_key "payments", "users"
   add_foreign_key "properties", "rooms"
   add_foreign_key "properties", "users"
   add_foreign_key "rooms", "users"
+  add_foreign_key "saved_jobs", "job_listings"
+  add_foreign_key "saved_jobs", "users"
   add_foreign_key "solid_queue_batch_executions", "solid_queue_batches", column: "batch_id", on_delete: :cascade
   add_foreign_key "solid_queue_batch_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
