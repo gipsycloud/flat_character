@@ -2,7 +2,7 @@
 
 ## Project overview
 
-FlatMate Character is a Rails 7.2 monolith running on Ruby 3.2.1 with PostgreSQL. It serves the public room/flatmate website and server-rendered HTML views, plus a JSON API under `/api/v1`. Redis is used by Action Cable and production caching. Active Job uses Solid Queue, with jobs run by `bin/jobs`; recurring production jobs are configured in `config/recurring.yml`.
+FlatMate Character is a Rails 8.0 monolith running on Ruby 3.2.1 with PostgreSQL. It serves the public room/flatmate website and server-rendered HTML views, plus a JSON API under `/api/v1`. Redis is used by Action Cable and production caching. Active Job uses Solid Queue, with jobs run by `bin/jobs`; recurring production jobs are configured in `config/recurring.yml`.
 
 The frontend is primarily ERB plus Tailwind CSS, Stimulus, Hotwire/Turbo, jQuery, and importmap. JavaScript dependencies such as Flowbite, Swiper, Mapbox GL, and Argon2 are managed with npm/yarn. Images are uploaded through CarrierWave and Cloudinary-related configuration. Render is the production host; `render.yaml` is the deployment source of truth.
 

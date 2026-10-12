@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.2.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2.0"
+gem "rails", "~> 8.0.0"
 gem "solid_queue", "~> 1.3"
 
 gem "rake"
@@ -36,7 +36,7 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
 gem "redis-actionpack"
-# Rails 7.2's Redis cache store passes connection options as a hash.
+# Rails 8.0's Redis cache store passes connection options as a hash.
 # connection_pool 3.x only accepts keyword arguments.
 gem "connection_pool", "< 3"
 

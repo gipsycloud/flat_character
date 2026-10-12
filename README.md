@@ -31,7 +31,7 @@ Every 3 minutes someone finds a flatmate on SpareRoom. With the biggest selectio
 
 * ruby 3.2.1 (2023-02-08 revision 31819e82c8)
 
-* Rails 7.2
+* Rails 8.0
 
 * System dependencies [x86_64-linux]
 
