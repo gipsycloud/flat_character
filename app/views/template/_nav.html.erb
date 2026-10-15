@@ -1,9 +1,9 @@
 <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-  <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+  <%= link_to root_path, class: "flex items-center space-x-3 rtl:space-x-reverse" do %>
       <%= image_tag "logo.png", alt: "RoomMateCharacter", class: "h-8 auto" %>
       <%# <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">RoomMateCharacter</span> %>
-  </a>
+  <% end %>
   <div class="flex md:order-2 space-x-3 md:space-x-3 rtl:space-x-reverse">
       <%# <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
         focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700
@@ -11,7 +11,7 @@
 
       <%# <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Login</button> %>
       <% if user_signed_in? %>
-        <a href="/admins" class="block py-3 px-3 md:text-white lg:text-white rounded-full hover:bg-red-700 md:hover:text-white md:p-0 sm:bg-red-500 md:bg-red-500 md:px-4">Dashboard</a>
+        <%= link_to "Dashboard", users_authenticated_root_path, class: "block py-3 px-3 md:text-white lg:text-white rounded-full hover:bg-red-700 md:hover:text-white md:p-0 sm:bg-red-500 md:bg-red-500 md:px-4" %>
       <% else %>
         <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Join Free</button>
       <% end %>  
@@ -25,44 +25,44 @@
   <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
     <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
       <li>
-        <a href="/"
-           class="block py-2 px-3 rounded md:bg-transparent md:p-0 dark:text-white dark:hover:text-blue-500 dark:border-gray-700 <%= request.path == '/' ? 'text-blue-700 md:text-blue-700 font-semibold' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700' %>"
-           aria-current="<%= request.path == '/' ? 'page' : nil %>">Home</a>
+        <%= link_to "Home", root_path,
+           class: "block py-2 px-3 rounded md:bg-transparent md:p-0 dark:text-white dark:hover:text-blue-500 dark:border-gray-700 #{request.path == '/' ? 'text-blue-700 md:text-blue-700 font-semibold' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'}",
+           aria: { current: request.path == "/" ? "page" : nil } %>
       </li>
       <li>
-        <a href="/list_a_room"
-           class="block py-2 px-3 rounded md:p-0 dark:text-white dark:hover:text-blue-500 dark:border-gray-700 <%= request.path == '/list_a_room' ? 'text-blue-700 md:text-blue-700 font-semibold' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700' %>"
-           aria-current="<%= request.path == '/list_a_room' ? 'page' : nil %>">List a room</a>
+        <%= link_to "List a room", list_a_room_path,
+           class: "block py-2 px-3 rounded md:p-0 dark:text-white dark:hover:text-blue-500 dark:border-gray-700 #{request.path == '/list_a_room' ? 'text-blue-700 md:text-blue-700 font-semibold' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'}",
+           aria: { current: request.path == "/list_a_room" ? "page" : nil } %>
       </li>
       <li>
-        <a href="/find_a_home"
-           class="block py-2 px-3 rounded md:p-0 dark:text-white dark:hover:text-blue-500 dark:border-gray-700 <%= request.path == '/find_a_home' ? 'text-blue-700 md:text-blue-700 font-semibold' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700' %>"
-           aria-current="<%= request.path == '/find_a_home' ? 'page' : nil %>">Find a home</a>
+        <%= link_to "Find a home", find_a_home_path,
+           class: "block py-2 px-3 rounded md:p-0 dark:text-white dark:hover:text-blue-500 dark:border-gray-700 #{request.path == '/find_a_home' ? 'text-blue-700 md:text-blue-700 font-semibold' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'}",
+           aria: { current: request.path == "/find_a_home" ? "page" : nil } %>
       </li>
       <li>
-        <a href="/find_a_flatmate"
-           class="block py-2 px-3 rounded md:p-0 dark:text-white dark:hover:text-blue-500 dark:border-gray-700 <%= request.path == '/find_a_flatmate' ? 'text-blue-700 md:text-blue-700 font-semibold' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700' %>"
-           aria-current="<%= request.path == '/find_a_flatmate' ? 'page' : nil %>">Find a flatmate</a>
+        <%= link_to "Find a flatmate", find_a_flatmate_index_path,
+           class: "block py-2 px-3 rounded md:p-0 dark:text-white dark:hover:text-blue-500 dark:border-gray-700 #{request.path == '/find_a_flatmate' ? 'text-blue-700 md:text-blue-700 font-semibold' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'}",
+           aria: { current: request.path == "/find_a_flatmate" ? "page" : nil } %>
       </li>
       <li>
-        <a href="/services"
-           class="block py-2 px-3 rounded md:p-0 dark:text-white dark:hover:text-blue-500 dark:border-gray-700 <%= request.path == '/services' ? 'text-blue-700 md:text-blue-700 font-semibold' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700' %>"
-           aria-current="<%= request.path == '/services' ? 'page' : nil %>">Services</a>
+        <%= link_to "Services", services_path,
+           class: "block py-2 px-3 rounded md:p-0 dark:text-white dark:hover:text-blue-500 dark:border-gray-700 #{request.path == '/services' ? 'text-blue-700 md:text-blue-700 font-semibold' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'}",
+           aria: { current: request.path == "/services" ? "page" : nil } %>
       </li>
       <li>
-        <a href="/aboutus"
-           class="block py-2 px-3 rounded md:p-0 dark:text-white dark:hover:text-blue-500 dark:border-gray-700 <%= request.path == '/aboutus' ? 'text-blue-700 md:text-blue-700 font-semibold' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700' %>"
-           aria-current="<%= request.path == '/aboutus' ? 'page' : nil %>">About</a>
+        <%= link_to "About", aboutus_path,
+           class: "block py-2 px-3 rounded md:p-0 dark:text-white dark:hover:text-blue-500 dark:border-gray-700 #{request.path == '/aboutus' ? 'text-blue-700 md:text-blue-700 font-semibold' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'}",
+           aria: { current: request.path == "/aboutus" ? "page" : nil } %>
       </li>
       <li>
-        <a href="/contact"
-           class="block py-2 px-3 rounded md:p-0 dark:text-white dark:hover:text-blue-500 dark:border-gray-700 <%= request.path == '/contact' ? 'text-blue-700 md:text-blue-700 font-semibold' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700' %>"
-           aria-current="<%= request.path == '/contact' ? 'page' : nil %>">Contact</a>
+        <%= link_to "Contact", contact_path,
+           class: "block py-2 px-3 rounded md:p-0 dark:text-white dark:hover:text-blue-500 dark:border-gray-700 #{request.path == '/contact' ? 'text-blue-700 md:text-blue-700 font-semibold' : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700'}",
+           aria: { current: request.path == "/contact" ? "page" : nil } %>
       </li>
       <li>
         <% if user_signed_in? %>
         <% else %>
-          <a href="/auth/sign_in" class="block py-3 px-3 md:text-white lg:text-white rounded-full hover:bg-red-700 md:hover:text-white md:p-0 sm:bg-red-500 md:bg-red-500 md:px-4">Login</a>
+          <%= link_to "Login", new_user_session_path, class: "block py-3 px-3 md:text-white lg:text-white rounded-full hover:bg-red-700 md:hover:text-white md:p-0 sm:bg-red-500 md:bg-red-500 md:px-4" %>
         <% end %>
       </li>
     </ul>

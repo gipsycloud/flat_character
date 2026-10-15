@@ -10,7 +10,7 @@
   </div>
 <% end %>
 
-<%= simple_form_for @user do |f| %>
+<%= simple_form_for @user, url: @user.persisted? ? admin_user_path(@user) : admin_users_path do |f| %>
   <section class="">
     <div class="mx-auto px-2 py-0">
       <div class="grid grid-cols-1 gap-x-16 gap-y-8">

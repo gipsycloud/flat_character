@@ -10,7 +10,7 @@ class ProfileController < ApplicationController
 
   def update_member
     @user.update(user_params)
-    redirect_to detail_admins_url, notice: "Member was successfully updated."
+    redirect_to admin_profile_url, notice: "Member was successfully updated."
     flash[:alert] = "Member was successfully updated."
   end
 

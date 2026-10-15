@@ -33,15 +33,15 @@ class RoomsController < ApplicationController
       respond_to do |format|
         if @room.save
           store_image
-          format.html { redirect_to room_url(@room), notice: "Room was successfully created." }
-          format.json { render :show, status: :created, location: @room }
+          format.html { redirect_to admin_room_url(@room), notice: "Room was successfully created." }
+          format.json { render :show, status: :created, location: admin_room_url(@room) }
         else
           format.html { render :new, status: :unprocessable_entity }
           format.json { render json: @room.errors, status: :unprocessable_entity }
         end
       end
     else
-      redirect_to rooms_url, alert: 'You have reached your room limit'
+      redirect_to admin_rooms_url, alert: 'You have reached your room limit'
     end
   end
 
@@ -54,8 +54,8 @@ class RoomsController < ApplicationController
          # if @post_attachment.update(post_attachment_params)
         #   format.html { redirect_to @post_attachment.post, notice: 'Post attachment was successfully updated.' }
         # end
-        format.html { redirect_to room_url(@room), notice: "Room was successfully updated." }
-        format.json { render :show, status: :ok, location: @room }
+        format.html { redirect_to admin_room_url(@room), notice: "Room was successfully updated." }
+        format.json { render :show, status: :ok, location: admin_room_url(@room) }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @room.errors, status: :unprocessable_entity }
@@ -67,7 +67,7 @@ class RoomsController < ApplicationController
   def destroy
     @room.destroy
     respond_to do |format|
-      format.html { redirect_to rooms_url, notice: "Room was successfully destroyed." }
+      format.html { redirect_to admin_rooms_url, notice: "Room was successfully destroyed." }
       format.json { head :no_content }
     end
   end
