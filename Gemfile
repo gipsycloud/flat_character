@@ -127,3 +127,9 @@ gem "geocoder", "~> 1.8"
 gem 'syslogger', '~> 1.6.0'
 gem 'lograge', '~> 0.3.1'
 gem 'image_size', '~> 3.0'
+
+# Gemfile
+gem "faraday"          # HTTP requests
+gem "nokogiri"         # HTML parsing
+gem "mechanize"        # optional: crawling with forms/links
+gem "json", "< 3.0"     # Preserve compatibility with callers using create_additions

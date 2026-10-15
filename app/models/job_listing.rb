@@ -1,5 +1,5 @@
 class JobListing < ApplicationRecord
-	enum :statue, { active: 0, inactive: 1, removed: 2 }
+	enum :status, { active: 0, inactive: 1, removed: 2 }
 	enum :employment_type, { full_time: 0, part_time: 1, contract: 2, internship: 3, temporary: 4 }
 	enum :remote_status, { remote: 0, hybrid: 1, on_site: 2 }
 

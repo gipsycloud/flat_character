@@ -50,6 +50,8 @@ Rails.application.routes.draw do
           post "update_member" => "profile#update_member"
         end
       end
+
+      get 'detail' => "profile#profile"
       get 'report' => "admins#report"
       get 'members' => "admins#members"
       get 'availableroom' => "admins#availableroom"
@@ -59,12 +61,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :profile do
-    collection do
-      get 'detail' => "profile#profile"
-    end
-  end
-
+      # resources :profile do
+      #   collection do
+          
+      #   end
+      # end
   ############
   ############
   ############
@@ -158,4 +159,15 @@ Rails.application.routes.draw do
   # Route for Chrome DevTools app-specific configuration, returning 404 if not found
   get "/.well-known/appspecific/com.chrome.devtools.json", to: proc { [404, {}, ['']] }
   get "/health/redis", to: "health#redis"
+
+  # job listings routes
+  resources :job_listings, only: %i[index show]
+  post "job_listings/:job_listing_id/saved_jobs", to: "saved_jobs#create", as: :job_saved_jobs
+  delete "saved_jobs/:id", to: "saved_jobs#destroy", as: :saved_job
+
+  # namespace :admin do
+  #   resources :job_sources, only: %i[index] do
+  #     post :crawl_now, on: :user   # POST /admin/job_sources/:id/crawl_now
+  #   end
+  # end
 end
