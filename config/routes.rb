@@ -51,6 +51,10 @@ Rails.application.routes.draw do
         end
       end
 
+      # post 'apartments/:apartment_id/favorite', to: 'favorites#create', as: :favorite_apartment
+      # delete 'apartments/:apartment_id/favorite', to: 'favorites#destroy', as: :unfavorite_apartment
+      post "apartments/:apartment_id/favorites", to: "favorites#create", as: :apartment_favorites
+      delete "favorites/:id", to: "favorites#destroy", as: :favorite
       get 'detail' => "profile#profile"
       get 'report' => "admins#report"
       get 'members' => "admins#members"
@@ -160,7 +164,8 @@ Rails.application.routes.draw do
   get "/.well-known/appspecific/com.chrome.devtools.json", to: proc { [404, {}, ['']] }
   get "/health/redis", to: "health#redis"
 
-  # job listings routes
+  # Job listings
+  resources :apartments
   resources :job_listings, only: %i[index show]
   post "job_listings/:job_listing_id/saved_jobs", to: "saved_jobs#create", as: :job_saved_jobs
   delete "saved_jobs/:id", to: "saved_jobs#destroy", as: :saved_job

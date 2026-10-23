@@ -1,8 +1,9 @@
 # Use the official Ruby image
-FROM ruby:3.2.1
+FROM ruby:3.2-bookworm
 
 # Install dependencies
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN apt-get update -qq && apt-get install -y --no-install-recommends nodejs postgresql-client \
+	&& rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /myapp

@@ -1,0 +1,16 @@
+<%# app/views/apartments/show.html.erb %>
+<h1><%= @apartment.title %></h1>
+<p><%= @apartment.lifestyle_mode.humanize %> · <%= @apartment.address %></p>
+<p><%= @apartment.description %></p>
+<p><%= number_to_currency(@apartment.monthly_rent) %>/month</p>
+<%# anywhere on your apartment card/show page: %>
+<%= button_to "♥ Save", apartment_favorites_admins_path(@apartment) %>
+
+<% if @nearby_jobs.any? %>
+  <h2>💼 Jobs within 15 km</h2>
+  <ul>
+    <% @nearby_jobs.each do |job| %>
+      <li><%= link_to job.title, job_listing_path(job) %> — <%= job.company_name %></li>
+    <% end %>
+  </ul>
+<% end %>

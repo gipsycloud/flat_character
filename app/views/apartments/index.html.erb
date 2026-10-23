@@ -1,0 +1,23 @@
+<%# app/views/apartments/index.html.erb %>
+<h1>Find your place</h1>
+
+<div class="filters">
+  <%= link_to "All", apartments_path %>
+  <% Apartment.lifestyle_modes.each_key do |mode| %>
+    <%= link_to mode.humanize, apartments_path(lifestyle: mode) %>
+  <% end %>
+</div>
+
+<%= link_to "+ List your place", new_apartment_path %>
+
+<ul>
+  <% @apartments.each do |apartment| %>
+    <li>
+      <%= link_to apartment.title, apartment_path(apartment) %>
+      · <%= apartment.lifestyle_mode.humanize %>
+      · <%= apartment.city %>
+      · <%= number_to_currency(apartment.monthly_rent) %>
+      <%= button_to "♥", apartment_favorites_admins_path(apartment) %>
+    </li>
+  <% end %>
+</ul>

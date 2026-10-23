@@ -29,6 +29,16 @@ class User < ApplicationRecord
   has_many :payments, foreign_key: :user_id, dependent: :destroy
   has_one :subscription, foreign_key: :email, primary_key: :email, dependent: :destroy
   
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_apartments, through: :favorites, source: :apartment
+  has_many :apartments, foreign_key: :user_id, dependent: :destroy
+  has_many :job_listings, foreign_key: :user_id, dependent: :destroy
+  has_many :job_applications, foreign_key: :user_id, dependent: :destroy
+  has_many :job_sources, foreign_key: :user_id, dependent: :destroy
+  has_many :job_matches, foreign_key: :user_id, dependent: :destroy
+  has_many :job_matchings, through: :job_matches, source: :job_listing
+  has_many :saved_jobs, dependent: :destroy
+  
   accepts_nested_attributes_for :user_info
   # accepts_nested_attributes_for :subscription
   accepts_nested_attributes_for :upgrade, update_only: true, allow_destroy: true

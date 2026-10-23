@@ -10,6 +10,28 @@ services:
   redis:
     image: 'redis'
     command: redis-server
+  migrate:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails db:migrate"
+    volumes:
+      - .:/myapp
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: password
+    depends_on:
+      - db
+  seed:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails db:seed"
+    volumes:
+      - .:/myapp
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: password
+    depends_on:
+      - db  
   web:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails server -b '0.0.0.0'"
@@ -23,7 +45,8 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      # - db
+      - migrate
       - redis
   worker:
     build: .
@@ -31,7 +54,8 @@ services:
     volumes:
       - .:/myapp
     depends_on:
-      - db
+      # - db
+      - migrate
     env_file:
     - .env      
 volumes:
