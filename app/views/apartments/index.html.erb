@@ -17,7 +17,7 @@
       · <%= apartment.lifestyle_mode.humanize %>
       · <%= apartment.city %>
       · <%= number_to_currency(apartment.monthly_rent) %>
-      <%= button_to "♥", apartment_favorites_admins_path(apartment) %>
+      <%= button_to "♥", admin_apartment_favorites_path(apartment) %>
     </li>
   <% end %>
 </ul>

@@ -4,7 +4,7 @@
 <p><%= @apartment.description %></p>
 <p><%= number_to_currency(@apartment.monthly_rent) %>/month</p>
 <%# anywhere on your apartment card/show page: %>
-<%= button_to "♥ Save", apartment_favorites_admins_path(@apartment) %>
+<%= button_to "♥ Save", admin_apartment_favorites_path(@apartment) %>
 
 <% if @nearby_jobs.any? %>
   <h2>💼 Jobs within 15 km</h2>
