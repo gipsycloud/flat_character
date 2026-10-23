@@ -8,6 +8,6 @@ module RoomsHelper
   # end
 
   def html_link_to(*arg)
-    link_to @room.address, room_path(*arg), target: '_blank', style: 'color: rgb(88 80 236/var(--tw-bg-opacity))'
+    link_to @room.address, admin_room_path(*arg), target: '_blank', style: 'color: rgb(88 80 236/var(--tw-bg-opacity))'
   end
 end

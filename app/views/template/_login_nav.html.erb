@@ -1,14 +1,14 @@
 <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
   <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
     <!-- Logo -->
-    <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+    <%= link_to root_path, class: "flex items-center space-x-3 rtl:space-x-reverse" do %>
       <%= image_tag "logo.png", alt: "RoomMateCharacter", class: "h-8 auto" %>
-    </a>
+    <% end %>
 
     <!-- Desktop Buttons (hidden on mobile) -->
     <div class="hidden md:flex items-center space-x-3 rtl:space-x-reverse">
-      <a href="/auth/sign_in" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full text-sm">Login</a>
-      <a href="/auth/sign_up" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full text-sm">Join Free</a>
+      <%= link_to "Login", new_user_session_path, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full text-sm" %>
+      <%= link_to "Join Free", new_user_registration_path, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full text-sm" %>
       <% if admin_signed_in? %>
         <%= link_to "Sign Out (Admin)", destroy_admin_session_path, method: :delete, class: "bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full text-sm" %>
       <% else %>
@@ -35,13 +35,13 @@
     <div class="px-4 py-4 space-y-3 bg-white dark:bg-gray-900">
       <!-- Mobile Nav Links -->
       <div class="flex flex-col space-y-1">
-        <a href="/" class="block py-2 px-3 text-gray-900 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium">Home</a>
-        <a href="/list_a_room" class="block py-2 px-3 text-gray-900 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium">List a Room</a>
-        <a href="/find_a_home" class="block py-2 px-3 text-gray-900 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium">Find a Home</a>
-        <a href="/find_a_flatmate" class="block py-2 px-3 text-gray-900 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium">Find a Flatmate</a>
-        <a href="/aboutus" class="block py-2 px-3 text-gray-900 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium">About</a>
-        <a href="/services" class="block py-2 px-3 text-gray-900 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium">Services</a>
-        <a href="/contact" class="block py-2 px-3 text-gray-900 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium">Contact</a>
+        <%= link_to "Home", root_path, class: "block py-2 px-3 text-gray-900 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium" %>
+        <%= link_to "List a Room", list_a_room_path, class: "block py-2 px-3 text-gray-900 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium" %>
+        <%= link_to "Find a Home", find_a_home_path, class: "block py-2 px-3 text-gray-900 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium" %>
+        <%= link_to "Find a Flatmate", find_a_flatmate_index_path, class: "block py-2 px-3 text-gray-900 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium" %>
+        <%= link_to "About", aboutus_path, class: "block py-2 px-3 text-gray-900 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium" %>
+        <%= link_to "Services", services_path, class: "block py-2 px-3 text-gray-900 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium" %>
+        <%= link_to "Contact", contact_path, class: "block py-2 px-3 text-gray-900 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium" %>
       </div>
 
       <!-- Divider -->
@@ -49,8 +49,8 @@
 
       <!-- Mobile Auth Buttons -->
       <div class="flex flex-col space-y-2 pt-2">
-        <a href="/auth/sign_in" class="block text-center bg-red-500 hover:bg-red-700 text-white font-bold py-2.5 px-4 rounded-full">Login</a>
-        <a href="/auth/sign_up" class="block text-center bg-red-500 hover:bg-red-700 text-white font-bold py-2.5 px-4 rounded-full">Join Free</a>
+        <%= link_to "Login", new_user_session_path, class: "block text-center bg-red-500 hover:bg-red-700 text-white font-bold py-2.5 px-4 rounded-full" %>
+        <%= link_to "Join Free", new_user_registration_path, class: "block text-center bg-red-500 hover:bg-red-700 text-white font-bold py-2.5 px-4 rounded-full" %>
         <% if admin_signed_in? %>
           <%= link_to "Sign Out (Admin)", destroy_admin_session_path, method: :delete, class: "block text-center bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2.5 px-4 rounded-full" %>
         <% else %>

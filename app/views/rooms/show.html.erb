@@ -158,7 +158,7 @@
             <div class="relative aspect-[4/3] bg-gray-100">
               <%= cl_image_tag(image.room_image_url, class: "h-full w-full object-cover object-center transition duration-300 group-hover:scale-105") %>
               <%= button_to "Delete",
-                    room_room_image_path(@room.id, image.id),
+                    admin_room_room_image_path(@room.id, image.id),
                     method: :delete,
                     class: "absolute right-3 top-3 rounded-md bg-red-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-red-700",
                     form: { class: "contents" } %>
@@ -178,7 +178,7 @@
     <% end %>
 
     <div class="mt-8 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-      <%= form_for @room, url: room_room_images_path(@room), method: :post do |f| %>
+      <%= form_for @room, url: admin_room_room_images_path(@room), method: :post do |f| %>
         <div class="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-end">
           <div>
             <%= f.label :room_image, "Add Room Image", class: "mb-2 block text-sm font-medium text-gray-900" %>
@@ -195,5 +195,5 @@
   <%# <div class="inline-block ml-2"> %>
     <%#= button_to "Destroy this room", room_path(@room), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
   <%# </div> %>
-  <%= link_to "Back to rooms", rooms_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to "Back to rooms", admin_rooms_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>

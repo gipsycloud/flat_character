@@ -31,25 +31,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :admins do
-    collection do
-      resources :rooms do
-        resources :room_images, only: [:create, :destroy]
-      end
-      resources :upgrade do
-        # post "transaction", to: 'upgrade#plan_upgrade'
-        # collection do
-        #   get "plan"
-        # end
-      end
-      resources :users do
-        get :transaction
-        post "plan_upgrade" => "users#plan_upgrade"
-        collection do
-          get :profile
-          post "update_member" => "profile#update_member"
-        end
-      end
+  scope path: :admins, as: :admin do
+    resources :rooms do
+      resources :room_images, only: %i[create destroy]
+    end
 
       # post 'apartments/:apartment_id/favorite', to: 'favorites#create', as: :favorite_apartment
       # delete 'apartments/:apartment_id/favorite', to: 'favorites#destroy', as: :unfavorite_apartment
@@ -62,25 +47,34 @@ Rails.application.routes.draw do
       get 'setting' => "admins#setting"
       # namespace 'profile_setting' do
       # end
+    resources :upgrade, as: :upgrades
+
+    resources :users do
+      get :transaction
+      post :plan_upgrade
+
+      collection do
+        get :profile
+        post :update_member, to: "profile#update_member"
+      end
     end
+
+    get :detail, to: "profile#profile", as: :profile
+    get :report, to: "admins#report"
+    get :members, to: "admins#members"
+    get :availableroom, to: "admins#availableroom"
+    get :setting, to: "admins#setting"
   end
 
-      # resources :profile do
-      #   collection do
-          
-      #   end
-      # end
-  ############
-  ############
-  ############
-  ############
+  resources :admins
 
-  # main admin routes for maintainance for all website
+  # Admin authentication and dashboard
   devise_for :admins,
-  path: '/auth_admin', controllers: {
-    sessions: 'admins/sessions',
-    registrations: 'admins/registrations'
-  }
+    path: "/auth_admin",
+    controllers: {
+      sessions: "admins/sessions",
+      registrations: "admins/registrations"
+    }
 
   devise_scope :admin do
     authenticated :admin do
@@ -102,12 +96,9 @@ Rails.application.routes.draw do
     get '/logs', to: 'logs#index'
   end
 
-  ###########
-
-  # for website routes
-  resources :subscriptions, only: [:index, :new, :create]
+  # Public website
+  resources :subscriptions, only: %i[index new create]
   resources :mailer_subscription_unsubcribes, only: %i[show update]
-  # match 'mailer(/:action(/:id(.:format)))' => 'mailer#:action'
   resources :rooms do
     collection do
       post :generate_details
@@ -115,30 +106,30 @@ Rails.application.routes.draw do
   end
   resources :homes
   resources :makes, path: :find_a_flatmate, as: :find_a_flatmate
-  get "room/(:slug)", to: "homes#room_detail", as: "room_"
-  get "list_a_room" => "homes#list_a_room"
-  get "find_a_home" => "homes#find_a_home"
-  get "find_a_flatmate" => "homes#find_a_flatmate"
-  get "aboutus" => "homes#aboutus"
-  get "services" => "homes#services"
-  get "contact" => "homes#contact"
+  get "room/(:slug)", to: "homes#room_detail", as: :room_
+  get "list_a_room", to: "homes#list_a_room"
+  get "find_a_home", to: "homes#find_a_home"
+  get "find_a_flatmate", to: "homes#find_a_flatmate"
+  get "aboutus", to: "homes#aboutus"
+  get "services", to: "homes#services"
+  get "contact", to: "homes#contact"
 
   namespace :web do
-    get "room_checkout" => "properties#room_checkout"
-    get "reserve" => "properties#reserve"
-    post "confirm_reserve" => "properties#confirm_reserve"
+    get "room_checkout", to: "properties#room_checkout"
+    get "reserve", to: "properties#reserve"
+    post "confirm_reserve", to: "properties#confirm_reserve"
   end
 
-  get "/verify" => "verify#edit", :as => "verify"
-  get "/verify" => "verify#new", :as => "new_verify"
-  put "/verify" => "verify#update", :as => "update_verify"
-  post "/verify" => "verify#create", :as => "resend_verify"  # Defines the root path route ("/")
-  
+  get "/verify", to: "verify#edit", as: :verify
+  get "/verify", to: "verify#new", as: :new_verify
+  put "/verify", to: "verify#update", as: :update_verify
+  post "/verify", to: "verify#create", as: :resend_verify
+
   resources :posts
   root "homes#index"
 
 
-  # apicontroller
+  # JSON API
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       devise_for :users, path: '', path_names: {
@@ -155,8 +146,7 @@ Rails.application.routes.draw do
         resources :rooms
       end
 
-      get "trigger_task", to: "tasks#trigger"
-      post "trigger_task", to: "tasks#trigger"
+      match "trigger_task", to: "tasks#trigger", via: %i[get post]
     end
   end
 
@@ -167,12 +157,6 @@ Rails.application.routes.draw do
   # Job listings
   resources :apartments
   resources :job_listings, only: %i[index show]
-  post "job_listings/:job_listing_id/saved_jobs", to: "saved_jobs#create", as: :job_saved_jobs
   delete "saved_jobs/:id", to: "saved_jobs#destroy", as: :saved_job
-
-  # namespace :admin do
-  #   resources :job_sources, only: %i[index] do
-  #     post :crawl_now, on: :user   # POST /admin/job_sources/:id/crawl_now
-  #   end
-  # end
+  post "job_listings/:job_listing_id/saved_jobs", to: "saved_jobs#create", as: :job_saved_jobs
 end

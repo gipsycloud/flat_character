@@ -28,9 +28,9 @@
               Add new user
             </button> %>
             <% if current_user.paid_plan? %>
-              <%= link_to "New Room", new_room_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
+              <%= link_to "New Room", new_admin_room_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
             <% elsif current_user.free_plan? && current_user.rooms.count < 2 %>
-              <%= link_to "New Room", new_room_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
+              <%= link_to "New Room", new_admin_room_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
             <% elsif @rooms.count >= 2 %>
               <div class="p-4 mb-0 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
                 <span class="font-medium">
@@ -228,8 +228,8 @@
             </td>
             <td class="px-6 py-4">
               <%= link_to "Show", room, class: "rounded-lg py-2 px-2 bg-gray-100 inline-block font-medium" %>
-              <%= link_to "Edit", edit_room_path(room), class: "rounded-lg py-2 px-2 bg-gray-100 inline-block font-medium" %>
-              <%= link_to "Delete", room_path(room), method: :delete, class: "rounded-lg py-2 px-2 bg-gray-100 inline-block font-medium" %>
+              <%= link_to "Edit", edit_admin_room_path(room), class: "rounded-lg py-2 px-2 bg-gray-100 inline-block font-medium" %>
+              <%= link_to "Delete", admin_room_path(room), method: :delete, class: "rounded-lg py-2 px-2 bg-gray-100 inline-block font-medium" %>
             </td>
           </tr>
         <% end %>
