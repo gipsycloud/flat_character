@@ -1,7 +1,7 @@
 module Crawler
 	class RemotiveCrawler < BaseCrawler
 		def fetch_listings
-			response = @http.get(@job_source.config["url"])
+			response = @http.get(source_url)
 			if response.status == 200
 				data = JSON.parse(response.body)
 				data["jobs"].map do |job|

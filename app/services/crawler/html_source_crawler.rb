@@ -1,7 +1,7 @@
 module Crawler
   class HtmlSourceCrawler < BaseCrawler
     def fetch_listings
-      response = @http.get(@job_source.config["url"])
+      response = @http.get(source_url)
       if response.status == 200
         html = Nokogiri::HTML(response.body)
         listings = []

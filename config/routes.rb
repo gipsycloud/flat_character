@@ -36,6 +36,17 @@ Rails.application.routes.draw do
       resources :room_images, only: %i[create destroy]
     end
 
+      # post 'apartments/:apartment_id/favorite', to: 'favorites#create', as: :favorite_apartment
+      # delete 'apartments/:apartment_id/favorite', to: 'favorites#destroy', as: :unfavorite_apartment
+      post "apartments/:apartment_id/favorites", to: "favorites#create", as: :apartment_favorites
+      delete "favorites/:id", to: "favorites#destroy", as: :favorite
+      get 'detail' => "profile#profile"
+      get 'report' => "admins#report"
+      get 'members' => "admins#members"
+      get 'availableroom' => "admins#availableroom"
+      get 'setting' => "admins#setting"
+      # namespace 'profile_setting' do
+      # end
     resources :upgrade, as: :upgrades
 
     resources :users do
@@ -144,6 +155,7 @@ Rails.application.routes.draw do
   get "/health/redis", to: "health#redis"
 
   # Job listings
+  resources :apartments
   resources :job_listings, only: %i[index show]
   delete "saved_jobs/:id", to: "saved_jobs#destroy", as: :saved_job
   post "job_listings/:job_listing_id/saved_jobs", to: "saved_jobs#create", as: :job_saved_jobs

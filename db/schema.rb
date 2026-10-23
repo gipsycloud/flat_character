@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_10_08_180140) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_23_191902) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "admins", force: :cascade do |t|
     t.string "admin_email"
@@ -31,6 +31,29 @@ ActiveRecord::Schema[7.2].define(version: 2026_10_08_180140) do
     t.datetime "remember_created_at"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "apartments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "title", null: false
+    t.text "description"
+    t.string "address", null: false
+    t.string "city"
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
+    t.decimal "monthly_rent", precision: 10, scale: 2
+    t.string "currency", default: "USD"
+    t.integer "bedrooms", default: 1
+    t.integer "bathrooms", default: 1
+    t.integer "size_m2"
+    t.integer "lifestyle_mode", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.date "available_from"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lifestyle_mode"], name: "index_apartments_on_lifestyle_mode"
+    t.index ["status"], name: "index_apartments_on_status"
+    t.index ["user_id"], name: "index_apartments_on_user_id"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -56,6 +79,16 @@ ActiveRecord::Schema[7.2].define(version: 2026_10_08_180140) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["job_source_id"], name: "index_crawl_sessions_on_job_source_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "apartment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["apartment_id"], name: "index_favorites_on_apartment_id"
+    t.index ["user_id", "apartment_id"], name: "index_favorites_on_user_id_and_apartment_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -108,6 +141,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_10_08_180140) do
     t.datetime "updated_at", null: false
     t.index ["job_category_id"], name: "index_job_listings_on_job_category_id"
     t.index ["job_source_id"], name: "index_job_listings_on_job_source_id"
+    t.index ["url_digest"], name: "index_job_listings_on_url_digest", unique: true
   end
 
   create_table "job_sources", force: :cascade do |t|
@@ -442,8 +476,11 @@ ActiveRecord::Schema[7.2].define(version: 2026_10_08_180140) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "apartments", "users"
   add_foreign_key "articles", "users"
   add_foreign_key "crawl_sessions", "job_sources"
+  add_foreign_key "favorites", "apartments"
+  add_foreign_key "favorites", "users"
   add_foreign_key "job_listings", "job_categories"
   add_foreign_key "job_listings", "job_sources"
   add_foreign_key "members", "rooms"

@@ -1,4 +1,6 @@
 class JobMatcher
+  RADIUS_KM = 15
+
   def initialize(user)
     @user = user
   end
@@ -8,17 +10,41 @@ class JobMatcher
   end
 
   def matched_jobs(limit =10)
-    if preferred_apartment
-      JobListing.active
-                .where(job_category_id: @user.job_category_ids)
-                .near([@user.latitude, @user.longitude], 10, units: :km)
-                .limit(limit)
-    else
-      JobListing.active.order(posted_at: :desc).limit(limit)
-    end
+    nearby_jobs(limit: limit).presence || fallback_jobs(limit: limit)
+    # apartment = preferred_apartment
+    # if apartment&.latitude.present?
+    #   JobListing.active
+    #             .includes(:job_source)
+    #             .near([apartment.latitude, apartment.longitude], RADIUS_KM, units: :km)
+    #             .order(posted_at: :desc)
+    #             .limit(limit)
+    # else
+    #   JobListing.active     # fallback: no favorites yet → remote-first, newest
+    #             .includes(:job_source)
+    #             .order(remote_status: :desc, posted_at: :desc)
+    #             .limit(limit)
+    # end
   end
 
   private
+
+  def nearby_jobs(limit:)
+    apartment = preferred_apartment
+    return JobListing.none unless apartment&.latitude.present? && apartment.longitude.present?
+
+    JobListing.active
+      .where.not(latitude: nil)
+      .near([apartment.latitude, apartment.longitude], RADIUS_KM, units: :km)
+      .order(posted_at: :desc)
+      .limit(limit)
+  end
+
+  def fallback_jobs(limit:)
+    JobListing.active
+      .includes(:job_source)
+      .order(remote_status: :desc, posted_at: :desc)
+      .limit(limit)
+  end
 
   def preferred_apartment
     @user.favorite_apartments.order(created_at: :desc).first

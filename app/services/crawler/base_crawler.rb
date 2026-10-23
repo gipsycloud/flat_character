@@ -14,6 +14,13 @@ module Crawler
 			raise NotImplementedError, "Subclasses must implement the fetch_listings method"
 		end
 
+    def source_url
+      url = @job_source.config.to_h["url"]
+      raise ArgumentError, "Crawler URL is missing for #{@job_source.name}" if url.blank?
+
+      url
+    end
+
     def crawl!
 			session = @job_source.crawl_sessions.create!(status: :in_progress, started_at: Time.current)
 			created = updated = 0
@@ -29,9 +36,13 @@ module Crawler
                       listings_created: created, listings_updated: updated, finished_at: Time.current)
 				@job_source.update!(last_crawled_at: Time.current)
 			rescue StandardError => e
-				session.update!(status: :failed, error_message: e.message, finished_at: Time.current)
-      	Rails.logger.error("[Crawler] #{@job_source.name} failed: #{e.message}")
-			end
+        session.update!(
+          status: :failed,
+          error_message: "#{e.class}: #{e.message}\n" + e.backtrace.first(5).join("\n"),
+          finished_at: Time.current
+        )
+        Rails.logger.error("[Crawler] #{@job_source.name} failed: #{e.message}")
+      end
 		end
 	end
 end
