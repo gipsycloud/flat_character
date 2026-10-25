@@ -2,7 +2,13 @@ class JobSourcesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @crawl_sessions = CrawlSession.includes(:job_source).order(created_at: :desc).page(params[:page]).per(params.fetch(:per_page, 20))
+    @job_sources    = JobSource.order(:name)
+    @crawl_sessions = CrawlSession.includes(:job_source).order(started_at: :desc).limit(10)
+    @stats = {
+      listings: JobListing.count,
+      active:   JobListing.active.count,
+      saved:    SavedJob.count
+    }
   end
 
   def show

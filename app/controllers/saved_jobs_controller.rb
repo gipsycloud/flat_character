@@ -2,7 +2,7 @@ class SavedJobsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @saved_jobs = current_user.saved_jobs.includes(job_listing: [:job_source, :job_category]).order(created_at: :desc).page(params[:page]).per(params.fetch(:per_page, 20))
+    @saved_jobs = current_user.saved_jobs.includes(job_listing: [:job_source, :job_category]).order(created_at: :desc)
   end
 
   def create

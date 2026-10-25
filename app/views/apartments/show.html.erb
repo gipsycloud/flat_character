@@ -1,16 +1,155 @@
-<%# app/views/apartments/show.html.erb %>
-<h1><%= @apartment.title %></h1>
-<p><%= @apartment.lifestyle_mode.humanize %> · <%= @apartment.address %></p>
-<p><%= @apartment.description %></p>
-<p><%= number_to_currency(@apartment.monthly_rent) %>/month</p>
-<%# anywhere on your apartment card/show page: %>
-<%= button_to "♥ Save", admin_apartment_favorites_path(@apartment) %>
+<div class="mx-auto max-w-5xl px-4 py-8">
+  <%= link_to "← Back to apartments", admin_apartments_path, class: "text-sm text-slate-500 hover:text-slate-800" %>
 
-<% if @nearby_jobs.any? %>
-  <h2>💼 Jobs within 15 km</h2>
-  <ul>
-    <% @nearby_jobs.each do |job| %>
-      <li><%= link_to job.title, job_listing_path(job) %> — <%= job.company_name %></li>
+  <!-- Hero -->
+  <div class="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+    <div class="relative h-44 bg-gradient-to-br <%= lifestyle_gradient(@apartment.lifestyle_mode) %>">
+      <div class="absolute left-4 top-4 flex flex-wrap gap-2">
+        <span class="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700 backdrop-blur">
+          <%= @apartment.lifestyle_mode.humanize %> living
+        </span>
+        <% if @apartment.status == "available" %>
+          <span class="rounded-full bg-emerald-500/90 px-3 py-1 text-xs font-semibold text-white">Available now</span>
+        <% elsif @apartment.status == "occupied" %>
+          <span class="rounded-full bg-slate-900/80 px-3 py-1 text-xs font-semibold text-white">Occupied</span>
+        <% end %>
+      </div>
+
+      <div class="absolute bottom-4 left-4 right-4 flex flex-wrap items-end justify-between gap-3 text-white drop-shadow">
+        <div>
+          <h1 class="text-3xl font-bold"><%= @apartment.title %></h1>
+          <p class="mt-1 text-sm opacity-90">
+            <%= [@apartment.address, @apartment.city].compact.reject(&:blank?).join(", ") %>
+          </p>
+        </div>
+        <div class="text-right">
+          <p class="text-3xl font-extrabold"><%= @apartment.currency %> <%= number_with_delimiter(@apartment.monthly_rent) %></p>
+          <p class="text-xs opacity-90">per month</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action bar -->
+    <div class="flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 px-6 py-4">
+      <p class="text-sm text-slate-500">
+        <% if @apartment.user.present? %>
+          Listed by <%= @apartment.user.try(:name).presence || @apartment.user.email %>
+        <% else %>
+          Listed anonymously
+        <% end %>
+      </p>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <% if user_signed_in? %>
+          <% fav = favorite_apartment_map[@apartment.id] %>
+          <% if fav %>
+            <%= button_to "♥ Saved — remove", admin_apartment_favorites_path(fav), method: :delete,
+                  class: "rounded-lg border border-red-200 px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50" %>
+          <% else %>
+            <%= button_to "♥ Save this apartment", admin_apartment_favorites_path(@apartment),
+                  class: "rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-500" %>
+          <% end %>
+        <% end %>
+
+        <% if user_signed_in? && @apartment.user == current_user %>
+          <%= link_to "Edit", edit_admin_apartment_path(@apartment),
+                class: "rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50" %>
+          <%= button_to "Delete", admin_apartment_path(@apartment), method: :delete,
+                data: { turbo_confirm: "Delete this listing permanently?" },
+                class: "rounded-lg border border-red-200 px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key facts -->
+  <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+    <div class="rounded-xl border border-slate-200 bg-white p-4">
+      <p class="text-xs text-slate-500">Bedrooms</p>
+      <p class="mt-1 text-xl font-bold text-slate-900"><%= @apartment.bedrooms %></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4">
+      <p class="text-xs text-slate-500">Bathrooms</p>
+      <p class="mt-1 text-xl font-bold text-slate-900"><%= @apartment.bathrooms %></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4">
+      <p class="text-xs text-slate-500">Size</p>
+      <p class="mt-1 text-xl font-bold text-slate-900"><%= @apartment.size_m2.present? ? "#{@apartment.size_m2} m²" : "—" %></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4">
+      <p class="text-xs text-slate-500">Available from</p>
+      <p class="mt-1 text-xl font-bold text-slate-900"><%= @apartment.available_from.present? ? @apartment.available_from.strftime("%b %Y") : "Now" %></p>
+    </div>
+  </div>
+
+  <!-- Lifestyle note -->
+  <div class="mt-4 rounded-xl border border-indigo-100 bg-indigo-50 p-4 text-sm text-indigo-800">
+    <span class="font-semibold"><%= @apartment.lifestyle_mode.humanize %> match:</span>
+    <%= lifestyle_tagline(@apartment.lifestyle_mode) %>
+  </div>
+
+  <!-- Description -->
+  <div class="mt-6 rounded-2xl border border-slate-200 bg-white p-6">
+    <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">About this place</h2>
+    <div class="prose prose-slate mt-3 max-w-none text-slate-700">
+      <%= simple_format(@apartment.description.presence || "No description provided yet.") %>
+    </div>
+  </div>
+
+  <!-- Location -->
+  <div class="mt-6 rounded-2xl border border-slate-200 bg-white p-6">
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">Location</h2>
+      <% if @apartment.latitude.present? %>
+        <%= link_to "Open in Google Maps →",
+              "https://www.google.com/maps/search/?api=1&query=#{@apartment.latitude},#{@apartment.longitude}",
+              target: "_blank", rel: "noopener", class: "text-xs font-medium text-indigo-600 hover:underline" %>
+      <% end %>
+    </div>
+    <p class="mt-2 text-slate-700"><%= [@apartment.address, @apartment.city].compact.reject(&:blank?).join(", ") %></p>
+
+    <% if @apartment.latitude.present? && @apartment.longitude.present? %>
+      <% bbox = [@apartment.longitude - 0.01, @apartment.latitude - 0.01,
+                 @apartment.longitude + 0.01, @apartment.latitude + 0.01].join(",") %>
+      <iframe class="mt-4 h-64 w-full rounded-xl border border-slate-200" loading="lazy"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=<%= bbox %>&layer=mapnik&marker=<%= @apartment.latitude %>,<%= @apartment.longitude %>"></iframe>
+    <% else %>
+      <p class="mt-2 text-xs text-slate-400">Map unavailable — this listing has no coordinates yet.</p>
     <% end %>
-  </ul>
-<% end %>
+  </div>
+
+  <!-- Jobs -->
+  <div class="mt-6 rounded-2xl border border-slate-200 bg-white p-6">
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-400">
+        <%= @remote_fallback ? "Remote jobs — work from anywhere" : "Jobs near this apartment (within #{JobMatcher::RADIUS_KM} km)" %>
+      </h2>
+      <%= link_to "All jobs →", admin_job_listings_path, class: "text-xs font-medium text-indigo-600 hover:underline" %>
+    </div>
+
+    <div class="mt-4 space-y-4">
+      <% if @jobs.any? %>
+        <%= render partial: "job_listings/job_card", collection: @jobs, as: :job %>
+      <% else %>
+        <p class="text-sm text-slate-400">No job listings to show yet — run a crawl from the admin panel.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Similar apartments -->
+  <% if @similar_apartments.any? %>
+    <h2 class="mt-8 text-xl font-bold text-slate-900">
+      Similar <%= @apartment.lifestyle_mode %> apartments
+    </h2>
+    <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <% @similar_apartments.each do |a| %>
+        <%= link_to a, class: "group rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:shadow-md" do %>
+          <div class="h-1.5 w-12 rounded-full bg-gradient-to-r <%= lifestyle_gradient(a.lifestyle_mode) %>"></div>
+          <p class="mt-3 line-clamp-1 font-semibold text-slate-900 group-hover:text-indigo-600"><%= a.title %></p>
+          <p class="text-sm text-slate-500"><%= a.city %> · <%= a.bedrooms %> bed</p>
+          <p class="mt-1 text-sm font-bold text-slate-900"><%= a.currency %> <%= number_with_delimiter(a.monthly_rent) %>/mo</p>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

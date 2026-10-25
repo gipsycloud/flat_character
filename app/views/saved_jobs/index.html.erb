@@ -12,7 +12,7 @@
               <span class="text-xs font-medium uppercase tracking-wide text-indigo-600">
                 <%= job.job_source&.name || "Unknown" %>
               </span>
-              <%= link_to job.title, job_listing_path(job),
+              <%= link_to job.title, admin_job_listing_path(job),
                     class: "mt-0.5 block truncate text-lg font-semibold text-slate-900 hover:text-indigo-600" %>
               <p class="text-sm text-slate-600">
                 <%= job.company_name %><%= " · #{job.location}" if job.location.present? %>

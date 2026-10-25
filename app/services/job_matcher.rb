@@ -26,6 +26,16 @@ class JobMatcher
     # end
   end
 
+  def self.jobs_near(apartment, limit: 5)
+    return JobListing.none unless apartment&.latitude.present? && apartment.longitude.present?
+
+    JobListing.active
+      .where.not(latitude: nil)
+      .near([apartment.latitude, apartment.longitude], RADIUS_KM, units: :km)
+      .order(posted_at: :desc)
+      .limit(limit)
+  end
+
   private
 
   def nearby_jobs(limit:)

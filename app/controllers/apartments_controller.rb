@@ -27,11 +27,24 @@ class ApartmentsController < ApplicationController
   end
 
   def show
-    @nearby_jobs = if @apartment.latitude && @apartment.longitude
-                     JobListing.active.near([@apartment.latitude, @apartment.longitude], 10)
-                   else
-                     []
-                   end
+    @apartment = Apartment.find(params[:id])
+    if @apartment.status == "hidden" && @apartment.user != current_user
+      return redirect_to admin_apartment_path, alert: "This listing is not available."
+    end
+
+    @nearby_jobs = JobMatcher.jobs_near(@apartment, limit: 4)
+    @remote_fallback = @nearby_jobs.empty?
+    @jobs = @nearby_jobs.presence ||
+            JobListing
+              .active
+              .where(remote_status: :remote)
+              .order(posted_at: :desc)
+              .limit(4)
+
+    @similar_apartments = Apartment.available_now
+                                  .where.not(id: @apartment.id)
+                                  .where(lifestyle_mode: @apartment.lifestyle_mode)
+                                  .order(created_at: :desc).limit(3)
   end
 
   def new

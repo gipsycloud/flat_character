@@ -45,7 +45,7 @@ Rails.application.routes.draw do
       resources :favorites, only: %i[index create destroy]
       resources :job_listings, only: %i[index show]
       resources :saved_jobs, only: %i[index create destroy]
-      resources :job_sources, only: %i[index] do
+      resources :job_sources, only: %i[index show] do
         post :crawl_now, on: :member
       end
       resources :crawl_sessions, only: %i[index show]
