@@ -1,10 +1,29 @@
 class ApartmentsController < ApplicationController
   before_action :set_apartment, only: %i[show edit update destroy]
 
+  PER_PAGE = 10
+  
   def index
-    @apartments = Apartment.available_now.order(created_at: :desc)
-    @apartments = @apartments.where(lifestyle_mode: params[:lifestyle_mode]) if params[:lifestyle_mode].present?
-    # @apartments.where(lifestyle_mode: params[:lifestyle]) if params[:lifestyle].in?(Apartment.lifestyle_modes.keys)
+    scope = Apartment.where.not(status: :hidden)
+
+    scope = scope.where(lifestyle_mode: params[:lifestyle_mode])     if params[:lifestyle_mode].present?
+    scope = scope.where(city: params[:city])                         if params[:city].present?
+    scope = scope.where("monthly_rent <= ?", params[:max_rent])      if params[:max_rent].present?
+    scope = scope.where("bedrooms >= ?",  params[:bedrooms])         if params[:bedrooms].present?
+
+    case params[:sort]
+    when "price_asc"  then scope = scope.order(monthly_rent: :asc)
+    when "price_desc" then scope = scope.order(monthly_rent: :desc)
+    else                   scope = scope.order(created_at: :desc)
+    end
+
+    @total = scope.count
+    @pages = (@total / PER_PAGE.to_f).ceil
+    @page  = [params.fetch(:page, 1).to_i, 1].max
+    @page  = [@page, @pages].min if @pages.positive?
+
+    @apartments = scope.offset((@page - 1) * PER_PAGE).limit(PER_PAGE)
+    @cities = Apartment.where.not(city: [nil, ""]).distinct.order(:city).pluck(:city)
   end
 
   def show

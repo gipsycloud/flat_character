@@ -2,7 +2,11 @@ class JobSourcesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @job_sources = JobSource.all
+    @crawl_sessions = CrawlSession.includes(:job_source).order(created_at: :desc).page(params[:page]).per(params.fetch(:per_page, 20))
+  end
+
+  def show
+    @crawl_session = CrawlSession.includes(:job_source).find(params[:id])
   end
 
   def crawl_now

@@ -1,0 +1,47 @@
+<div class="mx-auto max-w-5xl px-4 py-8">
+  <div class="flex items-end justify-between">
+    <div>
+      <h1 class="text-3xl font-bold text-slate-900">Job Listings</h1>
+      <p class="mt-1 text-sm text-slate-500"><%= @pages.positive? ? "Page #{@page} of #{@pages}" : "No jobs yet" %></p>
+    </div>
+  </div>
+
+  <%= form_with url: admin_job_listings_path, method: :get, class: "mt-6 flex flex-wrap gap-3" do %>
+    <%= text_field_tag :q, params[:q], placeholder: "Search title or company…",
+          class: "w-64 rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none" %>
+    <%= select_tag :remote,
+          options_for_select([["Any location", ""], ["Remote only", "remote"], ["Hybrid", "hybrid"], ["On-site", "onsite"]], params[:remote]),
+          class: "rounded-lg border border-slate-300 px-3 py-2 text-sm" %>
+    <% if @categories.any? %>
+      <%= select_tag :category,
+            options_for_select([["All categories", ""]] + @categories.map { |c| [c.name, c.id] }, params[:category]),
+            class: "rounded-lg border border-slate-300 px-3 py-2 text-sm" %>
+    <% end %>
+    <%= submit_tag "Filter", class: "rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700" %>
+    <%= link_to "Reset", admin_job_listings_path, class: "px-3 py-2 text-sm text-slate-500 hover:text-slate-800" %>
+  <% end %>
+
+  <div class="mt-6 space-y-4">
+    <% if @job_listings.any? %>
+      <%= render partial: "job_listings/job_card", collection: @job_listings, as: :job %>
+    <% else %>
+      <div class="rounded-xl border border-dashed border-slate-300 bg-white p-12 text-center">
+        <p class="text-slate-500">No jobs match your filters.</p>
+        <p class="mt-1 text-sm text-slate-400">Try resetting the filters, or crawl a source from the admin panel.</p>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @pages > 1 %>
+    <div class="mt-8 flex items-center justify-between">
+      <% if @page > 1 %>
+        <%= link_to "← Previous", job_listings_path(request.query_parameters.merge(page: @page - 1)),
+              class: "rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:bg-slate-50" %>
+      <% else %><span></span><% end %>
+      <% if @page < @pages %>
+        <%= link_to "Next →", job_listings_path(request.query_parameters.merge(page: @page + 1)),
+              class: "rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:bg-slate-50" %>
+      <% else %><span></span><% end %>
+    </div>
+  <% end %>
+</div>

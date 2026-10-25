@@ -15,7 +15,7 @@ module Crawler
 
           listings << {
             title: title_element&.text&.strip,
-            company: company_element&.text&.strip,
+            company_name: company_element&.text&.strip,
             description: description_element&.text&.strip,
             source_url: url_element&.[]('href')&.strip,
             location: location_element&.text&.strip,

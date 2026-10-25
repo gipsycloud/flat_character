@@ -1,0 +1,25 @@
+<div class="mx-auto max-w-3xl px-4 py-8">
+  <%= link_to "← Crawl history", admin_crawl_sessions_path, class: "text-sm text-slate-500 hover:text-slate-800" %>
+
+  <div class="mt-4 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-slate-900"><%= @crawl_session.job_source&.name %> — Crawl #<%= @crawl_session.id %></h1>
+      <%= crawl_status_badge(@crawl_session) %>
+    </div>
+
+    <dl class="mt-6 grid grid-cols-2 gap-4 text-sm">
+      <div><dt class="text-slate-500">Started</dt><dd class="font-medium"><%= @crawl_session.started_at %></dd></div>
+      <div><dt class="text-slate-500">Finished</dt><dd class="font-medium"><%= @crawl_session.finished_at || "—" %></dd></div>
+      <div><dt class="text-slate-500">Listings found</dt><dd class="font-medium"><%= @crawl_session.listings_found %></dd></div>
+      <div><dt class="text-slate-500">Created / Updated</dt>
+        <dd class="font-medium"><%= @crawl_session.listings_created %> / <%= @crawl_session.listings_updated %></dd></div>
+    </dl>
+
+    <% if @crawl_session.error_message.present? %>
+      <div class="mt-6 rounded-lg border border-red-200 bg-red-50 p-4">
+        <p class="text-xs font-semibold uppercase text-red-700">Error</p>
+        <p class="mt-1 font-mono text-sm text-red-800"><%= @crawl_session.error_message %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

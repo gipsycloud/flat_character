@@ -1,0 +1,39 @@
+<div class="mx-auto max-w-6xl px-4 py-8">
+  <%= link_to "← Back to sources", admin_job_sources_path, class: "text-sm text-slate-500 hover:text-slate-800" %>
+  <h1 class="mt-2 text-3xl font-bold text-slate-900">Crawl History</h1>
+
+  <div class="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-white">
+    <table class="w-full text-left text-sm">
+      <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+        <tr>
+          <th class="px-5 py-3">Source</th>
+          <th class="px-5 py-3">Status</th>
+          <th class="px-5 py-3">Found</th>
+          <th class="px-5 py-3">New</th>
+          <th class="px-5 py-3">Updated</th>
+          <th class="px-5 py-3">Started</th>
+          <th class="px-5 py-3">Duration</th>
+          <th class="px-5 py-3"></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100">
+        <% @crawl_sessions.each do |session| %>
+          <tr class="hover:bg-slate-50">
+            <td class="px-5 py-3 font-medium"><%= session.job_source&.name %></td>
+            <td class="px-5 py-3"><%= crawl_status_badge(session) %></td>
+            <td class="px-5 py-3"><%= session.listings_found %></td>
+            <td class="px-5 py-3 text-emerald-600"><%= session.listings_created %></td>
+            <td class="px-5 py-3 text-slate-500"><%= session.listings_updated %></td>
+            <td class="px-5 py-3 text-slate-500"><%= session.started_at.strftime("%b %d, %H:%M") %></td>
+            <td class="px-5 py-3 text-slate-500">
+              <% if session.finished_at %><%= distance_of_time_in_words(session.started_at, session.finished_at) %><% else %>—<% end %>
+            </td>
+            <td class="px-5 py-3 text-right">
+              <%= link_to "View", admin_crawl_session_path(session), class: "text-xs font-medium text-indigo-600 hover:underline" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

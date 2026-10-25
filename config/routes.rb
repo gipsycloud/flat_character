@@ -38,15 +38,18 @@ Rails.application.routes.draw do
 
       # post 'apartments/:apartment_id/favorite', to: 'favorites#create', as: :favorite_apartment
       # delete 'apartments/:apartment_id/favorite', to: 'favorites#destroy', as: :unfavorite_apartment
+      # post "job_listings/:job_listing_id/saved_jobs", to: "saved_jobs#create", as: :job_saved_jobs
       post "apartments/:apartment_id/favorites", to: "favorites#create", as: :apartment_favorites
       delete "favorites/:id", to: "favorites#destroy", as: :favorite
-      get 'detail' => "profile#profile"
-      get 'report' => "admins#report"
-      get 'members' => "admins#members"
-      get 'availableroom' => "admins#availableroom"
-      get 'setting' => "admins#setting"
-      # namespace 'profile_setting' do
-      # end
+      resources :apartments
+      resources :favorites, only: %i[index create destroy]
+      resources :job_listings, only: %i[index show]
+      resources :saved_jobs, only: %i[index create destroy]
+      resources :job_sources, only: %i[index] do
+        post :crawl_now, on: :member
+      end
+      resources :crawl_sessions, only: %i[index show]
+
     resources :upgrade, as: :upgrades
 
     resources :users do
@@ -79,22 +82,15 @@ Rails.application.routes.draw do
   devise_scope :admin do
     authenticated :admin do
       scope :main do
-        namespace :admins do
-          get 'dashboard/index', as: :authenticated_root
-          get 'homelist' => "dashboard#homelist"
-        end
+        get 'homelist', to: 'admins/dashboard#homelist'
+        get 'dashboard/index', to: 'admins/dashboard#index', as: :authenticated_root
+        resources :members
+        resources :plans
+        get '/logs', to: 'logs#index'
       end
     end
   end
 
-  scope :main do
-    resources :members
-    resources :plans
-  end
-
-  authenticate :admin do
-    get '/logs', to: 'logs#index'
-  end
 
   # Public website
   resources :subscriptions, only: %i[index new create]
@@ -155,8 +151,7 @@ Rails.application.routes.draw do
   get "/health/redis", to: "health#redis"
 
   # Job listings
-  resources :apartments
-  resources :job_listings, only: %i[index show]
+  # resources :apartments
+  # resources :job_listings, only: %i[index show]
   delete "saved_jobs/:id", to: "saved_jobs#destroy", as: :saved_job
-  post "job_listings/:job_listing_id/saved_jobs", to: "saved_jobs#create", as: :job_saved_jobs
 end

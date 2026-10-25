@@ -4,7 +4,7 @@ class JobListing < ApplicationRecord
 	enum :remote_status, { remote: 0, hybrid: 1, on_site: 2 }
 
 	belongs_to :job_source
-	belongs_to :crawl_session, optional: true
+	belongs_to :job_category, optional: true
 	has_many :saved_jobs, dependent: :destroy
 
 	geocoded_by :location
