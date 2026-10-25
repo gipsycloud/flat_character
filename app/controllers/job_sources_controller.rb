@@ -17,7 +17,9 @@ class JobSourcesController < ApplicationController
 
   def crawl_now
     source = JobSource.find(params[:id])
-    crawler = "Crawler::#{source.crawler_class_name}".constantize.new(source)
+    crawler_class = source.crawler_class.to_s
+    crawler_class = "Crawler::#{crawler_class}" unless crawler_class.start_with?("Crawler::")
+    crawler = crawler_class.constantize.new(source)
     crawler.crawl!              # runs synchronously — no queue
 
     session = source.crawl_sessions.order(:created_at).last

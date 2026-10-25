@@ -7,7 +7,7 @@ module Crawler
 				data["jobs"].map do |job|
 					{
 						title: job["title"],
-						company: job["company_name"],
+						company_name: job["company_name"],
 						description: job["description"]&.gsub(/<[^>]+>/, ""), # strip HTML
 						source_url: job["url"],
 						location: job["candidate_required_location"],

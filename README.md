@@ -57,6 +57,43 @@ Every 3 minutes someone finds a flatmate on SpareRoom. With the biggest selectio
 
 - Coming Soon
 
+## Job Crawling
+
+Job sources are stored as `JobSource` records. Each record has a `crawler_class`
+(`HtmlSourceCrawler` or `RemotiveCrawler`) and a JSON `config`. The HTML crawler
+expects a feed URL plus CSS selectors for the listing, title, company,
+description, URL, location, and publication date. The URL selector must return
+an absolute job URL.
+
+To configure an HTML source and run it manually, open a Rails console:
+
+```ruby
+source = JobSource.create!(
+  name: "Example Jobs",
+  base_url: "https://jobs.example.com",
+  crawler_class: "HtmlSourceCrawler",
+  config: {
+    "url" => "https://jobs.example.com/jobs",
+    "listing_selector" => ".job-card",
+    "title_selector" => ".job-title",
+    "company_selector" => ".company",
+    "description_selector" => ".description",
+    "url_selector" => "a.job-link",
+    "location_selector" => ".location",
+    "published_at_selector" => ".published-at"
+  }
+)
+
+Crawler::HtmlSourceCrawler.new(source).crawl!
+```
+
+The crawler creates a `CrawlSession` for each run, records its status and
+listing counts, and deduplicates listings by source URL. The default delay
+between listings is two seconds; set `crawl_delay_seconds` in the source
+config to override it. Crawl sessions and sources can be reviewed in the
+Job Crawl Admin at `/admins/job_sources` after signing in. Crawls run
+synchronously when triggered; no recurring job-crawl schedule is configured.
+
 ## Run Locally
 
 Clone the project
